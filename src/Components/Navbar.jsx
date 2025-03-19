@@ -11,6 +11,11 @@ const Navbar = () => {
         <li>Atendimento</li>
         <li>Sobre Nós</li>
       </ul>
+
+      <div className="social-icons">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook"></i>
+      </div>
     </nav>
   );
 };
