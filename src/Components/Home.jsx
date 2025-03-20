@@ -2,7 +2,11 @@ import React from "react";
 import figura1 from "../assets/Blob 3.svg"
 import figura2 from "../assets/Blob 5.svg"
 import figura3 from "../assets/Blob 14.svg"
-import figura4 from "../assets/Lightning 2.svg"
+import figura4 from "../assets/Blob 11.svg"
+import card1 from "../assets/Card 1.png"
+import card2 from "../assets/Card 2.png"
+import card3 from "../assets/Card 3.png"
+
 
 
 
@@ -23,6 +27,26 @@ const Hero = () => {
     <button className="order">
       Pedir
     </button>
+
+    <div className="cards">
+      <h2>Como <span className="yellow">funciona</span>?</h2>
+      <div className="cards-container">
+        <div className="card">
+          <img src={card1} alt="Chamou chegou" />
+          <p>Chamou chegou!</p>
+        </div>
+
+        <div className="card">
+          <img src={card2} alt="Variedade de produtos" />
+          <p>Variedade de produtos!</p>
+        </div>
+
+        <div className="card">
+          <img src={card3} alt="Chama a diversao" />
+          <p>Chama a diversão!</p>
+        </div>
+      </div>
+    </div>
   </section>
   );
 };

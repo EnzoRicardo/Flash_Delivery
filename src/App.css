@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -88,14 +90,17 @@ body {
   position: absolute;
   z-index: -1;
   left: 1400px;
-  top: 600px;
+  top: 450px;
 }
 
 .figure4 {
   position: absolute;
   z-index: -1;
-  left: 1265px;
+  right: -65px;
+  top: 1200px;
 }
+
+
 
 .figure1, .figure2, .figure3, .figure4 {
   max-width: 100vw;
@@ -163,6 +168,66 @@ h1 {
   align-items: center;
   gap: 10px; 
 }
+
+.cards {
+  margin-top: 200px;
+  text-align: center;
+  font-family: 'Winky Sans';
+}
+
+.cards h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; 
+  flex-wrap: wrap; 
+  margin-top: 40px;
+}
+
+.card {
+  width: 250px;
+  text-align: center;
+  border-radius: 15px;
+  background: transparent;
+  padding: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar {
+  width: 10px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFC107; 
+  border-radius: 5px; 
+  transition: 0.3s ease-in;
+}
+
 
 @media (max-width: 768px) {
   .navbar {
