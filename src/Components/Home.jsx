@@ -5,6 +5,7 @@ import figura3 from "../assets/Blob 14.svg"
 import figura4 from "../assets/Lightning 2.svg"
 
 
+
 const Hero = () => {
   return (
     <section className="textLP">

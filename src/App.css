@@ -4,6 +4,11 @@ body {
   background-color: #000000;
   color: white;
   overflow-x: hidden;
+  background-image: url(../src/assets/BG.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .App {
@@ -21,8 +26,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 3px 40px;
-  background-color: #000000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
 }
 
 .navbar ul {
@@ -76,7 +80,7 @@ body {
   position: absolute;
   z-index: -1;
   width: 380px;
-  right: 1280px;
+  right: 1220px;
   top: 160px;
 }
 
@@ -157,7 +161,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Espaço entre o botão e a flecha */
+  gap: 10px; 
 }
 
 @media (max-width: 768px) {
