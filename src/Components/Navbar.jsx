@@ -1,10 +1,13 @@
 import React from "react";
 import logo from "../assets/Logo FD.png"
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <img src={logo} alt="Flash Delivery" className="logo"/>  
+       <Link to="/">
+        <img src={logo} alt="Flash Delivery" className="logo" />
+      </Link> 
       <ul>
         <li>Início</li>
         <li>Cardápio</li>

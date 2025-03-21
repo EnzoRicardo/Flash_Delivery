@@ -93,14 +93,6 @@ body {
   top: 450px;
 }
 
-.figure4 {
-  position: absolute;
-  z-index: -1;
-  right: -65px;
-  top: 1200px;
-}
-
-
 
 .figure1, .figure2, .figure3, .figure4 {
   max-width: 100vw;
@@ -144,7 +136,7 @@ h1 {
 }
 
 
-.order {
+.order-button {
   padding: 15px 50px;
   font-size: 1.2rem;
   cursor: pointer;
@@ -158,7 +150,7 @@ h1 {
   box-shadow: 0px 2px 15px #FFC107; 
 }
 
-.order:hover {
+.order-button:hover {
   transform: scale(1.1);
 }
 
