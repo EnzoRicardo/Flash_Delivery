@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="navbar">
-       <Link to="/">
         <img src={logo} alt="Flash Delivery" className="logo" />
-      </Link> 
       <ul>
-        <li>Início</li>
-        <li>Cardápio</li>
-        <li>Atendimento</li>
-        <li>Sobre Nós</li>
+        <li>
+          <Link to="/" className="nav-link">Início</Link>
+        </li>
+        <li className="nav-link">Cardápio</li>
+        <li className="nav-link">Atendimento</li>
+        <li className="nav-link">Sobre Nós</li>
       </ul>
 
       <div className="social-icons">

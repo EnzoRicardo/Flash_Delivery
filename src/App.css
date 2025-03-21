@@ -47,11 +47,31 @@ body {
   justify-content: center;
   gap: 20px;
   transition: 0.3s ease;
+  text-align: center;
+}
+
+.navbar ul li a {
+  text-decoration: none;  
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  display: inline-block; 
+  transition: 0.3s ease;
+}
+
+.nav-link {
+  text-decoration: none;  
+  padding: 10px;
+  color: rgb(255, 255, 255);
 }
 
 .navbar ul li:hover {
   color: #FFC107;
-  transform: scale(1.1)
+  transform: scale(1.1);
+}
+
+.navbar ul li a:hover {
+  color: #FFC107; 
+  transform: scale(1.1);
 }
 
 .social-icons {
