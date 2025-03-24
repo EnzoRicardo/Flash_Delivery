@@ -27,7 +27,7 @@ const Hero = () => {
 
     <Link to="/order">
         <button className="order-button">Pedir</button>
-      </Link>
+    </Link>
      
 
     <div className="cards">

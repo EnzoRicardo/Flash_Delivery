@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: white;
+    overflow-x: hidden;
+    background-color: #000000;
+  }
+  
+  .App {
+    min-height: 100vh;
+  }
+  
+  .logo {
+    height: 150px !important;  
+    width: auto !important;   
+    margin-left: 50px; 
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 40px;
+    background-color: transparent;
+  }
+  
+  .navbar ul {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    list-style-type: none;
+    width: 100%; 
+  }
+  
+  .navbar ul li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 17px;
+    font-weight: 500;
+    justify-content: center;
+    gap: 20px;
+    transition: 0.3s ease;
+    text-align: center;
+  }
+  
+  .navbar ul li a {
+    text-decoration: none;  
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    display: inline-block; 
+    transition: 0.3s ease;
+  }
+  
+  .nav-link {
+    text-decoration: none;  
+    padding: 10px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .navbar ul li:hover {
+    color: #FFC107;
+    transform: scale(1.1);
+  }
+  
+  .navbar ul li a:hover {
+    color: #FFC107; 
+    transform: scale(1.1);
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-right: 100px;
+  }
+  
+  .social-icons i {
+    font-size: 30px;
+    color: #ffffff; 
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .social-icons i:hover {
+    color: #FFC107; 
+    transform: scale(1.1);
+  }
+
+  

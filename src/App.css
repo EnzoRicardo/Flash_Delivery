@@ -6,7 +6,7 @@ body {
   background-color: #000000;
   color: white;
   overflow-x: hidden;
-  background-image: url(../src/assets/BG.png);
+  background-color: #000000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -209,7 +209,7 @@ h1 {
   border-radius: 15px;
   background: transparent;
   padding: 35px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: #ffffff;
 }
 
 .card img {
@@ -241,21 +241,6 @@ h1 {
 }
 
 
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  .navbar ul {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .navbar h1 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-}
 
 
