@@ -50,3 +50,92 @@ body {
     display: block;
     border-radius: 10px; 
   }
+
+  .blob1 {
+    position: absolute;
+    z-index: -1;
+    width: 380px;
+    right: 1300px;
+  }
+
+  .blob2 {
+    position: absolute;
+    z-index: -1;
+    width: 380px;
+    left: 1380px;
+    top: 900px;
+  }
+
+  .blob3 {
+    position: absolute;
+    width: 280px;
+    left: 1420px;
+    top: -15px;
+  }
+
+  .search-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-top: 50px;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 2px;
+  }
+
+  .drinkred {
+    color: #D32F2F;
+    text-shadow: 0px 0px 5px #D32F2F;
+    font-style: italic;
+  }
+
+  .drinkyellow {
+    color: #FFC107;
+    text-shadow: 0px 0px 5px #FFC107;
+    font-style: italic;
+  }
+
+
+  .drinks-card-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 100px;
+  }
+
+  .card-order {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s ease;
+    box-shadow: 0px 0px 1px rgb(255, 255, 255);
+    cursor: pointer;
+  }
+
+  .card-order:hover {
+    box-shadow: 0px 0px 15px rgb(255, 255, 255);
+    transform: translateY(-10px);
+  }
+
+  .card-drinks img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  
