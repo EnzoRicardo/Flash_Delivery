@@ -43,28 +43,28 @@ const Order = () => {
 
         <div className="card-order">
           <div className="card-drinks">
-            <img src={refriIMG} alt="Cerveja" />
+            <img src={refriIMG} alt="Refrigerantes" />
             <p className="card-title">Refrigerantes</p>
           </div>  
         </div>
 
         <div className="card-order">
           <div className="card-drinks">
-            <img src={dpIMG} alt="Cerveja" />
+            <img src={dpIMG} alt="DP" />
             <p className="card-title">Drinks Prontos</p>
           </div>  
         </div>
 
         <div className="card-order">
           <div className="card-drinks">
-            <img src={destiladoIMG} alt="Cerveja" />
+            <img src={destiladoIMG} alt="Destilados" />
             <p className="card-title">Destilados</p>
           </div>  
         </div>
 
         <div className="card-order">
           <div className="card-drinks">
-            <img src={vinhosIMG} alt="Cerveja" />
+            <img src={vinhosIMG} alt="Vinhos" />
             <p className="card-title">Vinhos</p>
           </div>  
         </div>
