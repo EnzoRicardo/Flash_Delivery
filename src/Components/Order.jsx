@@ -4,6 +4,8 @@ import video from "../assets/Banner 2.mp4"
 import cervejaIMG from "../assets/cards/Cerveja Card.png"
 import refriIMG from "../assets/cards/Refri Card.png"
 import dpIMG from "../assets/cards/Drinks Pronto.png"
+import destiladoIMG from "../assets/cards/Destilados.png"
+import vinhosIMG from "../assets/cards/Vinhos.png"
 import blob1 from "../assets/Figura 1.svg"
 import blob2 from "../assets/Figura 2.svg"
 import blob3 from "../assets/Figura3.svg"
@@ -50,6 +52,20 @@ const Order = () => {
           <div className="card-drinks">
             <img src={dpIMG} alt="Cerveja" />
             <p className="card-title">Drinks Prontos</p>
+          </div>  
+        </div>
+
+        <div className="card-order">
+          <div className="card-drinks">
+            <img src={destiladoIMG} alt="Cerveja" />
+            <p className="card-title">Destilados</p>
+          </div>  
+        </div>
+
+        <div className="card-order">
+          <div className="card-drinks">
+            <img src={vinhosIMG} alt="Cerveja" />
+            <p className="card-title">Vinhos</p>
           </div>  
         </div>
 
