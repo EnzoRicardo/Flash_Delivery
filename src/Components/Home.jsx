@@ -11,6 +11,7 @@ import Order from "./Order";
 
 
 
+
 const Hero = () => {
   return (
     <section className="textLP">
@@ -19,10 +20,10 @@ const Hero = () => {
       <img src={figura3}  className="figure3" />
     <h1>
       <div className="left-align">SUA ENTREGA</div>
-      <span>NA <span className="yellow">VELOCIDADE</span> DA SUA</span> <span className="red">FOME.</span>
+      <span>NA <span className="yellow">VELOCIDADE</span> DA SUA</span> <span className="red">SEDE.</span>
     </h1>
     <p className="description">
-      Do seu restaurante favorito direto para a sua porta, na velocidade que você merece!
+      Bebidas incríveis, entregues diretamente na sua porta, com a agilidade que você merece!
     </p>
 
     <Link to="/order">
