@@ -2,11 +2,16 @@ import React from "react";
 import logo from "../assets/Logo FD.png"
 import { Link } from "react-router-dom";
 
+
+
 const Navbar = () => {
+
   const isLoggedIn = localStorage.getItem("userToken");
   return (
     <nav className="navbar">
         <img src={logo} alt="Flash Delivery" className="logo" />
+
+        <button className="hamburguer"><i class="fa-solid fa-bars"></i></button>
       <ul>
         <li> 
           <Link to="/" className="nav-link">Início</Link>

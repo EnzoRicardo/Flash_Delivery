@@ -228,6 +228,25 @@ h1 {
   color: rgb(255, 255, 255);
 }
 
+.hamburguer {
+  display: none;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  padding: 10px;
+}
+
+.hamburguer i {
+  font-size: 32px; 
+  color: #fff; 
+  transition: 0.3s ease;
+}
+
+.hamburguer i:hover {
+  color: #FFC107;
+  transform: scale(1.1);
+}
+
 ::-webkit-scrollbar {
   width: 10px; 
 }
@@ -242,7 +261,31 @@ h1 {
   transition: 0.3s ease-in;
 }
 
+@media (max-width: 750px) {
+  .hamburguer {
+    display: block;
+  }
 
+  .nav-link {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+    clip-path: circle(100px at 90% -15%);
+    transition: 1s ease-out;
+    pointer-events: none;
+  }
+
+  .nav.active .nav-link {
+    clip-path: circle(1500px at 90% -15%);
+    pointer-events: all;
+  }
+}
 
 
 
