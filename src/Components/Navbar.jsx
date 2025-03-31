@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/Logo FD.png"
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem("userToken");
+  const [showLoginOptions, setShowLoginOptions] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLoginOptions(!showLoginOptions);
+  };
+
   return (
     <nav className="navbar">
         <img src={logo} alt="Flash Delivery" className="logo" />
@@ -23,11 +29,17 @@ const Navbar = () => {
       </ul>
 
       <div className="social-icons">
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-facebook"></i>
-        <Link to="/profile">
-          <i class="fa-solid fa-user"></i>
-          </Link>
+        <i className="fa-brands fa-instagram"></i>
+        <i className="fa-brands fa-facebook"></i>
+        {showLoginOptions && (
+        <div id="loginOption" style={{ display: "block" }}>
+          <a href="">Login</a>
+          <a href="">Login</a>
+        </div>
+      )}
+        
+        <button id="loginBtn" onClick={handleLoginClick}><i className="fa-solid fa-user"></i></button>
+        
       </div>
     </nav>
   );

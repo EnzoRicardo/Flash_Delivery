@@ -79,6 +79,11 @@ body {
   
 }
 
+#loginOption{
+  display: none;
+  position: absolute;
+}
+
 .social-icons i {
   font-size: 30px;
   color: #ffffff; 
