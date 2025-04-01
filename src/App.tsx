@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
@@ -7,7 +6,7 @@ import Hero from './Components/Home';
 import Order from './Components/Order';
 import Profile from './Components/Profile';
 import Service from './Components/service';
-import ServiceArea from './Components/ServiceArea';
+import MapaCuritiba from './Components/MapaCuritiba';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
