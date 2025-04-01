@@ -6,6 +6,7 @@ import figura3 from "../assets/Blob 14.svg"
 import card1 from "../assets/Card 1.png"
 import card2 from "../assets/Card 2.png"
 import card3 from "../assets/Card 3.png"
+import { motion } from "framer-motion";
 import Order from "./Order";
 
 
@@ -20,7 +21,10 @@ const Hero = () => {
       <img src={figura3}  className="figure3" />
     <h1>
       <div className="left-align">SUA ENTREGA</div>
-      <span>NA <span className="yellow">VELOCIDADE</span> DA SUA</span> <span className="red">SEDE.</span>
+      <span>NA <motion.span className="yellow"
+      initial={{ opacity: 0, y: 0 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.6, ease: "easeOut" }}>VELOCIDADE</motion.span> DA SUA</span> <span className="red">SEDE.</span>
     </h1>
     <p className="description">
       Bebidas incríveis, entregues diretamente na sua porta, com a agilidade que você merece!

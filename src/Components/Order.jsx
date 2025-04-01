@@ -6,13 +6,10 @@ import refriIMG from "../assets/cards/Refri Card.png"
 import dpIMG from "../assets/cards/Drinks Pronto.png"
 import destiladoIMG from "../assets/cards/Destilados.png"
 import vinhosIMG from "../assets/cards/Vinhos.png"
+import aguaIMG from "../assets/cards/Agua.png"
 import blob1 from "../assets/Figura 1.svg"
 import blob2 from "../assets/Figura 2.svg"
 import blob3 from "../assets/Figura3.svg"
-
-
-
-
 
 
 const Order = () => {
@@ -66,6 +63,13 @@ const Order = () => {
           <div className="card-drinks">
             <img src={vinhosIMG} alt="Vinhos" />
             <p className="card-title">Vinhos</p>
+          </div>  
+        </div>
+
+        <div className="card-order">
+          <div className="card-drinks">
+            <img src={aguaIMG} alt="Vinhos" />
+            <p className="card-title">Água</p>
           </div>  
         </div>
 
