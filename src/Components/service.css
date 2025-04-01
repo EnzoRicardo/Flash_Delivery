@@ -7,20 +7,20 @@ body {
     color: white;
     overflow-x: hidden;
     background-color: #000000;
-  }
+}
 
 .contato {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
   
 .contato h2 {
     color: white;
     text-transform: uppercase;
     font-size: 4rem;
-  }
+}
 
 .contato h3 {
     color: #FFC107;
@@ -29,20 +29,21 @@ body {
     font-size: 32px;
     font-weight: 400;
     margin-top: -35px;
-  }
+}
 
 .red-service {
     color: #D32F2F;
     text-shadow: 0px 0px 5px #D32F2F;
-  }
+    font-style: italic;
+}
 
 .blob4 {
     position: absolute;
     z-index: -1;
     width: 380px;
-    right: 1380px;
+    right: 1350px;
     top: 350px;
-  }
+}
 
 .blob5 {
     position: absolute;
@@ -50,7 +51,15 @@ body {
     width: 380px;
     left: 1400px;
     top: 20px;
-  }
+}
+
+.blob6 {
+    position: absolute;
+    z-index: -1;
+    width: 480px;
+    left: 1400px;
+    top: 1200px;
+}
 
 .contato-icones {
     display: flex;
@@ -59,7 +68,7 @@ body {
 }
 
 .contato-icones i {
-    font-size: 80px;
+    font-size: 70px;
     margin: 0 40px;
     transition: 0.3s ease;
     cursor: pointer;
@@ -68,4 +77,46 @@ body {
 .contato-icones i:hover {
     transform: scale(1.1);
     color: #FFC107;
+}
+
+.regioes {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.lugares {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 50px;
+    text-align: center;
+}
+
+
+.localizacao {
+    display: flex; 
+    align-items: center; 
+    gap: 0px; 
+  }
+
+
+.localizacao i {
+    font-size: 24px; 
+    color: #FFC107; 
+    text-shadow: 0px 0px 5px #FFC107;
+    margin-right: -10px;
+  }
+
+.localizacao h2 {
+    text-transform: uppercase;
+    margin: 0 20px;
+    font-weight: 400;
+    color: #FFC107;
+    text-shadow: 0px 0px 5px #FFC107;
+}
+
+.regioes h3 {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-style: italic;
 }
