@@ -89,6 +89,7 @@ body {
 
 .triangulo {
   position: absolute;
+  z-index: 10;
   top: -20px; /* Position the triangle above the div */
   left: 80%; /* Center the triangle horizontally */
   transform: translateX(-50%);
