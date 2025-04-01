@@ -89,16 +89,16 @@ body {
 
 .figure1 {
   position: absolute;
-  top: 550px;
+  top: 880px;
   right: 1370px;
 }
 
 .figure2 {
   position: absolute;
   z-index: -1;
-  width: 380px;
+  width: 480px;
   right: 1280px;
-  top: 160px;
+  top: 140px;
 }
 
 .figure3 {

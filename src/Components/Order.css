@@ -62,14 +62,14 @@ body {
     position: absolute;
     z-index: -1;
     width: 380px;
-    left: 1380px;
+    left: 1280px;
     top: 900px;
   }
 
   .blob3 {
     position: absolute;
     width: 280px;
-    left: 1420px;
+    left: 1400px;
     top: -15px;
     z-index: -1;
   }

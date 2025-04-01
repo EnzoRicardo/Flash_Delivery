@@ -40,7 +40,7 @@ body {
     position: absolute;
     z-index: -1;
     width: 380px;
-    right: 1480px;
+    right: 1350px;
     top: 350px;
 }
 
@@ -48,7 +48,7 @@ body {
     position: absolute;
     z-index: -1;
     width: 380px;
-    left: 1500px;
+    left: 1400px;
     top: 20px;
 }
 
