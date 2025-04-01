@@ -22,13 +22,13 @@ const Service = () => {
       <br/>
 
       <div className="contato-icones">
-        <i class="fa-brands fa-square-whatsapp"></i>
-        <i class="fa-solid fa-square-phone"></i>
-        <i class="fa-solid fa-square-envelope"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+        <i class="fa-solid fa-phone"></i>
+        <i class="fa-solid fa-envelope"></i>
       </div>
       
       <div className="regioes">
-        <h3>Regiões que atendemos!</h3>
+        <h3>Regiões que <span className="red-service">atendemos!</span></h3>
           <div className="lugares">
               <div className="localizacao">
                <i class="fa-solid fa-location-dot"></i>
