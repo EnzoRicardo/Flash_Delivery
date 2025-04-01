@@ -89,6 +89,7 @@ body {
 
 .triangulo {
   position: absolute;
+  z-index: 10;
   top: -20px; /* Position the triangle above the div */
   left: 80%; /* Center the triangle horizontally */
   transform: translateX(-50%);
@@ -104,8 +105,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 5px;
+  text-align: center;
 }
 
 .login-options a{
@@ -114,10 +114,12 @@ body {
   font-size: 16px;
   padding: 5px;
   text-align: center;
+  transition: 0.3s ease;
+  margin-top: 6px;
+  letter-spacing: 1px;
 }
 
 #loginOption a:hover {
-  color: #FFC107; 
   transform: scale(1.1);
 }
 

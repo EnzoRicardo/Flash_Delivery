@@ -7,7 +7,7 @@ body {
     color: white;
     overflow-x: hidden;
     background-color: #000000;
-  }
+}
   
   .App {
     min-height: 100vh;
@@ -49,6 +49,7 @@ body {
     height: auto; 
     display: block;
     border-radius: 10px; 
+    z-index: -1;
   }
 
   .blob1 {
@@ -70,7 +71,7 @@ body {
     position: absolute;
     width: 280px;
     left: 1400px;
-    top: -15px;
+    top: 215px;
     z-index: -1;
   }
 
