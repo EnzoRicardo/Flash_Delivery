@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: white;
+    overflow-x: hidden;
+    background-color: #000000;
+}
+
+.text {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.text h2 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.text p {
+    font-size: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.imagem {
+    display: flex;
+    justify-content: center; 
+    margin-top: 60px;
+}
+
+.equipeFD {
+    width: 100%; 
+    max-width: 800px; 
+    height: auto; 
+    border-radius: 10px; 
+    box-shadow: 5px 3px 15px #FFC107; 
+    margin-bottom: 60px;
+}
+
+.values {
+    margin-top: 40px;
+    margin-bottom: 150px;
+}
+  
+.values h3 {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    justify-content: center;
+}
+  
+.values ul {
+    list-style: none;
+    padding: 0;
+}
+  
+.values li {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin: 5px 0;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+.values i {
+    font-size: 25px;
+    color: #FFC107;
+}
+
+.blob9 {
+    position: absolute;
+    z-index: -1;
+    width: 210px;
+    right: 1250px;
+    transform: rotate(-12deg);
+    top: 550px;
+}
+
+.blob10 {
+    position: absolute;
+    z-index: -1;
+    width: 210px;
+    right: 120px;
+    top: 1000px;
+    transform: rotate(12deg);
+}
+
+.blob11 {
+    position: absolute;
+    z-index: -1;
+    width: 410px;
+    right: 1320px;
+    top: 1000px;
+}
+
+.blob12 {
+    position: absolute;
+    z-index: -1;
+    width: 410px;
+    right: -250px;
+    top: 200px;
+}
