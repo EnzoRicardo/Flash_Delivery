@@ -7,6 +7,7 @@ import blob5 from "../assets/Figura 5.svg"
 import blob6 from "../assets/Figura 6.svg"
 import blob7 from "../assets/Figura 7.svg"
 import blob8 from "../assets/Figura8.svg"
+import img1 from "../assets/img1.png"
 
 const Service = () => {
   return (

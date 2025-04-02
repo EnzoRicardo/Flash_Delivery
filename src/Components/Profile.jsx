@@ -9,7 +9,7 @@ const Profile = () => {
                 <h2>Faça aqui seu <span className="red">login!</span></h2>
             </div>
 
-            {/* O formulário de login agora sempre visível */}
+            
             <div className="modal-overlay">
                 <div className="modal-content">
                     <input type="text" placeholder="E-mail" />
