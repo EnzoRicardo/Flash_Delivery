@@ -59,6 +59,11 @@ input {
   transform: scale(1.1);
 }
 
+.button-login:active {
+  transform: scale(0.95); 
+  background-color: #c89706; 
+}
+
 .user-icon i {
   font-size: 45px;
   cursor: pointer;

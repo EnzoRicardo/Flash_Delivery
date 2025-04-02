@@ -65,8 +65,8 @@ body {
 .blob7 {
     position: absolute;
     z-index: -1;
-    width: 120px;
-    left: 220px;
+    width: 100px;
+    left: 120px;
     top: 240px;
     transform: rotate(-15deg);
 }
@@ -77,6 +77,13 @@ body {
     width: 160px;
     left: 1190px;
     top: 690px;
+}
+
+.imgblob {
+    position: absolute;
+    z-index: -1;
+    width: 260px;
+    top: 1200px;
 }
 
 
@@ -100,6 +107,11 @@ body {
     color: #FFC107;
     text-shadow: 0px 0px 5px #FFC107;
 }
+
+.contato-icones i:active {
+    transform: scale(0.95); 
+    color: #c89706; 
+  }
 
 .regioes {
     text-align: center;
