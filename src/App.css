@@ -132,6 +132,7 @@ body {
   background-color: transparent;
   cursor: pointer;
   transition:0.3s ease-in-out;
+  border: none;
 }
 
 .social-icons i {

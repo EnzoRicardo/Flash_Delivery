@@ -50,7 +50,7 @@ const Navbar = () => {
               <Link to="/profile" className="nav-link">
                 Entrar
               </Link>
-              <Link to="/profile" className="nav-link">
+              <Link to="/register" className="nav-link">
                 Cadastre-se
               </Link>
             </div>
