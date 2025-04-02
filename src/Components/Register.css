@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: white;
+    overflow-x: hidden;
+    background-color: #000000;
+}
+
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+
+.form-container {
+    width: 100%;
+    max-width: 500px; 
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+}
+
+.form-container h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.button-register {
+    width: 55%;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    background-color: #FFC107;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.button-register:hover {
+    transform: scale(1.1);
+}
+
+.button-register:active {
+    transform: scale(0.95); 
+    background-color: #c89706; 
+}
+
+.blob14 {
+    position: absolute;
+    z-index: -1;
+    width: 200px;
+    left: 200px;
+    top: 300px;
+}
+
+.yellow-register {
+    color: #FFC107;
+    text-shadow: 0px 0px 5px #FFC107;
+}

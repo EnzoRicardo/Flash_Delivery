@@ -7,7 +7,7 @@ import Order from './Components/Order';
 import Profile from './Components/Profile';
 import Service from './Components/service';
 import AboutUs from './Components/AboutUs';
-import MapaCuritiba from './Components/MapaCuritiba';
+import Register from './Components/Register';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
@@ -20,6 +20,7 @@ function App() {
         <Route path="/hero" element={<Hero />} />
         <Route path="/order" element={<Order />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/service" element={<Service />} />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
