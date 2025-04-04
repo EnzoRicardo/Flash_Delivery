@@ -5,6 +5,9 @@ import MapaCuritiba from "./MapaCuritiba";
 import blob4 from "../assets/Figura 4.svg"
 import blob5 from "../assets/Figura 5.svg"
 import blob6 from "../assets/Figura 6.svg"
+import blob7 from "../assets/Figura 7.svg"
+import blob8 from "../assets/Figura8.svg"
+import imgblob from "../assets/img1.png"
 
 const Service = () => {
   return (
@@ -13,6 +16,9 @@ const Service = () => {
       <img src={blob4} className="blob4" />
       <img src={blob5} className="blob5" />
       <img src={blob6} className="blob6" />
+      <img src={blob7} className="blob7" />
+      <img src={blob8} className="blob8" />
+      <img src={imgblob} className="imgblob" />
 
       <div className="contato">
         <h2>Está com alguma <span className="red-service">dúvida?</span></h2> 
