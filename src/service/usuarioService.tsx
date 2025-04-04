@@ -12,8 +12,19 @@ return await fetch(`http://localhost:8080/api/usuario`,{
     })
 }
 
+const login = async (nome: string, senha: string) => {
+return await fetch(`http://localhost:8080/api/login`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({nome, senha}),
+    })
+}
+
 const usuarioService = {
-    salvar
+    salvar,
+    login
 };
 
 export default usuarioService;

@@ -2,6 +2,9 @@ import "./Register.css"
 import blob14 from "../assets/Figura 14.svg"
 import React, { useEffect, useState } from "react";
 import usuarioService from "../service/usuarioService";
+import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -10,13 +13,26 @@ const Register : React.FC<{}> = ({ }) => {
   const[nome, setNome] = useState('');
   const[email, setEmail] = useState('');
   const[senha, setSenha] = useState('');
+  const navigate = useNavigate();
 
-  const salvar = () => {
-    usuarioService.salvar({
-      nome: nome,
-      email: email,
-      senha: senha
-    })
+  const salvar = async () => {
+    try {
+      await usuarioService.salvar({ nome, email, senha });
+      
+      toast.success("Tudo certo por aqui! Vamos te levar ao cardápio 🥂", {
+        className: "customToast",
+        progressClassName: "custom-toast-progress", 
+        autoClose: 2900,
+        position: "bottom-center",
+      });
+
+      setTimeout(() => {
+        navigate("/order");
+      }, 2000);
+    } catch (error) {
+      toast.error("Erro ao criar a conta :(")
+      console.error("Erro no registro:", error);
+    }
   }
 
 

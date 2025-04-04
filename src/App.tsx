@@ -9,6 +9,8 @@ import Service from './Components/service';
 import AboutUs from './Components/AboutUs';
 import Register from './Components/Register';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
@@ -24,7 +26,10 @@ function App() {
         <Route path="/service" element={<Service />} />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
+
+      <ToastContainer />
     </Router>
+    
   );
 }
 

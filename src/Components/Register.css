@@ -71,3 +71,19 @@ body {
     color: #FFC107;
     text-shadow: 0px 0px 5px #FFC107;
 }
+
+.customToast {
+    background: #D32F2F !important;
+    color: #ffffff !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    border-radius: 8px !important;
+}
+
+.customToast .Toastify__progress-bar {
+    background: #ffffff !important;
+}
+
+.Toastify__toast--success svg {
+    fill: #ffffff !important; 
+}
