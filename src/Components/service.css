@@ -28,7 +28,7 @@ body {
     text-transform: uppercase;
     font-size: 28px;
     font-weight: 400;
-    margin-top: -35px;
+    margin-top: 15px;
     letter-spacing: 1px;
 }
 
@@ -74,8 +74,8 @@ body {
 .blob8 {
     position: absolute;
     z-index: -1;
-    width: 160px;
-    left: 1190px;
+    width: 140px;
+    left: 1240px;
     top: 690px;
 }
 

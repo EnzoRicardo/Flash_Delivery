@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+.refri-card-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100vh;
+  padding: 20px;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+  max-width: 950px;
+  height: 500px;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFC107;
+  font-size: 40px;
+  z-index: 1;
+}
+
+.refri-img {
+  height: 550px;
+  max-width: 1200px;
+  object-fit: contain;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.refri-img.fade-out {
+  opacity: 0;
+}
+
+.refri-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding-left: 30px;
+  min-width: 250px;
+}
+
+.refri-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.refri-info h3 {
+  margin: 4px 0;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.preco {
+  font-weight: bold;
+  color: #D32F2F;
+  font-size: 24px;
+  margin-top: 15px;
+}

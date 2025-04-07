@@ -1,5 +1,7 @@
 import "./Register.css"
 import blob14 from "../assets/Figura 14.svg"
+import blob17 from "../assets/Figura 17.svg"
+import blob18 from "../assets/Figura 18.svg"
 import React, { useEffect, useState } from "react";
 import usuarioService from "../service/usuarioService";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -27,7 +29,7 @@ const Register : React.FC<{}> = ({ }) => {
       });
 
       setTimeout(() => {
-        navigate("/order");
+        navigate("/profile");
       }, 2000);
     } catch (error) {
       toast.error("Erro ao criar a conta :(")
@@ -38,34 +40,63 @@ const Register : React.FC<{}> = ({ }) => {
 
 
   return (
-    <div className="profile-wrapper">
-      <div className="form-container">
+    <div className="login-box">
+      <img src={blob14} className="blob14" />
+      <img src={blob17} className="blob17" />
+      <img src={blob18} className="blob18" />
 
-              <img src={blob14} className="blob14" />
-
-              <h2>Registre-se <span className="yellow-register">aqui!</span> </h2>
-
-              <div className="field">
-                <input type="text" className="form-control" id="nome" aria-describedby="nome" placeholder="Nome"
-                    onChange={(e) => { setNome(e.target.value) }}/>
-              </div>
-
-              <div className="field">
-                <input type="text" className="form-control" id="email" aria-describedby="email" placeholder="E-mail"
-                    onChange={(e) => { setEmail(e.target.value) }} />
-              </div>
-
-              <div className="field">
-                <input type="password" className="form-control" id="senha" aria-describedby="senha" placeholder="Senha"
-                    onChange={(e) => { setSenha(e.target.value) }}/>
-              </div>
-
-              <div className="button-container">
-                <button type="button" className="button-register"
-                    onClick={salvar}>registrar
-                </button>
-              </div>
+      <div className="login-header">
+        <h2>
+          Registre-se <span className="red">aqui!</span>
+        </h2>
       </div>
+
+      <div className="input-box">
+        <form onSubmit={salvar}>
+          <div className="modal-content">
+            <input
+              type="text"
+              placeholder="Nome"
+              id="nome"
+              value={nome}
+              className="input-field"
+              onChange={(e) => setNome(e.target.value)}
+              autoComplete="off"
+              required
+            />
+
+            <input
+              type="text"
+              placeholder="E-mail"
+              id="email"
+              value={email}
+              className="input-field"
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="off"
+              required
+            />
+
+            <input
+              type="password"
+              id="senha"
+              placeholder="Senha"
+              value={senha}
+              className="input-field"
+              onChange={(e) => setSenha(e.target.value)}
+              autoComplete="off"
+              required
+            />
+
+            <div className="input-submit">
+              <button className="button-login" type="submit">
+                Registrar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <ToastContainer />
     </div>
   );
 };
