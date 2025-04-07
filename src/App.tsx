@@ -8,7 +8,10 @@ import Profile from './Components/Profile';
 import Service from './Components/service';
 import AboutUs from './Components/AboutUs';
 import Register from './Components/Register';
+import RefriCard from './Components/RefriCard';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
@@ -23,8 +26,12 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/service" element={<Service />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/refri" element={<RefriCard />} />
       </Routes>
+
+      <ToastContainer />
     </Router>
+    
   );
 }
 

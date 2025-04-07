@@ -10,10 +10,17 @@ import aguaIMG from "../assets/cards/Agua.png"
 import blob1 from "../assets/Figura 1.svg"
 import blob2 from "../assets/Figura 2.svg"
 import blob3 from "../assets/Figura3.svg"
+import { useNavigate } from 'react-router-dom';
+import RefriCard from "./RefriCard";
 
 
 const Order = () => {
   
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/refri'); 
+  };
 
   return (
     <section className="order-page">
@@ -40,7 +47,7 @@ const Order = () => {
 
         <div className="card-order">
           <div className="card-drinks">
-            <img src={refriIMG} alt="Refrigerantes" />
+            <img src={refriIMG} alt="Refrigerantes" onClick={handleClick} />
             <p className="card-title">Refrigerantes</p>
           </div>  
         </div>
