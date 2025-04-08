@@ -111,7 +111,7 @@ body {
 .contato-icones i:active {
     transform: scale(0.95); 
     color: #c89706; 
-  }
+}
 
 .regioes {
     text-align: center;
