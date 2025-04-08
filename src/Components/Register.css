@@ -116,18 +116,25 @@
 
 
 
-.customToast {
-    background: #D32F2F !important;
-    color: #ffffff !important;
-    font-weight: 400 !important;
-    font-size: 16px !important;
-    border-radius: 8px !important;
+.custom-toast-success {
+  background-color: #43a047 !important; /* Verde sucesso */
+  color: #fff !important;
+  font-size: 15px;
+  border-radius: 8px;
 }
 
-.customToast .Toastify__progress-bar {
-    background: #ffffff !important;
+.custom-toast-error {
+  background-color: #e53935 !important; /* Vermelho erro */
+  color: #fff !important;
+  font-size: 15px;
+  border-radius: 8px;
 }
 
-.Toastify__toast--success svg {
-    fill: #ffffff !important; 
+.custom-toast-progress {
+  background: #fff !important;
+}
+
+/* Ícone do toast também branco */
+.Toastify__toast-icon svg {
+  fill: #fff !important;
 }

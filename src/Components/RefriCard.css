@@ -4,7 +4,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 100vh;
+  height: 50vh;
   padding: 20px;
 }
 
@@ -16,6 +16,7 @@
   width: 100%;
   max-width: 950px;
   height: 500px;
+  margin-left: 50px;
 }
 
 .arrow {
@@ -46,27 +47,112 @@
   justify-content: center;
   text-align: left;
   padding-left: 30px;
-  min-width: 250px;
+  min-width: 650px;
+  margin-left: 100px;
 }
 
-.refri-info h2 {
-  font-size: 2.5rem;
+.title-icon h2 {
+  font-size: 3rem;
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 400;
+  font-weight: 600;
+  text-shadow: 2px 2px 8px #D32F2F;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .refri-info h3 {
   margin: 4px 0;
-  font-size: 24px;
+  font-size: 32px;
   font-style: italic;
   font-weight: 400;
+  margin-top: 40px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px #D32F2F;
+  text-transform: uppercase;
 }
 
 .preco {
-  font-weight: bold;
+  font-weight: 600;
   color: #D32F2F;
-  font-size: 24px;
-  margin-top: 15px;
+  font-size: 32px;
+  font-style: italic;
+  margin-top: 20px;
 }
+
+.botaoPedido {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #FFC107;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    max-width: 250px;
+}
+
+.botaoPedido:hover {
+    transform: scale(1.05);
+}
+  
+.botaoPedido:active {
+    transform: scale(0.95);
+    background-color: #c89706;
+}
+
+
+.input-cep {
+    margin-top: 20px;
+    padding: 20px 35px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    width: 250px;
+    max-width: 100%;
+    margin-top: -68px;
+    margin-left: 300px;
+    transition: 0.3s ease;
+}
+
+.input-cep:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #FFC107;
+    transform: scale(1.03)
+}
+
+.title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 530px;
+  width: 100%;
+}
+
+.bagShop {
+    font-size: 45px;
+    color: #FFC107;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+  
+.bagShop:hover {
+    transform: scale(1.2);
+}
+
+.bagShop:active {
+  transform: scale(0.95);
+  color: #c89706;
+}
+

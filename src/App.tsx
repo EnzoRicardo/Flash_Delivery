@@ -18,6 +18,7 @@ function App() {
   return (
     <Router>
       <Navbar /> 
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/hero" element={<Hero />} />
@@ -29,7 +30,6 @@ function App() {
         <Route path="/refri" element={<RefriCard />} />
       </Routes>
 
-      <ToastContainer />
     </Router>
     
   );

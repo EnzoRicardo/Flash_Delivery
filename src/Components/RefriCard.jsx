@@ -4,6 +4,14 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import coca from "../assets/cards/Coca Cola NOBG.png" // npm install lucide-react
 import cocaZero from "../assets/cards/Coca Cola Zero NOBG.png"
 import pepsi from "../assets/cards/Pepsi Card NOBG.png"
+import pepsiZero from "../assets/cards/Pepsi Zero NOBG.png"
+import cervejaIMG from "../assets/cards/Cerveja Card.png"
+import refriIMG from "../assets/cards/Refri Card.png"
+import dpIMG from "../assets/cards/Drinks Pronto.png"
+import destiladoIMG from "../assets/cards/Destilados.png"
+import vinhosIMG from "../assets/cards/Vinhos.png"
+import aguaIMG from "../assets/cards/Agua.png"
+import { useNavigate } from 'react-router-dom';
 
 const refrigerantes = [
   {
@@ -21,8 +29,14 @@ const refrigerantes = [
   {
     nome: 'Coca-Cola Zero',
     volume: '350ml',
-    preco: 'R$ 7,00',
+    preco: 'R$ 8,00',
     imagem: cocaZero,
+  },
+  {
+    nome: 'Pepsi Zero',
+    volume: '350ml',
+    preco: 'R$ 7,50',
+    imagem: pepsiZero,
   },
 ];
 
@@ -43,6 +57,12 @@ const RefriCard = () => {
     const prev = () => changeImage((index - 1 + total) % total);
   
     const atual = refrigerantes[index];
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/refri'); 
+    };
   
     return (
       <div className="refri-card-container">
@@ -63,10 +83,17 @@ const RefriCard = () => {
         </div>
   
         <div className="refri-info">
-          <h2>{atual.nome}</h2>
+          <div className="title-icon">
+            <h2>{atual.nome}</h2>
+            <i className="fa-solid fa-basket-shopping bagShop"></i>
+          </div>
           <h3>{atual.volume}</h3>
           <p className="preco">{atual.preco}</p>
+          <button className="botaoPedido">Adicionar</button>
+          <input type="text" placeholder='Digite seu CEP' className='input-cep' />
         </div>
+
+        
       </div>
     );
   };
