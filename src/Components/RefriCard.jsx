@@ -83,7 +83,10 @@ const RefriCard = () => {
         </div>
   
         <div className="refri-info">
-          <h2>{atual.nome}</h2>
+          <div className="title-icon">
+            <h2>{atual.nome}</h2>
+            <i className="fa-solid fa-basket-shopping bagShop"></i>
+          </div>
           <h3>{atual.volume}</h3>
           <p className="preco">{atual.preco}</p>
           <button className="botaoPedido">Adicionar</button>

@@ -4,7 +4,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 100vh;
+  height: 50vh;
   padding: 20px;
 }
 
@@ -51,13 +51,17 @@
   margin-left: 100px;
 }
 
-.refri-info h2 {
+.title-icon h2 {
   font-size: 3rem;
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
   text-shadow: 2px 2px 8px #D32F2F;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .refri-info h3 {
@@ -73,7 +77,7 @@
 
 .preco {
   font-weight: 600;
-  color: #FFC107;
+  color: #D32F2F;
   font-size: 32px;
   font-style: italic;
   margin-top: 20px;
@@ -125,3 +129,30 @@
     box-shadow: 0 0 0 2px #FFC107;
     transform: scale(1.03)
 }
+
+.title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 530px;
+  width: 100%;
+}
+
+.bagShop {
+    font-size: 45px;
+    color: #FFC107;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+  
+.bagShop:hover {
+    transform: scale(1.2);
+}
+
+.bagShop:active {
+  transform: scale(0.95);
+  color: #c89706;
+}
+
