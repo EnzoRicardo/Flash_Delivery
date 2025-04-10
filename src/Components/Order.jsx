@@ -12,6 +12,7 @@ import blob2 from "../assets/Figura 2.svg"
 import blob3 from "../assets/Figura3.svg"
 import { useNavigate } from 'react-router-dom';
 import RefriCard from "./RefriCard";
+import CardComponent from "./CardComponent";
 
 
 const Order = () => {
@@ -34,57 +35,9 @@ const Order = () => {
       <img src={blob2} className="blob2" />
       <img src={blob3} className="blob3" />
       <h2 className="search-title">Selecione a <span className="drinkred">bebida</span> perfeita para sua <span className="drinkyellow">ocasião!</span></h2>
-
-      <div className="drinks-card-container">
-
-
-        <div className="card-order">
-          <div className="card-drinks">
-            <img src={cervejaIMG} alt="Cerveja" />
-            <p className="card-title">Cervejas</p>
-          </div>  
-        </div>
-
-        <div className="card-order">
-          <div className="card-drinks">
-            <img src={refriIMG} alt="Refrigerantes" onClick={handleClick} />
-            <p className="card-title">Refrigerantes</p>
-          </div>  
-        </div>
-
-        <div className="card-order">
-          <div className="card-drinks">
-            <img src={dpIMG} alt="DP" />
-            <p className="card-title">Drinks Prontos</p>
-          </div>  
-        </div>
-
-        <div className="card-order">
-          <div className="card-drinks">
-            <img src={destiladoIMG} alt="Destilados" />
-            <p className="card-title">Destilados</p>
-          </div>  
-        </div>
-
-        <div className="card-order">
-          <div className="card-drinks">
-            <img src={vinhosIMG} alt="Vinhos" />
-            <p className="card-title">Vinhos</p>
-          </div>  
-        </div>
-
-        <div className="card-order">
-          <div className="card-drinks">
-            <img src={aguaIMG} alt="Vinhos" />
-            <p className="card-title">Água</p>
-          </div>  
-        </div>
-
-
-      </div>
       
 
-
+      <CardComponent />
     </section>
   );
 };

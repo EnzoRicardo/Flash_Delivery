@@ -5,13 +5,8 @@ import coca from "../assets/cards/Coca Cola NOBG.png" // npm install lucide-reac
 import cocaZero from "../assets/cards/Coca Cola Zero NOBG.png"
 import pepsi from "../assets/cards/Pepsi Card NOBG.png"
 import pepsiZero from "../assets/cards/Pepsi Zero NOBG.png"
-import cervejaIMG from "../assets/cards/Cerveja Card.png"
-import refriIMG from "../assets/cards/Refri Card.png"
-import dpIMG from "../assets/cards/Drinks Pronto.png"
-import destiladoIMG from "../assets/cards/Destilados.png"
-import vinhosIMG from "../assets/cards/Vinhos.png"
-import aguaIMG from "../assets/cards/Agua.png"
 import { useNavigate } from 'react-router-dom';
+import CardComponent from './CardComponent';
 
 const refrigerantes = [
   {
@@ -93,7 +88,7 @@ const RefriCard = () => {
           <input type="text" placeholder='Digite seu CEP' className='input-cep' />
         </div>
 
-        
+        <CardComponent />
       </div>
     );
   };
