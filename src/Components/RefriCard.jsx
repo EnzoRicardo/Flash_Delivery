@@ -41,11 +41,11 @@ const RefriCard = () => {
     const total = refrigerantes.length;
   
     const changeImage = (nextIndex) => {
-      setFade(true); // inicia fade-out
+      setFade(true); 
       setTimeout(() => {
         setIndex(nextIndex);
-        setFade(false); // fade-in
-      }, 100); // duração do fade
+        setFade(false); 
+      }, 100); 
     };
   
     const next = () => changeImage((index + 1) % total);
