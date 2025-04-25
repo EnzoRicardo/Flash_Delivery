@@ -13,6 +13,7 @@ import CardComponent from './Components/CardComponent';
 import AdminCrud from './Components/AdminCrud';
 import ProdutoCrud from './Components/ProdutoCrud';
 import CategoriaCrud from './Components/CategoriaCrud';
+import CompraJanela from './Components/CompraJanela';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

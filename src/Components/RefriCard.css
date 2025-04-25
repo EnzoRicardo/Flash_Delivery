@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 
-
+.refri-page {
+  margin-bottom: 100px;
+}
 
 .refri-card-container {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 50vh;
+  height: 70vh;
   padding: 20px;
+}
+
+.card-wrapper {
+  width: 100%;
+  margin-top: 30px;
 }
 
 .carousel {
@@ -158,3 +165,7 @@
   color: #c89706;
 }
 
+.card-wrapper {
+  width: 100%;
+  margin-top: 20px; /* espaço entre os blocos */
+}

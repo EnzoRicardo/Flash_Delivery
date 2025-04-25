@@ -1,0 +1,67 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+  
+.modal {  
+    background: rgb(29, 29, 29);
+    padding: 30px;
+    border-radius: 12px;
+    width: 700px; 
+    max-width: 90%;
+    height: 500px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+  
+.fechar-icon {
+    margin-right: 650px;
+    margin-bottom: 450px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #FFC107;
+    transition: 0.3s ease;
+    position: absolute;
+}
+
+.fechar-icon:hover {
+    transform: scale(1.1);
+}
+
+.fechar-icon:active {
+    transform: scale(0.9);
+}
+
+.title-bag {
+    font-size: 2rem;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 400px;
+    position: absolute;
+    font-weight: 800;
+    color: #FFC107;
+}
+
+.description-bag {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
