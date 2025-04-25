@@ -9,6 +9,10 @@ import Service from './Components/service';
 import AboutUs from './Components/AboutUs';
 import Register from './Components/Register';
 import RefriCard from './Components/RefriCard';
+import CardComponent from './Components/CardComponent';
+import AdminCrud from './Components/AdminCrud';
+import ProdutoCrud from './Components/ProdutoCrud';
+import CategoriaCrud from './Components/CategoriaCrud';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,6 +32,11 @@ function App() {
         <Route path="/service" element={<Service />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/refri" element={<RefriCard />} />
+        <Route path="/cards" element={<CardComponent />} />
+        <Route path="/admin" element={<AdminCrud />} />
+        <Route path="/produto-crud" element={<ProdutoCrud />} />
+        <Route path="/categoria-crud" element={<CategoriaCrud />} />
+
       </Routes>
 
     </Router>

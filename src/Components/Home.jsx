@@ -9,10 +9,6 @@ import card3 from "../assets/Card 3.png"
 import { motion } from "framer-motion";
 import Order from "./Order";
 
-
-
-
-
 const Hero = () => {
   return (
     <section className="textLP">
