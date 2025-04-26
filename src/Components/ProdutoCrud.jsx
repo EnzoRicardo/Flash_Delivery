@@ -5,7 +5,7 @@ import "./ProdutoCrud.css";
 
 const ProdutoCrud = () => {
   const [categorias, setCategorias] = useState([]);
-  
+
   const [productData, setProductData] = useState({
     nome_produto: "",
     preco: "",

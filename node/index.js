@@ -71,4 +71,18 @@ app.post('/api/admin-categoria', function (req, res) {
             res.status(201).json({ message: 'Categoria criada com sucesso!' });
         }
     });   
+})
+
+
+app.get('/api/admin-categoria', function (req, res) {
+    const query = 'SELECT * FROM categoria';
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar categorias:', err);
+            res.status(500).json({ error: 'Erro ao buscar categorias' });
+        } else {
+            res.status(200).json(results);
+        }
+    });
 });
