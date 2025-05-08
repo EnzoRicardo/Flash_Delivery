@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import "./MapaCuritiba.css";
+import "../css/MapaCuritiba.css";
 import 'leaflet/dist/leaflet.css';
 
 const MapaCuritiba = () => {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./Profile.css";
-import usuarioService from "../service/usuarioService";
+import "../css/Profile.css";
+import usuarioService from "../../service/usuarioService";
 import { useNavigate } from "react-router-dom";
-import blob15 from "../assets/Figura 15.svg"
-import blob13 from "../assets/Figura 13.svg"
-import blob16 from "../assets/Figura 16.svg"
+import blob15 from "../../assets/Figura 15.svg"
+import blob13 from "../../assets/Figura 13.svg"
+import blob16 from "../../assets/Figura 16.svg"
 
 const Profile : React.FC<{}> = ({}) => {
 

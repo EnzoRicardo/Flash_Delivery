@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from 'react-toastify';
-import './CategoriaCrud.css';
+import '../css/CategoriaCrud.css';
 
 const CategoriaCrud = () => {
   const [productData, setProductData] = useState({

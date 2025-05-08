@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/Logo FD.png";
+import logo from "../../assets/Logo FD.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as jwt_decode from 'jwt-decode';
 

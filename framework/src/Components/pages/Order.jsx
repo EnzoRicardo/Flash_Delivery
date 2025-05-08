@@ -1,15 +1,15 @@
 import React from "react";
-import "./Order.css";
-import video from "../assets/Banner 2.mp4"
-import cervejaIMG from "../assets/cards/Cerveja Card.png"
-import refriIMG from "../assets/cards/Refri Card.png"
-import dpIMG from "../assets/cards/Drinks Pronto.png"
-import destiladoIMG from "../assets/cards/Destilados.png"
-import vinhosIMG from "../assets/cards/Vinhos.png"
-import aguaIMG from "../assets/cards/Agua.png"
-import blob1 from "../assets/Figura 1.svg"
-import blob2 from "../assets/Figura 2.svg"
-import blob3 from "../assets/Figura3.svg"
+import "../css/Order.css";
+import video from "../../assets/Banner 2.mp4"
+import cervejaIMG from "../../assets/cards/Cerveja Card.png"
+import refriIMG from "../../assets/cards/Refri Card.png"
+import dpIMG from "../../assets/cards/Drinks Pronto.png"
+import destiladoIMG from "../../assets/cards/Destilados.png"
+import vinhosIMG from "../../assets/cards/Vinhos.png"
+import aguaIMG from "../../assets/cards/Agua.png"
+import blob1 from "../../assets/Figura 1.svg"
+import blob2 from "../../assets/Figura 2.svg"
+import blob3 from "../../assets/Figura3.svg"
 import { useNavigate } from 'react-router-dom';
 import RefriCard from "./RefriCard";
 import CardComponent from "./CardComponent";

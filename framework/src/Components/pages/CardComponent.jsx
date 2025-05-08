@@ -1,11 +1,11 @@
 import React from 'react'
-import "./CardComponent.css"
-import cervejaIMG from "../assets/cards/Cerveja Card.png"
-import refriIMG from "../assets/cards/Refri Card.png"
-import dpIMG from "../assets/cards/Drinks Pronto.png"
-import destiladoIMG from "../assets/cards/Destilados.png"
-import vinhosIMG from "../assets/cards/Vinhos.png"
-import aguaIMG from "../assets/cards/Agua.png"
+import "../css/CardComponent.css"
+import cervejaIMG from "../../assets/cards/Cerveja Card.png"
+import refriIMG from "../../assets/cards/Refri Card.png"
+import dpIMG from "../../assets/cards/Drinks Pronto.png"
+import destiladoIMG from "../../assets/cards/Destilados.png"
+import vinhosIMG from "../../assets/cards/Vinhos.png"
+import aguaIMG from "../../assets/cards/Agua.png"
 import { useNavigate } from 'react-router-dom';
 
 const CardComponent = () => {

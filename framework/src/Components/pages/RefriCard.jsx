@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import "./RefriCard.css";
+import "../css/RefriCard.css";
 import { Car, ChevronLeft, ChevronRight } from 'lucide-react';
-import coca from "../assets/cards/Coca Cola NOBG.png" // npm install lucide-react
-import cocaZero from "../assets/cards/Coca Cola Zero NOBG.png"
-import pepsi from "../assets/cards/Pepsi Card NOBG.png"
-import pepsiZero from "../assets/cards/Pepsi Zero NOBG.png"
+import coca from "../../assets/cards/Coca Cola NOBG.png" // npm install lucide-react
+import cocaZero from "../../assets/cards/Coca Cola Zero NOBG.png"
+import pepsi from "../../assets/cards/Pepsi Card NOBG.png"
+import pepsiZero from "../../assets/cards/Pepsi Zero NOBG.png"
 import { useNavigate } from 'react-router-dom';
 import CardComponent from './CardComponent';
 import CompraJanela from './CompraJanela';

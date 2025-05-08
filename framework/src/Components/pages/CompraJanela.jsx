@@ -1,5 +1,5 @@
 import React from 'react';
-import "./CompraJanela.css";
+import "../css/CompraJanela.css";
 
 const CompraJanela = ({ produto, onClose }) => {
   return (

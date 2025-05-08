@@ -1,10 +1,10 @@
 import React from "react";
-import "./AboutUs.css";
-import equipe from "../assets/Equipe.jpeg"
-import blob9 from "../assets/Figura 9.svg"
-import blob10 from "../assets/Figura 10.svg"
-import blob11 from "../assets/Figura 11.svg"
-import blob12 from "../assets/Figura 12.svg"
+import "../css/AboutUs.css";
+import equipe from "../../assets/Equipe.jpeg"
+import blob9 from "../../assets/Figura 9.svg"
+import blob10 from "../../assets/Figura 10.svg"
+import blob11 from "../../assets/Figura 11.svg"
+import blob12 from "../../assets/Figura 12.svg"
 
 const AboutUs = () => {
   return (

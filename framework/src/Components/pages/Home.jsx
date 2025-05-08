@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import figura1 from "../assets/Blob 3.svg"
-import figura2 from "../assets/Blob 5.svg"
-import figura3 from "../assets/Blob 14.svg"
-import card1 from "../assets/Card 1.png"
-import card2 from "../assets/Card 2.png"
-import card3 from "../assets/Card 3.png"
+import figura1 from "../../assets/Blob 3.svg"
+import figura2 from "../../assets/Blob 5.svg"
+import figura3 from "../../assets/Blob 14.svg"
+import card1 from "../../assets/Card 1.png"
+import card2 from "../../assets/Card 2.png"
+import card3 from "../../assets/Card 3.png"
 import { motion } from "framer-motion";
-import Order from "./Order";
+import Order from "../pages/Order";
 
 const Hero = () => {
   return (

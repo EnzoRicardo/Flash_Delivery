@@ -1,13 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion"; // Importa animação
-import "./service.css";
+import "../css/service.css";
 import MapaCuritiba from "./MapaCuritiba";
-import blob4 from "../assets/Figura 4.svg"
-import blob5 from "../assets/Figura 5.svg"
-import blob6 from "../assets/Figura 6.svg"
-import blob7 from "../assets/Figura 7.svg"
-import blob8 from "../assets/Figura8.svg"
-import imgblob from "../assets/img1.png"
+import blob4 from "../../assets/Figura 4.svg"
+import blob5 from "../../assets/Figura 5.svg"
+import blob6 from "../../assets/Figura 6.svg"
+import blob7 from "../../assets/Figura 7.svg"
+import blob8 from "../../assets/Figura8.svg"
+import imgblob from "../../assets/img1.png"
 
 const Service = () => {
   return (

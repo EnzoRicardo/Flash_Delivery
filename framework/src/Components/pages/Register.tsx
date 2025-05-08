@@ -1,9 +1,9 @@
-import "./Register.css";
-import blob14 from "../assets/Figura 14.svg";
-import blob17 from "../assets/Figura 17.svg";
-import blob18 from "../assets/Figura 18.svg";
+import "../css/Register.css";
+import blob14 from "../../assets/Figura 14.svg";
+import blob17 from "../../assets/Figura 17.svg";
+import blob18 from "../../assets/Figura 18.svg";
 import React, { useState } from "react";
-import usuarioService from "../service/usuarioService";
+import usuarioService from "../../service/usuarioService";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
