@@ -270,7 +270,7 @@ h1 {
 
 .cards h2 {
   font-size: 3rem;
-  margin-bottom: 20px;
+  margin-bottom: 5rem;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -285,7 +285,7 @@ h1 {
 }
 
 .card {
-  width: 250px;
+  width: 350px;
   text-align: center;
   border-radius: 15px;
   background: transparent;

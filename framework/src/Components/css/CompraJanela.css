@@ -56,7 +56,9 @@
   text-align: center;
   margin: 10px 0;
 }
-/* Linha divisória /
+
+/* Linha divisória */
+
 .divider {
   width: 80%;
   height: 1px;
@@ -73,6 +75,7 @@
 @keyframes slideIn {
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
+
 }.modal-overlay {
   position: fixed;
   top: 0;
@@ -124,7 +127,7 @@
   margin-top: 60px;
 }
 
-/ Descrição /
+/* Descrição */
 .description-bag {
   font-size: 1.2rem;
   color: #f0f0f0;
@@ -132,7 +135,7 @@
   margin: 10px 0;
 }
 
-/ Linha divisória */
+/* Linha divisória */
 .divider {
   width: 80%;
   height: 1px;
