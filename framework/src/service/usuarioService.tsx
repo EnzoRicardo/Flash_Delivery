@@ -1,6 +1,4 @@
 import React from 'react'
-
-
     
 const salvar = async(usuario:any) => {
 return await fetch(`http://localhost:8080/api/usuario`,{

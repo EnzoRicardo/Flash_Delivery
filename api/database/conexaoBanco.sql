@@ -5,7 +5,6 @@ use flashdelivery;
 CREATE TABLE usuarios(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    sobrenome VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
 	CPF VARCHAR(11) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
@@ -15,7 +14,7 @@ CREATE TABLE usuarios(
     senha VARCHAR(255) NOT NULL
 );
 
-select * from usuarios;
+select * from usuarios;	
 
 CREATE TABLE produtos (
 	id_produto INT AUTO_INCREMENT PRIMARY KEY,

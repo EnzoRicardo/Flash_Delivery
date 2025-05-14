@@ -23,10 +23,10 @@ app.get('/api/usuario', function (req, res) {
 
 
 app.post('/api/usuario', function (req, res) {
-    const { nome, email, senha } = req.body;
+    const { nome, email, cpf, telefone, cep, complemento, endereco, senha } = req.body;
 
-    const query = 'INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)';
-    connection.query(query, [nome, email, senha], (err, results) => {
+    const query = 'INSERT INTO usuarios ( nome, email, cpf, telefone, cep, complemento, endereco, senha) VALUES (?, ?, ?,?,?,?,?, ?)';
+    connection.query(query, [ nome, email, cpf, telefone, cep, complemento, endereco, senha], (err, results) => {
         if (err) {
             console.error('Erro ao inserir usuário:', err);
             res.status(500).json({ error: 'Erro interno ao salvar usuário' });
