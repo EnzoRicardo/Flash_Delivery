@@ -176,11 +176,29 @@ body {
 
 .textLP {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin-top: 70px;
+}
+
+.lataFD {
+  position: absolute;
+  top: -16%;
+  left: 67%;
+  transform: translateX(-50%);
+  z-index: -2;
+  width: 500px; 
+  opacity: 0.8;
+  animation: flutuar 5s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -20px); }
+  100% { transform: translate(-50%, 0); }
 }
 
 h1 {
@@ -215,7 +233,7 @@ h1 {
 
 
 .order-button {
-  padding: 25px 60px;
+  padding: 15px 60px;
   margin-top: 10px;
   font-size: 1.2rem;
   cursor: pointer;
@@ -226,12 +244,10 @@ h1 {
   border: none;
   border-radius: 50px;
   transition:0.3s ease-in-out;
-  box-shadow: 0px 0px 15px #FFC107; 
 }
 
 .order-button:hover {
   transform: scale(1.1);
-  box-shadow: 0px 0px 35px #FFC107;
 }
 
 .order-button:active {
@@ -349,6 +365,3 @@ h1 {
     pointer-events: all;
   }
 }
-
-
-
