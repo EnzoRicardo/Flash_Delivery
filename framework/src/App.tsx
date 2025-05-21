@@ -7,7 +7,7 @@ import Order from './Components/pages/Order';
 import Profile from './Components/pages/Profile';
 import Service from './Components/pages/service';
 import AboutUs from './Components/pages/AboutUs';
-import Register from './Components/pages/Register';
+import SignUp from './Components/pages/SignUp';
 import RefriCard from './Components/pages/RefriCard';
 import CardComponent from './Components/pages/CardComponent';
 import AdminCrud from './Components/pages/AdminCrud';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/hero" element={<Hero />} />
         <Route path="/order" element={<Order />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/service" element={<Service />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/refri" element={<RefriCard />} />
