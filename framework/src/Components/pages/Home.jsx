@@ -7,6 +7,7 @@ import card1 from "../../assets/Card 1.png"
 import card2 from "../../assets/Card 2.png"
 import card3 from "../../assets/Card 3.png"
 import { motion } from "framer-motion";
+import lata from "../../assets/lata nobg.png"
 import Order from "../pages/Order";
 
 const Hero = () => {
@@ -15,6 +16,7 @@ const Hero = () => {
       <img src={figura1}  className="figure1" />
       <img src={figura2}  className="figure2" />
       <img src={figura3}  className="figure3" />
+      <img src={lata}  className="lataFD" />
     <h1>
       <div className="left-align">SUA ENTREGA</div>
       <span>NA <motion.span className="yellow"
