@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProdutoCrud from './ProdutoCrud';
+import "../css/AdminCrud.css"
 
 
 function AdminCrud() {
   return (
-      <div>
+      <div className='link-container'>
         <nav>
           <Link to="/produto-crud"><h2>Adicionar Produto</h2></Link>
           <Link to="/categoria-crud"><h2>Adicionar Categoria</h2></Link>
