@@ -9,7 +9,34 @@ import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [mostrarSenha, setMostrarSenha] = useState(false);
-  const [mostrarSenhaConfirm, setMostrarSenhaConfirm] = useState(false);
+
+  const formatCPF = (value) => {
+    return value
+      .replace(/\D/g, '') // Remove tudo que não for número
+      .replace(/(\d{3})(\d)/, '$1.$2') 
+      .replace(/(\d{3})(\d)/, '$1.$2') 
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); 
+  };
+
+  const formatPhone = (value) => {
+    const cleaned = value.replace(/\D/g, '').slice(0, 11);
+    if (cleaned.length <= 10) {
+      return cleaned
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{4})(\d)/, '$1-$2');
+    } else {
+      return cleaned
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{5})(\d)/, '$1-$2');
+    }
+  };
+
+  const formatCEP = (value) => {
+    return value
+      .replace(/\D/g, '')        
+      .slice(0, 8)              
+      .replace(/(\d{5})(\d)/, '$1-$2');
+  };
 
   const [formInput, setFormInput] = useState({
     nome: "",
@@ -67,7 +94,9 @@ const SignUp = () => {
             <div className="modal-content">
               <input
                 value={formInput.nome}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
+                }
                 name="nome"
                 type="text"
                 placeholder="Nome"
@@ -78,7 +107,9 @@ const SignUp = () => {
               <p className="error-msg">{formError.email}</p>
               <input
                 value={formInput.email}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
+                }
                 name="email"
                 type="text"
                 placeholder="Email"
@@ -92,11 +123,13 @@ const SignUp = () => {
 
               <input
                 value={formInput.cpf}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: formatCPF(target.value) })
+                }
                 name="cpf"
                 type="text"
                 placeholder="CPF"
-                maxLength="{14}"
+                maxLength={14}
                 className="input-field"
                 required
               />
@@ -106,11 +139,13 @@ const SignUp = () => {
             
               <input
                 value={formInput.telefone}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: formatPhone(target.value) })
+                }
                 name="telefone"
                 type="text"
                 placeholder="Telefone"
-                maxLength={14}
+                maxLength={15}
                 className="input-field"
                 required
               />
@@ -121,7 +156,9 @@ const SignUp = () => {
               <div className="group-content">
                 <input
                 value={formInput.cep}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: formatCEP(target.value) })
+                }
                 name="cep"
                 type="text"
                 placeholder="CEP"
@@ -134,7 +171,9 @@ const SignUp = () => {
 
               <input
                 value={formInput.complemento}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
+                }
                 name="complemento"
                 type="text"
                 placeholder="Complemento"
@@ -148,7 +187,9 @@ const SignUp = () => {
 
               <input
                 value={formInput.endereco}
-                onChange={({ target }) => {}}
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
+                }
                 name="endereco"
                 type="text"
                 placeholder="Endereço"
@@ -158,16 +199,36 @@ const SignUp = () => {
               <p className="error-msg">{formError.endereco}</p>
 
               <div className="senha-input">
-              <input
-                value={formInput.senha}
-                onChange={({ target }) => {}}
-                name="senha"
-                type="text"
-                placeholder="Insira sua senha"
-                className="input-field"
-                required
+                  <input
+                    value={formInput.senha}
+                    onChange={({ target }) => 
+                        setFormInput({ ...formInput, [target.name]: target.value })
+                    }
+                    name="senha"
+                    type={mostrarSenha ? "text" : "password"}
+                    placeholder="Insira sua senha"
+                    className="input-field"
+                    required
+                  />
+                  <p className="error-msg">{formError.senha}</p>
+              </div>
+
+
+              <div className="senha-input">
+                <input
+                  value={formInput.senhaConfirm}
+                  onChange={({ target }) => 
+                      setFormInput({ ...formInput, [target.name]: target.value })
+                  }
+                  name="senhaConfirm"
+                  type={mostrarSenha ? "text" : "password"}
+                  placeholder="Insira sua senha novamente"
+                  className="input-field"
+                  required
               />
-              <p className="error-msg">{formError.senha}</p>
+              <p className="error-msg">{formError.senhaConfirm}</p>
+
+
                 <button
                   type="button"
                   onClick={() => setMostrarSenha(!mostrarSenha)}
@@ -180,29 +241,8 @@ const SignUp = () => {
                   ></i>
                 </button>
               </div>
-              <div className="senha-input">
-                 <input
-                value={formInput.senhaConfirm}
-                onChange={({ target }) => {}}
-                name="senhaConfirm"
-                type="text"
-                placeholder="Insira sua senha novamente"
-                className="input-field"
-                required
-              />
-              <p className="error-msg">{formError.senhaConfirm}</p>
-                <button
-                  type="button"
-                  onClick={() => setMostrarSenhaConfirm(!mostrarSenhaConfirm)}
-                  className="botao-visibilidade-confirm"
-                >
-                  <i
-                    className={`fa-solid ${
-                      mostrarSenhaConfirm ? "fa-eye" : "fa-eye-slash"
-                    }`}
-                  ></i>
-                </button>
-              </div>
+
+              
               <div className="input-submit">
                 <button className="button-login" type="submit">
                   Registrar
