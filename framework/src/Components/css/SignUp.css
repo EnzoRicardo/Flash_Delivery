@@ -122,6 +122,30 @@
     top: 290px;
 }
 
+.botao-visibilidade, .botao-visibilidade-confirm {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.2rem;
+  color: #FFC107;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+
+.botao-visibilidade:hover, .botao-visibilidade-confirm:hover {
+  color: #c89706;
+  transform: scale(1.1);
+}
+
+.botao-visibilidade:active, .botao-visibilidade-confirm:active {
+  transform: scale(0.95);
+}
+
+.botao-visibilidade i, .botao-visibilidade-confirm i {
+  pointer-events: none; 
+}
+
 
 
 .custom-toast-success {
