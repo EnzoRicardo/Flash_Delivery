@@ -8,7 +8,7 @@ CREATE TABLE usuarios(
     email VARCHAR(255) NOT NULL,
 	CPF VARCHAR(11) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
-    complemento VARCHAR(11) NOT NULL,
+    complemento VARCHAR(255) NOT NULL,
     CEP VARCHAR(8)NOT NULL,
     endereco VARCHAR(255) NOT NULL,
     senha VARCHAR(255) NOT NULL
@@ -17,11 +17,14 @@ CREATE TABLE usuarios(
 select * from usuarios;	
 
 CREATE TABLE produtos (
-	id_produto INT AUTO_INCREMENT PRIMARY KEY,
-    nome_produto VARCHAR(255) NOT NULL,
-    preco float NOT NULL,
-    qtda_estoque INT NOT NULL,
-    fk_id_categoria INT NOT NULL
+id_produto INT AUTO_INCREMENT PRIMARY KEY,
+nome_produto VARCHAR(255) NOT NULL,
+volume VARCHAR(255) NOT NULL,
+preco float NOT NULL,
+qtda_estoque INT NOT NULL,
+imagem_produto longblob,
+fk_id_categoria INT NOT NULL
+
 );
 
 SELECT * FROM produtos;
@@ -30,5 +33,5 @@ CREATE TABLE categoria (
 	id_categoria INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nome_categoria VARCHAR(255) NOT NULL
 );
-
+SELECT id_categoria, nome_categoria FROM categoria;
 SELECT * FROM categoria;

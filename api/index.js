@@ -74,7 +74,7 @@ app.post('/api/admin-categoria', function (req, res) {
 })
 
 
-app.get('/api/admin-categoria', function (req, res) {
+app.get('/api/categoria', function (req, res) {
     const query = 'SELECT * FROM categoria';
 
     connection.query(query, (err, results) => {
