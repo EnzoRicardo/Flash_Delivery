@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import blob15 from "../../assets/Figura 15.svg";
 import blob13 from "../../assets/Figura 13.svg";
 import blob16 from "../../assets/Figura 16.svg";
+import fotoLogin from "../../assets/fotoLogin.png"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -47,49 +48,50 @@ const Profile = () => {
   };
 
   return (
-    <div className="login-box">
+    <div className="login-container">
       <img src={blob15} className="blob15" alt="Decorativo 15" />
       <img src={blob13} className="blob13" alt="Decorativo 13" />
       <img src={blob16} className="blob16" alt="Decorativo 16" />
 
-      <div className="login-header">
-        <h2>
-          Faça aqui seu <span className="red">login!</span>
-        </h2>
-      </div>
+      <div className="login-content"> {/* agrupamento lateral */}
+        <div className="login-box">
+          <img src={fotoLogin} alt="Foto Login" className="fotoLogin" />
+        </div>
 
-      <div className="input-box">
-        <form onSubmit={handleLogin}>
-          <div className="modal-content">
-            <input
-              type="text"
-              placeholder="E-mail"
-              id="email"
-              value={email}
-              className="input-field"
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="off"
-              required
-            />
+        <div className="input-box">
+          <h3 className="login-text">Faça seu login aqui!</h3>
+          <form onSubmit={handleLogin}>
+            <div className="modal-content">
+              <input
+                type="text"
+                placeholder="E-mail"
+                id="email"
+                value={email}
+                className="input-field"
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
+                required
+              />
 
-            <input
-              type="password"
-              id="senha"
-              placeholder="Senha"
-              value={senha}
-              className="input-field"
-              onChange={(e) => setSenha(e.target.value)}
-              autoComplete="off"
-              required
-            />
+              <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+                value={senha}
+                className="input-field"
+                onChange={(e) => setSenha(e.target.value)}
+                autoComplete="off"
+                required
+              />
 
-            <div className="input-submit">
-              <button className="button-login" type="submit">
-                Entrar
-              </button>
+              <div className="input-submit">
+                <button className="button-login-profile" type="submit">
+                  Entrar
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
