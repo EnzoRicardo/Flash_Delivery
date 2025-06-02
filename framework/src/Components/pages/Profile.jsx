@@ -53,7 +53,7 @@ const Profile = () => {
       <img src={blob13} className="blob13" alt="Decorativo 13" />
       <img src={blob16} className="blob16" alt="Decorativo 16" />
 
-      <div className="login-content"> {/* agrupamento lateral */}
+      <div className="login-content"> 
         <div className="login-box">
           <img src={fotoLogin} alt="Foto Login" className="fotoLogin" />
         </div>
