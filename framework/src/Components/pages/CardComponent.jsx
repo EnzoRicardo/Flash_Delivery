@@ -7,6 +7,9 @@ import destiladoIMG from "../../assets/cards/Destilados.png"
 import vinhosIMG from "../../assets/cards/Vinhos.png"
 import aguaIMG from "../../assets/cards/Agua.png"
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const CardComponent = () => {
 
@@ -17,6 +20,15 @@ const CardComponent = () => {
       if(isLogged){
         navigate(path);
       } else {
+        toast.warn('Você precisa estar logado para acessar esta categoria.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        });
         navigate('/profile')
       }
     };
@@ -27,7 +39,7 @@ const CardComponent = () => {
 
     <div className="card-order">
       <div className="card-drinks">
-        <img src={cervejaIMG} alt="Cerveja" />
+        <img src={cervejaIMG} alt="Cerveja" onClick={() => checkAuthAndNavigate('/refri')}/>
         <p className="card-title">Cervejas</p>
       </div>  
     </div>
@@ -41,28 +53,28 @@ const CardComponent = () => {
 
     <div className="card-order">
       <div className="card-drinks">
-        <img src={dpIMG} alt="DP" />
+        <img src={dpIMG} alt="DP" onClick={() => checkAuthAndNavigate('/refri')} />
         <p className="card-title">Drinks Prontos</p>
       </div>  
     </div>
 
     <div className="card-order">
       <div className="card-drinks">
-        <img src={destiladoIMG} alt="Destilados" />
+        <img src={destiladoIMG} alt="Destilados" onClick={() => checkAuthAndNavigate('/refri')} />
         <p className="card-title">Destilados</p>
       </div>  
     </div>
 
     <div className="card-order">
       <div className="card-drinks">
-        <img src={vinhosIMG} alt="Vinhos" />
+        <img src={vinhosIMG} alt="Vinhos" onClick={() => checkAuthAndNavigate('/refri')} />
         <p className="card-title">Vinhos</p>
       </div>  
     </div>
 
     <div className="card-order">
       <div className="card-drinks">
-        <img src={aguaIMG} alt="Vinhos" />
+        <img src={aguaIMG} alt="Vinhos" onClick={() => checkAuthAndNavigate('/refri')} />
         <p className="card-title">Água</p>
       </div>  
     </div>
