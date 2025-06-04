@@ -158,3 +158,19 @@
   color: #D32F2F; 
   transform: scale(1.1);
 }
+
+.logout-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-button:hover {
+  transform: scale(1.1);
+}
