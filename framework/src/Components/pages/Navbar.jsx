@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/Logo FD.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as jwt_decode from "jwt-decode";
+import "../css/Navbar.css"
 
 
 const Navbar = () => {
@@ -67,19 +68,21 @@ const Navbar = () => {
         <i className="fa-brands fa-instagram fa-2xs"></i>
         <i className="fa-brands fa-facebook fa-2xs"></i>
         {user ? (
-          <div className="user-info">
-            <span>Bem-vindo, {user.userName}</span>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
+              <div id="loginOption" style={{ display: "block" }}>
+                <div className="triangulo"></div>
+                  <div className="login-options">
+                    <button onClick={handleLogout} className="logout-button">Logout</button>
+                  </div>
+              </div>
         ) : (
           <>
             {showLoginOptions && (
               <div id="loginOption" style={{ display: "block" }}>
                 <div className="triangulo"></div>
-                <div className="login-options">
-                  <Link to="/profile" className="nav-link">Entrar</Link>
-                  <Link to="/register" className="nav-link">Cadastre-se</Link>
-                </div>
+                  <div className="login-options">
+                    <Link to="/profile" className="nav-link">Entrar</Link>
+                    <Link to="/register" className="nav-link">Cadastre-se</Link>
+                  </div>
               </div>
             )}
             <button id="loginBtn" onClick={handleLoginClick}>

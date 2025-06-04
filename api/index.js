@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const connection = require('./db');
+const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = 8080;
+const SECRET_KEY = 'flash';
 
 app.use(express.json());
 app.use(cors());
@@ -52,12 +54,22 @@ app.post('/api/login', function (req, res) {
 
         if (results.length > 0) {
             const usuario = results[0];
-            res.status(200).json({
-                message: 'Login realizado com sucesso',
-                token: 'fake-jwt-token', // substitua por JWT real se quiser segurança
+
+            
+            const token = jwt.sign(
+                {
+                id: usuario.id_usuario,
                 nome: usuario.nome,
                 email: usuario.email,
-                id: usuario.id_usuario
+                },
+                SECRET_KEY,
+                { expiresIn: '1h' }
+            );
+
+            res.status(200).json({
+                message: 'Login realizado com sucesso',
+                token: token, // substitua por JWT real se quiser segurança
+                
             });
         } else {
             res.status(401).json({ message: 'Email ou senha incorretos' });
