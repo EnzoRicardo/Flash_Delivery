@@ -3,23 +3,31 @@ import logo from "../../assets/Logo FD.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as jwt_decode from "jwt-decode";
 
+
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
-    if (token) {
-      try {
-        const decodedToken = jwt_decode.jwtDecode(token);
-        setUser(decodedToken);
-      } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
+    const checkUser = () => {
+      const token = localStorage.getItem("userToken");
+      if (token) {
+        try {
+          const decodedToken = jwt_decode.jwtDecode(token);
+          setUser(decodedToken);
+        } catch (error) {
+          console.error("Erro ao decodificar o token:", error);
+        }
+      } else {
+        setUser(null);
       }
-    } else {
-      setUser(null);
-    }
+    };
+
+    checkUser();
+
+    window.addEventListener("storage", checkUser);
+    return () => window.removeEventListener("storage", checkUser);
   }, []);
 
   const handleLogout = () => {
@@ -60,7 +68,7 @@ const Navbar = () => {
         <i className="fa-brands fa-facebook fa-2xs"></i>
         {user ? (
           <div className="user-info">
-            <span>Bem-vindo, {user.nome}</span>
+            <span>Bem-vindo, {user.userName}</span>
             <button onClick={handleLogout}>Logout</button>
           </div>
         ) : (

@@ -1,115 +1,160 @@
 @import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.login-box {
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+/* container geral com centralização */
+.login-container {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 0 20px;
-  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.login-content {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  height: 60vh;
-  width: 120%;
-  max-width: 600px;
-  margin: 0 auto;
+  gap: 7rem;
+  z-index: 1;
+  flex-wrap: nowrap;
+  transform: translateX(-60px);
 }
+
+/* imagem */
+.login-box {
+  max-width: 500px;
+  transform: translateX(-20px);
+}
+
+.login-text {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFC107;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.fotoLogin {
+  width: 140%;
+  border-radius: 12px;
+  filter: drop-shadow(-2px 2px 5px rgba(255, 255, 255, 0.738));
+  object-fit: cover;
+}
+
+/* formulário */
+.input-box {
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+
+  /* efeito vidro fosco */
+  background: rgba(255, 255, 255, 0.15);      /* fundo branco translúcido */
+  backdrop-filter: blur(10px);                 /* blur do fundo atrás da div */
+  -webkit-backdrop-filter: blur(10px);         /* suporte Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3);  /* borda suave translúcida */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* sombra para destacar */
+  color: #fff;                                  /* texto branco dentro (se tiver) */
+}
+
 
 .modal-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 1.5rem;
 }
 
-.modal-content input {
+.input-field {
   width: 100%;
-  padding: 14px 28px;
+  padding: 14px 20px;
   border: none;
   border-radius: 50px;
+  font-size: 1rem;
   color: #000;
-  font-size: 1.2rem;
+  background: #fff;
   transition: 0.3s ease;
-  box-shadow: 0 5px 10px 2px rgba(255, 255, 255, 0.2);
 }
 
-.modal-content input::placeholder {
-  color: #333;
+.input-field::placeholder {
+  color: #555;
   opacity: 0.8;
 }
 
-.modal-content input:focus {
+.input-field:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #FFC107;
-  transform: scale(1.03)
-}
-
-.login-header h2 {
-  text-transform: uppercase;
-  font-size: 3rem;
-  margin-bottom: 40px;
+  color: #D32F2F;
+  box-shadow: 0 0 0 2px #ffffff;
+  transform: scale(1.02);
 }
 
 .input-submit {
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 20px; 
 }
 
-.button-login {
-  padding: 14px 42px;
+.button-login-profile {
+  padding: 14px 40px;
   background-color: #FFC107;
-  color: #000;
+  color: #ffffff;
+  font-weight: bold;
   border: none;
   border-radius: 50px;
-  font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.button-login:hover {
+.button-login-profile:hover {
   transform: scale(1.05);
 }
 
-.button-login:active {
+.button-login-profile:active {
   transform: scale(0.95);
-  background-color: #c89706;
+  background-color: #ffffffab;
 }
 
-.login-container {
-  display: flex;
-  height: 100vh;
-  width: 100%;
+
+.blob15, .blob13, .blob16 {
+  position: fixed;
+  z-index: 0;
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .blob15 {
-  position: absolute;
-  z-index: -1;
-  width: 280px;
-  margin-right: 1500px;
-  top: 20px;
+  top: 25%;
+  left: -150px;
+  width: 250px;
 }
 
 .blob13 {
-  position: absolute;
-  z-index: -1;
-  width: 180px;
-  left: 500px;
+  bottom: 210px;
+  right: 10px;
+  width: 200px;
 }
 
 .blob16 {
-  position: absolute;
-  z-index: -1;
-  width: 280px;
-  left: 940px;
-  top: 150px;
+  top: 80%;
+  left: 13%;
+  width: 200px;
+  transform: translate(-50%, -50%);
 }

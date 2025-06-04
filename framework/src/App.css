@@ -73,6 +73,23 @@ body {
   gap: 20px;
   margin-right: 50px;
 }
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.user-info button {
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 #loginOption {
   display: none;
   position: absolute;
@@ -86,6 +103,7 @@ body {
   background-color: #D32F2F;
   border-radius: 10px;
 }
+
 
 .triangulo {
   position: absolute;
