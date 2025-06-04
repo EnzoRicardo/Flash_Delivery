@@ -22,6 +22,7 @@ app.get('/api/usuario', function (req, res) {
 });
 
 
+//inserir novo usuario
 app.post('/api/usuario', function (req, res) {
     const { nome, email, cpf, telefone, cep, complemento, endereco, senha } = req.body;
 
@@ -36,6 +37,35 @@ app.post('/api/usuario', function (req, res) {
         }
     });
 });
+
+
+//login de usuario
+app.post('/api/login', function (req, res) {
+    const { email, senha } = req.body;
+
+    const query = 'SELECT * FROM usuarios WHERE email = ? AND senha = ?';
+    connection.query(query, [email, senha], (err, results) => {
+        if (err) {
+            console.error('Erro ao verificar login:', err);
+            return res.status(500).json({ error: 'Erro interno no login' });
+        }
+
+        if (results.length > 0) {
+            const usuario = results[0];
+            res.status(200).json({
+                message: 'Login realizado com sucesso',
+                token: 'fake-jwt-token', // substitua por JWT real se quiser segurança
+                nome: usuario.nome,
+                email: usuario.email,
+                id: usuario.id_usuario
+            });
+        } else {
+            res.status(401).json({ message: 'Email ou senha incorretos' });
+        }
+    });
+});
+
+
 
 app.listen(PORT, function (err) {
     if (err) console.log(err);

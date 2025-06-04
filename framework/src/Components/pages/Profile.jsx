@@ -5,34 +5,44 @@ import { useNavigate } from "react-router-dom";
 import blob15 from "../../assets/Figura 15.svg";
 import blob13 from "../../assets/Figura 13.svg";
 import blob16 from "../../assets/Figura 16.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Profile = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      if (!email || !senha) {
-        alert("Campos são obrigatórios");
-        return;
-      }
+    if (!email || !senha) {
+      toast.error("Preencha todos os campos!");
+      return;
+    }
 
-      const response = await usuarioService.login(email, senha, navigate);
-      if (response.status === 200) {
-        alert("Login bem sucedido!");
-        localStorage.setItem("userToken", response.data.token);
-        window.location.replace("/");
+    try {
+      const response = await usuarioService.login(email, senha);
+
+      if (response.ok) {
+        const {token, nome, id, email: emailUsuario} = response.data;
+
+        //salva os dados do usuario no local storage
+        localStorage.setItem("userToken", token);
+        localStorage.setItem("userName", nome);
+        localStorage.setItem("userID", id);
+        localStorage.setItem("userEmail", emailUsuario);
+
+        toast.success("Login Bem-Sucedido!");
+
+        navigate("/order");
+      } else {
+        toast.error(response.data.message || "Email ou senha incorretos");
       }
-      if (response.status === 400) {
-        alert("Email ou senha incorretos.");
-      }
-    } catch (err) {
-      setError("Erro ao tentar fazer login.");
-      console.error(err);
+    } catch (error) {
+      console.error("Erro ao fazer login", error);
+      toast.error("Erro inesperado ao fazer login.");
     }
   };
 
