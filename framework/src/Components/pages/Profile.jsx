@@ -8,6 +8,7 @@ import blob16 from "../../assets/Figura 16.svg";
 import fotoLogin from "../../assets/fotoLogin.png"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as jwt_decode from "jwt-decode";
 
 
 const Profile = () => {
@@ -27,13 +28,14 @@ const Profile = () => {
       const response = await usuarioService.login(email, senha);
 
       if (response.ok) {
-        const {token, nome, id, email: emailUsuario} = response.data;
+        const { token } = response.data;
+        const decoded = jwt_decode.jwtDecode(token);
 
         //salva os dados do usuario no local storage
         localStorage.setItem("userToken", token);
-        localStorage.setItem("userName", nome);
-        localStorage.setItem("userID", id);
-        localStorage.setItem("userEmail", emailUsuario);
+        localStorage.setItem("userName", decoded.nome);
+        localStorage.setItem("userID", decoded.id);
+        localStorage.setItem("userEmail", decoded.email);
 
         toast.success("Login Bem-Sucedido!");
 
