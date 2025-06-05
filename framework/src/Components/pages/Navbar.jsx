@@ -85,11 +85,11 @@ const Navbar = () => {
                   </div>
               </div>
             )}
+          </>
+        )}
             <button id="loginBtn" onClick={handleLoginClick}>
               <i className="fa-solid fa-circle-user fa-2xl"></i>
             </button>
-          </>
-        )}
       </div>
     </nav>
   );

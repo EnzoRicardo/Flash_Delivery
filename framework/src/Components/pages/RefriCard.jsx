@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../css/RefriCard.css";
 import { Car, ChevronLeft, ChevronRight } from 'lucide-react';
-import coca from "../../assets/cards/Coca Cola NOBG.png" // npm install lucide-react
+import coca from "../../assets/cards/CocaCola_NOBG.png";
 import cocaZero from "../../assets/cards/Coca Cola Zero NOBG.png"
 import pepsi from "../../assets/cards/Pepsi Card NOBG.png"
 import pepsiZero from "../../assets/cards/Pepsi Zero NOBG.png"

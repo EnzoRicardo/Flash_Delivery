@@ -38,8 +38,9 @@ const Profile = () => {
         localStorage.setItem("userEmail", decoded.email);
 
         toast.success("Login Bem-Sucedido!");
-
+        
         navigate("/order");
+        window.location.reload(); // Recarrega a página para refletir o estado atualizado
       } else {
         toast.error(response.data.message || "Email ou senha incorretos");
       }

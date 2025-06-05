@@ -48,7 +48,7 @@ const CardComponent = () => {
 
     <div className="card-order">
       <div className="card-drinks">
-        <img src={refriIMG} alt="Refrigerantes" onClick={handleClickRefri} />
+        <img src={refriIMG} alt="Refrigerantes" onClick={ () => checkAuthAndNavigate('refri')} />
         <p className="card-title">Refrigerantes</p>
       </div>  
     </div>
