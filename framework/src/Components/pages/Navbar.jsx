@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/Logo FD.png";
 import { Link, useNavigate } from "react-router-dom";
 import * as jwt_decode from "jwt-decode";
-import "../css/Navbar.css"
-
+import "../css/Navbar.css";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -43,7 +42,9 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <img src={logo} alt="Flash Delivery" className="logo" />
+      <Link to="/">
+        <img src={logo} alt="Flash Delivery" className="logo" />
+      </Link>
 
       <button className="hamburguer">
         <i className="fa-solid fa-bars"></i>
@@ -51,45 +52,58 @@ const Navbar = () => {
 
       <ul>
         <li>
-          <Link to="/" className="nav-link">Início</Link>
+          <Link to="/" className="nav-link">
+            Início
+          </Link>
         </li>
         <li>
-          <Link to="/order" className="nav-link">Cardápio</Link>
+          <Link to="/order" className="nav-link">
+            Cardápio
+          </Link>
         </li>
         <li>
-          <Link to="/service" className="nav-link">Atendimento</Link>
+          <Link to="/service" className="nav-link">
+            Atendimento
+          </Link>
         </li>
         <li>
-          <Link to="/about" className="nav-link">Sobre Nós</Link>
+          <Link to="/about" className="nav-link">
+            Sobre Nós
+          </Link>
         </li>
       </ul>
+
+      {user && (
+        <span className="user-name">Olá, {user.nome.split(" ")[0]}!</span>
+      )}
 
       <div className="social-icons">
         <i className="fa-brands fa-instagram fa-2xs"></i>
         <i className="fa-brands fa-facebook fa-2xs"></i>
-        {user ? (
-              <div id="loginOption" style={{ display: "block" }}>
-                <div className="triangulo"></div>
-                  <div className="login-options">
-                    <button onClick={handleLogout} className="logout-button">Logout</button>
-                  </div>
-              </div>
-        ) : (
-          <>
-            {showLoginOptions && (
-              <div id="loginOption" style={{ display: "block" }}>
-                <div className="triangulo"></div>
-                  <div className="login-options">
-                    <Link to="/profile" className="nav-link">Entrar</Link>
-                    <Link to="/register" className="nav-link">Cadastre-se</Link>
-                  </div>
-              </div>
-            )}
-          </>
+        {showLoginOptions && (
+          <div id="loginOption" style={{ display: "block" }}>
+            <div className="triangulo"></div>
+            <div className="login-options">
+              {user ? (
+                <button onClick={handleLogout} className="logout-button">
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link to="/profile" className="nav-link">
+                    Entrar
+                  </Link>
+                  <Link to="/register" className="nav-link">
+                    Cadastre-se
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         )}
-            <button id="loginBtn" onClick={handleLoginClick}>
-              <i className="fa-solid fa-circle-user fa-2xl"></i>
-            </button>
+        <button id="loginBtn" onClick={handleLoginClick}>
+          <i className="fa-solid fa-circle-user fa-2xl"></i>
+        </button>
       </div>
     </nav>
   );
