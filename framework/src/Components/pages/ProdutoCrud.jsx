@@ -60,7 +60,7 @@ const ProdutoCrud = () => {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/admin-categoria");
+        const res = await fetch("http://localhost:8080/api/categoria");
         const data = await res.json();
         setCategorias(data); // certifique-se que o backend tá retornando um array de objetos tipo { id_categoria, nome_categoria }
       } catch (error) {

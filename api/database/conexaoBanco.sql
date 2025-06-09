@@ -24,7 +24,6 @@ preco float NOT NULL,
 qtda_estoque INT NOT NULL,
 imagem_produto longblob,
 fk_id_categoria INT NOT NULL
-
 );
 
 SELECT * FROM produtos;
@@ -33,5 +32,6 @@ CREATE TABLE categoria (
 	id_categoria INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nome_categoria VARCHAR(255) NOT NULL
 );
+
 SELECT id_categoria, nome_categoria FROM categoria;
 SELECT * FROM categoria;

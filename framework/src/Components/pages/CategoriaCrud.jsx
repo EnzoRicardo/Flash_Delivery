@@ -4,7 +4,6 @@ import '../css/CategoriaCrud.css';
 
 const CategoriaCrud = () => {
   const [productData, setProductData] = useState({
-    id_categoria: '',
     nome_categoria: ''
   });
 
@@ -29,7 +28,6 @@ const CategoriaCrud = () => {
         },
         body: JSON.stringify({
             // Ensure IDs are numbers if required by backend, handle potential NaN
-            id_categoria: parseInt(productData.id_categoria, 10) || 0, // Or handle invalid input better
             nome_categoria: productData.nome_categoria
         }),
       });
@@ -40,7 +38,7 @@ const CategoriaCrud = () => {
         // Only parse JSON if response is OK and content type is correct
         const result = await response.json();
         toast.success(result.message || 'Categoria adicionada com sucesso!');
-        setProductData({ id_categoria: '', nome_categoria: '' });
+        setProductData({ nome_categoria: '' });
       } else if (!response.ok && contentType && contentType.includes("application/json")) {
          // If response is not OK, but is JSON, parse the error
          const result = await response.json();
@@ -61,9 +59,7 @@ const CategoriaCrud = () => {
   return (
     <div>
       <form onSubmit={handleProductSubmit}>
-        <label htmlFor="id_categoria">ID Categoria:</label>
-        <input type="number" id="id_categoria" className="label-crud" value={productData.id_categoria} onChange={handleProductInputChange} required />
-
+        
         <label htmlFor="nome_categoria">Nome Categoria:</label>
         <input type="text" id="nome_categoria" className="label-crud" value={productData.nome_categoria} onChange={handleProductInputChange} required />
 
