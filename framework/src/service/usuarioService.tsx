@@ -8,6 +8,26 @@ const salvar = async (usuario: any) => {
   });
 };
 
+const produto = async (produto: any) => {
+  const formData = new FormData();
+
+  formData.append("nome_produto", produto.nome_produto);
+  formData.append("preco", produto.preco);
+  formData.append("volume", produto.volume);
+  formData.append("estoque", produto.estoque);
+  formData.append("categoria", produto.categoria);
+
+  if (produto.imagem) {
+    formData.append("imagem", produto.imagem); // Aqui vai o blob (arquivo)
+  }
+
+  return await fetch(`http://localhost:8080/api/produtos`, {
+    method: "POST",
+    body: formData,
+    // ❌ Não inclua Content-Type aqui!
+  });
+};
+
 const login = async (email: string, senha: string) => {
   const response = await fetch(`http://localhost:8080/api/login`, {
     method: "POST",
@@ -35,6 +55,7 @@ const login = async (email: string, senha: string) => {
 const usuarioService = {
   salvar,
   login,
+  produto
 };
 
 export default usuarioService;

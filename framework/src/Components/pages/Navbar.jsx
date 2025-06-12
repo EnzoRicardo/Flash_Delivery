@@ -7,6 +7,7 @@ import "../css/Navbar.css";
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +17,8 @@ const Navbar = () => {
         try {
           const decodedToken = jwt_decode.jwtDecode(token);
           setUser(decodedToken);
+          const role = localStorage.getItem("userRole");
+          setRole(role);
         } catch (error) {
           console.error("Erro ao decodificar o token:", error);
         }
@@ -72,6 +75,22 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
+
+      {role === "admin" && (
+        <ul className="admin-links">
+          <li>
+            <Link to="/crud-usuarios" className="nav-link">
+              Usuários
+            </Link>
+          </li>
+          <li>
+            <Link to="/crud-produtos" className="nav-link">
+              Produtos
+            </Link>
+          </li>
+        </ul>
+      )}
+
 
       {user && (
         <span className="user-name">Olá, {user.nome.split(" ")[0]}!</span>

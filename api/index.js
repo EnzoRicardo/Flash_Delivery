@@ -5,9 +5,14 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = 8080;
 const SECRET_KEY = 'flash';
+const multer = require('multer');
 
 app.use(express.json());
 app.use(cors());
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 
 app.get('/api/usuario', function (req, res) {
     const query = 'SELECT * FROM usuarios';
@@ -128,3 +133,40 @@ app.get('/api/categoria', function (req, res) {
         }
     });
 });
+
+
+app.get('/api/refrigerantes', (req,res) => {
+    const query = 'SELECT * FROM produtos WHERE fk_id_categoria = 1';
+
+    connection.query(query, (err, results) => {
+        if (err) {
+           console.error('Erro ao buscar produtos:', err);
+            return res.status(500).json({ error: 'Erro ao buscar produtos' });
+        }
+
+        // Adicionando uma imagem falsa só para testes
+        const produtosComImagens = results.map(produto => ({
+        ...produto,
+        imagem: `http://localhost:3000/images/${produto.nome_produto.replace(/\s/g, '')}.png`
+        }));
+
+        res.json(produtosComImagens);
+    }) 
+})
+
+
+app.post('/api/produtos', upload.single('imagem'), (req,res) => {
+    const { nome_produto, preco, volume, estoque, categoria } = req.body;
+    const imagem = req.file ? req.file.buffer : null;
+
+    const query = 'INSERT INTO produtos (nome_produto, preco, volume, qtda_estoque, fk_id_categoria, imagem) VALUES (?, ?, ?, ?, ?, ?)';
+
+    connection.query(query, [nome_produto, preco, volume, estoque, categoria, imagem], (err, results) => {
+        if (err) {
+        console.error('Erro ao inserir produto:', err);
+        return res.status(500).json({ error: 'Erro ao salvar produto' });
+      }
+
+      res.status(201).json({ message: 'Produto inserido com sucesso!' });
+    })
+})
