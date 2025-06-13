@@ -8,7 +8,11 @@ import blob16 from "../../assets/Figura 16.svg";
 import fotoLogin from "../../assets/fotoLogin.png"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+
 import * as jwt_decode from "jwt-decode";
+
+
 
 
 const Profile = () => {

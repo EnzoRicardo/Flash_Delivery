@@ -60,40 +60,8 @@
   margin-left: 100px;
 }
 
-.title-icon h2 {
-  font-size: 3rem;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  text-shadow: 2px 2px 8px #D32F2F;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin: 0;
-}
-
-.refri-info h3 {
-  margin: 4px 0;
-  font-size: 32px;
-  font-style: italic;
-  font-weight: 400;
-  margin-top: 40px;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 8px #D32F2F;
-  text-transform: uppercase;
-}
-
-.preco {
-  font-weight: 600;
-  color: #D32F2F;
-  font-size: 32px;
-  font-style: italic;
-  margin-top: 20px;
-}
-
 .botaoPedido {
-    margin-top: 40px;
+    margin-top: 20px;
     padding: 20px;
     background-color: #FFC107;
     color: #fff;
@@ -168,4 +136,61 @@
 .card-wrapper {
   width: 100%;
   margin-top: 20px; /* espaço entre os blocos */
+}
+
+.refri-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 400px;
+  margin-left: 60px;
+  padding: 20px;
+}
+
+.produto-nome {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.produto-volume {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.produto-preco {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #D32F2F;
+  margin-bottom: 30px;
+}
+
+.compra-acoes {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.bag-container {
+  position: relative;
+  display: inline-block;
+}
+
+.bag-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #D32F2F;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px black;
+  pointer-events: none;
 }

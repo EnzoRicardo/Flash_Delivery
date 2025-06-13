@@ -15,6 +15,7 @@ import ProdutoCrud from './Components/pages/ProdutoCrud';
 import CategoriaCrud from './Components/pages/CategoriaCrud';
 import CompraJanela from './Components/pages/CompraJanela';
 import CrudProd from './Components/pages/ProdutoCrud2';
+import UserCrud from './Components/pages/UserCrud';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +40,7 @@ function App() {
         <Route path="/produto-crud" element={<ProdutoCrud />} />
         <Route path="/categoria-crud" element={<CategoriaCrud />} />
         <Route path="/produto-crud2" element={<CrudProd />} />
-
+        <Route path="/user-crud" element={<UserCrud />} />
       </Routes>
 
     </Router>

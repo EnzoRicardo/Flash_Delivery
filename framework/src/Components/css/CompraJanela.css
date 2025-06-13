@@ -4,35 +4,40 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); 
-  display: flex;
-  justify-content: flex-end; 
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
-  animation: fadeIn 0.4s ease;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .modal {
-  background: #1d1d1d;
-  padding: 40px 30px;
-  width: 400px;
-  max-width: 90%;
+  background-color: #1c1c1c;
+  width: 350px;
   height: 100%;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
+  padding: 30px 20px;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
+  overflow-y: auto;
+  color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  animation: slideIn 0.4s ease forwards;
+  gap: 20px;
 }
 
 .fechar-icon {
   position: absolute;
   top: 20px;
   right: 20px;
-  cursor: pointer;
-  font-size: 22px;
   color: #FFC107;
-  transition: transform 0.2s;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .fechar-icon:hover {
@@ -40,116 +45,93 @@
 }
 
 .title-bag {
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #FFC107;
-  margin-bottom: 30px;
-  margin-top: 60px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-/* Descrição */
-.description-bag {
+.item-bag {
+  border-bottom: 1px solid #333;
+  padding-bottom: 12px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.item-bag p {
+  margin: 0;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.item-bag p.produto-nome {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.item-bag p.preco-final {
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFC107;
+}
+
+.item-bag button {
+  align-self: flex-start;
+  margin-top: 5px;
+  background-color: #D32F2F;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.item-bag button:hover {
+  background-color: #a92424;
+}
+
+.total-bag {
   font-size: 1.2rem;
-  color: #f0f0f0;
-  text-align: center;
-  margin: 10px 0;
+  font-weight: bold;
+  color: #FFC107;
+  padding-top: 20px;
+  margin-top: 10px;
+  border-top: 1px solid #444;
+  text-align: right;
 }
 
-/* Linha divisória */
-
-.divider {
-  width: 80%;
-  height: 1px;
-  background-color: #333;
-  margin: 15px 0;
+.modal hr {
+  border: none;
+  border-top: 1px solid #444; /* cor discreta */
+  margin: 20px 0;
 }
 
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-
-}.modal-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
+.finalizar-btn {
+  margin-top: 20px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #FFC107;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4); 
-  display: flex;
-  justify-content: flex-end; 
-  z-index: 1000;
-  animation: fadeIn 0.4s ease;
-}
-
-.modal {
-  background: #1d1d1d;
-  padding: 40px 30px;
-  width: 400px;
-  max-width: 90%;
-  height: 100%;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: slideIn 0.4s ease forwards;
-}
-
-.fechar-icon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 22px;
-  color: #FFC107;
-  transition: transform 0.2s;
-}
-
-.fechar-icon:hover {
-  transform: scale(1.2);
-}
-
-.title-bag {
-  font-size: 1.8rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: bold;
-  color: #FFC107;
-  margin-bottom: 30px;
-  margin-top: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Descrição */
-.description-bag {
-  font-size: 1.2rem;
-  color: #f0f0f0;
-  text-align: center;
-  margin: 10px 0;
-}
-
-/* Linha divisória */
-.divider {
-  width: 80%;
-  height: 1px;
-  background-color: #333;
-  margin: 15px 0;
-}
-
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+.finalizar-btn:hover {
+  background-color: #e6b000;
+  transform: scale(1.03);
 }
