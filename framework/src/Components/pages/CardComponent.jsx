@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from 'react'; // Removed 'use', added 'useState'
+import React, { useEffect, useState } from 'react';
 import "../css/CardComponent.css";
-// Image imports are not used in the current logic for displaying dynamic categories,
-// but you can reintegrate them if needed for specific static cards or default images.
-import cervejaIMG from "../../assets/cards/Cerveja Card.png"
-import refriIMG from "../../assets/cards/Refri Card.png"
-import dpIMG from "../../assets/cards/Drinks Pronto.png"
-import destiladoIMG from "../../assets/cards/Destilados.png"
-import vinhosIMG from "../../assets/cards/Vinhos.png"
-import aguaIMG from "../../assets/cards/Agua.png"
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const CardComponent = () => {
+  const [categorias, setCategorias] = useState([]);
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-    
-    const checkAuthAndNavigate = (path) => {
-      const isLogged = localStorage.getItem('userToken');
-      if(isLogged){
-        navigate(path);
-      } else {
-        toast.warn('Você precisa estar logado para acessar esta categoria.', {
+  useEffect(() => {
+    fetch('http://localhost:8080/api/categorialist')
+      .then(res => res.json())
+      .then(data => setCategorias(data))
+      .catch(err => console.error('Erro ao buscar categorias:', err));
+  }, []);
+
+  const checkAuthAndNavigate = (categoriaId) => {
+    const isLogged = localStorage.getItem('userToken');
+    if (isLogged) {
+      navigate(`/refri/${categoriaId}`);
+    } else {
+      toast.warn('Você precisa estar logado para acessar esta categoria.', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -30,59 +28,27 @@ const CardComponent = () => {
         pauseOnHover: true,
         draggable: true,
         theme: "dark",
-        });
-        navigate('/profile')
-      }
-    };
+      });
+      navigate('/profile');
+    }
+  };
 
   return (
     <div className="drinks-card-container">
-
-
-    <div className="card-order">
-      <div className="card-drinks">
-        <img src={cervejaIMG} alt="Cerveja" onClick={() => checkAuthAndNavigate('/refri')}/>
-        <p className="card-title">Cervejas</p>
-      </div>  
+      {categorias.map((cat) => (
+        <div className="card-order" key={cat.id_categoria}>
+          <div className="card-drinks">
+            <img
+              src={cat.imagem}
+              alt={cat.nome_categoria}
+              onClick={() => checkAuthAndNavigate(cat.id_categoria)}
+            />
+            <p className="card-title">{cat.nome_categoria}</p>
+          </div>
+        </div>
+      ))}
+      <ToastContainer />
     </div>
-
-    <div className="card-order">
-      <div className="card-drinks">
-        <img src={refriIMG} alt="Refrigerantes" onClick={ () => checkAuthAndNavigate('refri')} />
-        <p className="card-title">Refrigerantes</p>
-      </div>  
-    </div>
-
-    <div className="card-order">
-      <div className="card-drinks">
-        <img src={dpIMG} alt="DP" onClick={() => checkAuthAndNavigate('/refri')} />
-        <p className="card-title">Drinks Prontos</p>
-      </div>  
-    </div>
-
-    <div className="card-order">
-      <div className="card-drinks">
-        <img src={destiladoIMG} alt="Destilados" onClick={() => checkAuthAndNavigate('/refri')} />
-        <p className="card-title">Destilados</p>
-      </div>  
-    </div>
-
-    <div className="card-order">
-      <div className="card-drinks">
-        <img src={vinhosIMG} alt="Vinhos" onClick={() => checkAuthAndNavigate('/refri')} />
-        <p className="card-title">Vinhos</p>
-      </div>  
-    </div>
-
-    <div className="card-order">
-      <div className="card-drinks">
-        <img src={aguaIMG} alt="Vinhos" onClick={() => checkAuthAndNavigate('/refri')} />
-        <p className="card-title">Água</p>
-      </div>  
-    </div>
-
-
-  </div>
   );
 };
 

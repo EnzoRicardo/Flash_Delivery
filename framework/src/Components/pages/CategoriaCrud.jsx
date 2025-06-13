@@ -1,79 +1,86 @@
-import React, { useState } from "react";
-import { toast } from 'react-toastify';
-import '../css/CategoriaCrud.css';
+import "../css/ProdutoCrud2.css";
+import React, { useState, useEffect } from "react";
+import usuarioService from "../../service/usuarioService";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CategoriaCrud = () => {
-  const [productData, setProductData] = useState({
-    nome_categoria: ''
+  const [formInput, setFormInput] = useState({
+    nome_categoria: "",
+    imagem: null
   });
 
-  const handleProductInputChange = (e) => {
-    const { id, value } = e.target;
-    setProductData(prevData => ({
-      ...prevData,
-      [id]: value
-    }));
+  const [imagemPreview, setImagemPreview] = useState(null);
+
+  const [formError, setFormError] = useState({});
+
+  const validateFormInput = (e) => {
+    e.preventDefault();
+    const errors = {};
+
+    if (Object.keys(errors).length > 0) {
+      setFormError(errors);
+      return;
+    }
+
+    // Enviar os dados para o backend
+    usuarioService
+      .categoria(formInput)
+      .then(() => {
+        toast.success("Categoria registrado com sucesso!");
+      })
+      .catch((err) => {
+        toast.error("Erro ao registrar categoria.");
+        console.error(err);
+      });
   };
 
-  const handleProductSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('http://localhost:8080/api/admin-categoria', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Explicitly accept JSON response
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-            // Ensure IDs are numbers if required by backend, handle potential NaN
-            nome_categoria: productData.nome_categoria
-        }),
-      });
-
-      // Check content type before parsing
-      const contentType = response.headers.get("content-type");
-      if (response.ok && contentType && contentType.includes("application/json")) {
-        // Only parse JSON if response is OK and content type is correct
-        const result = await response.json();
-        toast.success(result.message || 'Categoria adicionada com sucesso!');
-        setProductData({ nome_categoria: '' });
-      } else if (!response.ok && contentType && contentType.includes("application/json")) {
-         // If response is not OK, but is JSON, parse the error
-         const result = await response.json();
-         toast.error(result.error || `Erro ${response.status} ao adicionar categoria.`);
-      } else {
-        // Handle non-JSON responses (like HTML error pages)
-        const textResponse = await response.text();
-        console.error("Received non-JSON response:", textResponse);
-        toast.error(`Erro ${response.status}: Resposta inesperada do servidor.`);
-      }
-    } catch (error) {
-      // Catch network errors or errors during fetch/parsing
-      console.error('Erro ao enviar formulário:', error);
-      toast.error('Erro de rede ou falha ao contactar o servidor.');
-    }
-  }
-
   return (
-    <div className="form-container">
-      <h2 className="form-title">Adicionar Categoria</h2>
-      <form className="crud-form" onSubmit={handleProductSubmit}>
-        <label htmlFor="nome_categoria">Nome Categoria:</label>
-        <input
-          type="text"
-          id="nome_categoria"
-          value={productData.nome_categoria}
-          onChange={handleProductInputChange}
-          required
-        />
+    <>
+      <div className="form-container">
+        <h2 className="form-title">Adicionar Categoria</h2>
+        <form className="crud-form" onSubmit={validateFormInput}>
+          <label htmlFor="nome_categoria">Nome da Categoria</label>
+          <input
+            name="nome_categoria"
+            type="text"
+            value={formInput.nome_categoria}
+            onChange={({ target }) =>
+              setFormInput({ ...formInput, [target.name]: target.value })
+            }
+            required
+          />
 
-        <button type="submit" className="add-button">Adicionar Categoria</button>
-      </form>
-    </div>
+          <label htmlFor="imagem">Imagem</label>
+          <input
+            type="file"
+            accept="image/*"
+            name="imagem"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              setFormInput({ ...formInput, imagem: file });
+              if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => setImagemPreview(reader.result);
+                reader.readAsDataURL(file);
+              } else {
+                setImagemPreview(null);
+              }
+            }}
+          />
+
+          {imagemPreview && (
+            <div className="preview-container">
+              <img src={imagemPreview} alt="Pré-visualização" className="imagem-preview" />
+            </div>
+          )}
+
+          <button type="submit" className="add-button">Registrar</button>
+        </form>
+      </div>
+    </>
   );
 };
 
 export default CategoriaCrud;
-

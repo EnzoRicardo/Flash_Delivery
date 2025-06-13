@@ -1,5 +1,5 @@
 import "../css/ProdutoCrud2.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import usuarioService from "../../service/usuarioService";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +16,7 @@ const CrudProd = () => {
   });
 
   const [imagemPreview, setImagemPreview] = useState(null);
-
+  const [categorias, setCategorias] = useState([]);
 
   const [formError, setFormError] = useState({});
 
@@ -40,6 +40,21 @@ const CrudProd = () => {
         console.error(err);
       });
   };
+
+  useEffect(() => {
+      const fetchCategorias = async () => {
+        try {
+          const res = await fetch("http://localhost:8080/api/categoria");
+          const data = await res.json();
+          setCategorias(data); 
+        } catch (error) {
+          console.error("Erro ao carregar categorias:", error);
+          toast.error("Não foi possível carregar as categorias.");
+        }
+      };
+  
+      fetchCategorias();
+    }, []);
 
   return (
     <>
@@ -93,16 +108,22 @@ const CrudProd = () => {
           />
           <p className="error-msg">{formError.estoque}</p>
 
-          <label htmlFor="categoria">ID da Categoria</label>
-          <input
+          <label htmlFor="fk_id_categoria">Categoria:</label>
+          <select
             name="categoria"
-            type="number"
             value={formInput.categoria}
             onChange={({ target }) =>
               setFormInput({ ...formInput, [target.name]: target.value })
             }
             required
-          />
+          >
+            <option value="">Selecione uma categoria</option>
+            {categorias.map((cat) => (
+              <option key={cat.id_categoria} value={cat.id_categoria}>
+                {cat.nome_categoria}
+              </option>
+            ))}
+          </select>
           <p className="error-msg">{formError.categoria}</p>
 
           <label htmlFor="imagem">Imagem</label>

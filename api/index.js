@@ -136,24 +136,55 @@ app.get('/api/categoria', function (req, res) {
 });
 
 
-app.get('/api/refrigerantes', (req,res) => {
-    const query = 'SELECT * FROM produtos WHERE fk_id_categoria = 1';
+app.get('/api/refrigerantes', (req, res) => {
+  const categoriaId = req.query.categoria;
+  const query = 'SELECT * FROM produtos WHERE fk_id_categoria = ?';
 
-    connection.query(query, (err, results) => {
-        if (err) {
-           console.error('Erro ao buscar produtos:', err);
-            return res.status(500).json({ error: 'Erro ao buscar produtos' });
-        }
+  connection.query(query, [categoriaId], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar produtos:', err);
+      return res.status(500).json({ error: 'Erro ao buscar produtos' });
+    }
 
-        // Adicionando uma imagem falsa só para testes
-        const produtosComImagens = results.map(produto => ({
+    const produtosComImagem = results.map(produto => {
+      const imagemBase64 = produto.imagem
+        ? `data:image/jpeg;base64,${produto.imagem.toString('base64')}`
+        : '';
+      return {
         ...produto,
-        imagem: `http://localhost:3000/images/${produto.nome_produto.replace(/\s/g, '')}.png`
-        }));
+        imagem: imagemBase64
+      };
+    });
 
-        res.json(produtosComImagens);
-    }) 
-})
+    res.json(produtosComImagem);
+  });
+});
+
+
+app.get('/api/categorialist', (req, res) => {
+  const query = 'SELECT * FROM categoria';
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar categorias:', err);
+      return res.status(500).json({ error: 'Erro ao buscar categorias' });
+    }
+
+    const categoriasComImagens = results.map(categoria => {
+      const imagemBase64 = categoria.imagem
+        ? `data:image/jpeg;base64,${categoria.imagem.toString('base64')}`
+        : '';
+      return {
+        ...categoria,
+        imagem: imagemBase64
+      };
+    });
+
+    res.json(categoriasComImagens);
+  });
+});
+
+
 
 
 app.post('/api/produtos', upload.single('imagem'), (req,res) => {
@@ -169,5 +200,21 @@ app.post('/api/produtos', upload.single('imagem'), (req,res) => {
       }
 
       res.status(201).json({ message: 'Produto inserido com sucesso!' });
+    })
+})
+
+app.post('/api/categorias', upload.single('imagem'), (req,res) => {
+    const { nome_categoria } = req.body;
+    const imagem = req.file ? req.file.buffer : null;
+
+    const query = 'INSERT INTO categoria (nome_categoria, imagem) VALUES (?, ?)';
+
+    connection.query(query, [nome_categoria, imagem], (err, results) => {
+        if (err) {
+        console.error('Erro ao inserir categoria:', err);
+        return res.status(500).json({ error: 'Erro ao salvar categoria' });
+      }
+
+      res.status(201).json({ message: 'Categoria inserido com sucesso!' });
     })
 })
