@@ -37,6 +37,26 @@
   outline: none;
 }
 
+.error-msg {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-top: -12px;
+  margin-bottom: -12px;
+}
+
+.preview-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.imagem-preview {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  margin-top: 10px;
+}
+
 .add-button {
   background-color: #D32F2F;
   color: white;

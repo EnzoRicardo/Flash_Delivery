@@ -14,6 +14,12 @@ CREATE TABLE usuarios(
     senha VARCHAR(255) NOT NULL
 );
 
+INSERT INTO usuarios (
+	nome, email, CPF, telefone, complemento, CEP, endereco, senha
+) VALUES (
+	'Administrador', 'admin', '000.000.000-00', '00000-0000', 'admin', '00000-000', 'Rua do Admin', 'admin'
+);
+
 select * from usuarios;	
 
 CREATE TABLE produtos (

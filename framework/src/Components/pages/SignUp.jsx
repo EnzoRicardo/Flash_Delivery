@@ -101,7 +101,6 @@ const SignUp = () => {
                 type="text"
                 placeholder="Nome"
                 className="input-field"
-                defaultValue="teste"
                 required
               />
 

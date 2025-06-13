@@ -60,12 +60,14 @@ app.post('/api/login', function (req, res) {
         if (results.length > 0) {
             const usuario = results[0];
 
+            const isAdmin = usuario.email === 'admin' && usuario.senha === 'admin';
             
             const token = jwt.sign(
                 {
                 id: usuario.id_usuario,
                 nome: usuario.nome,
                 email: usuario.email,
+                isAdmin: isAdmin
                 },
                 SECRET_KEY,
                 { expiresIn: '1h' }
@@ -73,8 +75,7 @@ app.post('/api/login', function (req, res) {
 
             res.status(200).json({
                 message: 'Login realizado com sucesso',
-                token: token, // substitua por JWT real se quiser segurança
-                
+                token: token, 
             });
         } else {
             res.status(401).json({ message: 'Email ou senha incorretos' });

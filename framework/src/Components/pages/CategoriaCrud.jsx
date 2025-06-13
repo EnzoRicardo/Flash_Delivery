@@ -57,13 +57,19 @@ const CategoriaCrud = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleProductSubmit}>
-        
+    <div className="form-container">
+      <h2 className="form-title">Adicionar Categoria</h2>
+      <form className="crud-form" onSubmit={handleProductSubmit}>
         <label htmlFor="nome_categoria">Nome Categoria:</label>
-        <input type="text" id="nome_categoria" className="label-crud" value={productData.nome_categoria} onChange={handleProductInputChange} required />
+        <input
+          type="text"
+          id="nome_categoria"
+          value={productData.nome_categoria}
+          onChange={handleProductInputChange}
+          required
+        />
 
-        <button type="submit">Adicionar Categoria</button>
+        <button type="submit" className="add-button">Adicionar Categoria</button>
       </form>
     </div>
   );

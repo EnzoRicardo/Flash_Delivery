@@ -7,23 +7,29 @@ import "../css/Navbar.css";
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
-  const [role, setRole] = useState(null);
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
 
   useEffect(() => {
     const checkUser = () => {
       const token = localStorage.getItem("userToken");
+      const adminFlag = localStorage.getItem("isAdmin") === "true";
+
+
       if (token) {
         try {
           const decodedToken = jwt_decode.jwtDecode(token);
           setUser(decodedToken);
-          const role = localStorage.getItem("userRole");
-          setRole(role);
+          setIsAdmin(adminFlag);
         } catch (error) {
           console.error("Erro ao decodificar o token:", error);
+          setUser(null);
+          setIsAdmin(false);
         }
       } else {
         setUser(null);
+        setIsAdmin(false);
       }
     };
 
@@ -34,8 +40,9 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("userToken");
+    localStorage.clear();
     setUser(null);
+    setIsAdmin(false);
     navigate("/profile");
   };
 
@@ -76,25 +83,17 @@ const Navbar = () => {
         </li>
       </ul>
 
-      {role === "admin" && (
-        <ul className="admin-links">
-          <li>
-            <Link to="/crud-usuarios" className="nav-link">
-              Usuários
-            </Link>
-          </li>
-          <li>
-            <Link to="/crud-produtos" className="nav-link">
-              Produtos
-            </Link>
-          </li>
-        </ul>
-      )}
+      <div className="admin-user-group">
+        {isAdmin && (
+          <>
+            <a href="/admin" className="admin-button">Gerenciar Produtos</a>
+          </>
+        )}
 
-
-      {user && (
-        <span className="user-name">Olá, {user.nome.split(" ")[0]}!</span>
-      )}
+        {user && (
+          <span className="user-name">Olá, {user.nome.split(" ")[0]}!</span>
+        )}
+      </div>
 
       <div className="social-icons">
         <i className="fa-brands fa-instagram fa-2xs"></i>

@@ -73,50 +73,53 @@ const ProdutoCrud = () => {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={handleProductSubmit}>
-        <label htmlFor="nome_produto">Nome Produto:</label>
-        <input
-          type="text"
-          id="nome_produto"
-          value={productData.nome_produto}
-          onChange={handleProductInputChange}
-        />
+      <div className="form-container">
 
-        <label htmlFor="preco">Preço:</label>
-        <input
-          type="number"
-          step="0.01"
-          id="preco"
-          value={productData.preco}
-          onChange={handleProductInputChange}
-        />
+        <h2 className="form-title">Adicionar Produto</h2>
+        <form className="crud-form" onSubmit={handleProductSubmit}>
+          <label htmlFor="nome_produto">Nome Produto:</label>
+          <input
+            type="text"
+            id="nome_produto"
+            value={productData.nome_produto}
+            onChange={handleProductInputChange}
+          />
 
-        <label htmlFor="qtda_estoque">Estoque:</label>
-        <input
-          type="number"
-          id="qtda_estoque"
-          value={productData.qtda_estoque}
-          onChange={handleProductInputChange}
-        />
+          <label htmlFor="preco">Preço:</label>
+          <input
+            type="number"
+            step="0.01"
+            id="preco"
+            value={productData.preco}
+            onChange={handleProductInputChange}
+          />
 
-        <label htmlFor="fk_id_categoria">Categoria:</label>
-        <select
-          id="fk_id_categoria"
-          value={productData.fk_id_categoria}
-          onChange={handleProductInputChange}
-        >
-          <option value="">Selecione uma categoria</option>
-          {categorias.map((cat) => (
-            <option key={cat.id_categoria} value={cat.id_categoria}>
-              {cat.nome_categoria}
-            </option>
-          ))}
-        </select>
+          <label htmlFor="qtda_estoque">Estoque:</label>
+          <input
+            type="number"
+            id="qtda_estoque"
+            value={productData.qtda_estoque}
+            onChange={handleProductInputChange}
+          />
 
-        <button type="submit">Adicionar Produto</button>
-      </form>
-    </div>
+          <label htmlFor="fk_id_categoria">Categoria:</label>
+          <select
+            id="fk_id_categoria"
+            value={productData.fk_id_categoria}
+            onChange={handleProductInputChange}
+          >
+            <option value="">Selecione uma categoria</option>
+            {categorias.map((cat) => (
+              <option key={cat.id_categoria} value={cat.id_categoria}>
+                {cat.nome_categoria}
+              </option>
+            ))}
+          </select>
+
+          <button type="submit" className="add-button">Adicionar Produto</button>
+        </form>
+        
+      </div>
   );
 };
 

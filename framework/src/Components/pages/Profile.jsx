@@ -36,6 +36,7 @@ const Profile = () => {
         localStorage.setItem("userName", decoded.nome);
         localStorage.setItem("userID", decoded.id);
         localStorage.setItem("userEmail", decoded.email);
+        localStorage.setItem("isAdmin", decoded.isAdmin);
 
         toast.success("Login Bem-Sucedido!");
         

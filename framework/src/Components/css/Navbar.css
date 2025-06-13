@@ -174,3 +174,33 @@
 .logout-button:hover {
   transform: scale(1.1);
 }
+
+.admin-button {
+  background-color: #e50914;   
+  color: white;
+  padding: 10px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-button:hover {
+  background-color: #D32F2F;     
+  transform: translateY(-2px);   
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.admin-user-group {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espaço entre botão e "Olá, admin" */
+  margin-right: 30px; /* distância da borda ou ícones sociais */
+}
+
+.user-name {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}

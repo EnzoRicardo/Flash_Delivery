@@ -1,4 +1,4 @@
-import "../css/SignUp.css";
+import "../css/ProdutoCrud2.css";
 import React, { useState } from "react";
 import usuarioService from "../../service/usuarioService";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,9 @@ const CrudProd = () => {
     categoria: "",
     imagem: null
   });
+
+  const [imagemPreview, setImagemPreview] = useState(null);
+
 
   const [formError, setFormError] = useState({});
 
@@ -40,98 +43,94 @@ const CrudProd = () => {
 
   return (
     <>
-      <div className="login-box">
+      <div className="form-container">
+        <h2 className="form-title">Adicionar Produto</h2>
+        <form className="crud-form" onSubmit={validateFormInput}>
+          <label htmlFor="nome_produto">Nome do Produto</label>
+          <input
+            name="nome_produto"
+            type="text"
+            value={formInput.nome_produto}
+            onChange={({ target }) =>
+              setFormInput({ ...formInput, [target.name]: target.value })
+            }
+            required
+          />
 
-        <div className="input-box">
-          <form onSubmit={validateFormInput}>
-            <div className="modal-content">
-              <input
-                value={formInput.nome_produto}
-                onChange={({ target }) => 
-                    setFormInput({ ...formInput, [target.name]: target.value })
-                }
-                name="nome_produto"
-                type="text"
-                placeholder="nome produto"
-                className="input-field"
-                required
-              />
+          <label htmlFor="preco">Preço</label>
+          <input
+            name="preco"
+            type="number"
+            value={formInput.preco}
+            onChange={({ target }) =>
+              setFormInput({ ...formInput, [target.name]: target.value })
+            }
+            required
+          />
+          <p className="error-msg">{formError.preco}</p>
 
-              <input
-                value={formInput.preco}
-                onChange={({ target }) => 
-                    setFormInput({ ...formInput, [target.name]: target.value })
-                }
-                name="preco"
-                type="number"
-                placeholder="preco"
-                className="input-field"
-                required
-              />
+          <label htmlFor="volume">Volume</label>
+          <input
+            name="volume"
+            type="text"
+            value={formInput.volume}
+            onChange={({ target }) =>
+              setFormInput({ ...formInput, [target.name]: target.value })
+            }
+            required
+          />
+          <p className="error-msg">{formError.volume}</p>
 
-              <p className="error-msg">{formError.preco}</p>
+          <label htmlFor="estoque">Estoque</label>
+          <input
+            name="estoque"
+            type="number"
+            value={formInput.estoque}
+            onChange={({ target }) =>
+              setFormInput({ ...formInput, [target.name]: target.value })
+            }
+            required
+          />
+          <p className="error-msg">{formError.estoque}</p>
 
-              <div className="group-content">
+          <label htmlFor="categoria">ID da Categoria</label>
+          <input
+            name="categoria"
+            type="number"
+            value={formInput.categoria}
+            onChange={({ target }) =>
+              setFormInput({ ...formInput, [target.name]: target.value })
+            }
+            required
+          />
+          <p className="error-msg">{formError.categoria}</p>
 
-              <input
-                value={formInput.volume}
-                onChange={({ target }) => 
-                    setFormInput({ ...formInput, [target.name]: target.value })
-                }
-                name="volume"
-                type="text"
-                placeholder="volume"
-                className="input-field"
-                required
-              />
+          <label htmlFor="imagem">Imagem</label>
+          <input
+            type="file"
+            accept="image/*"
+            name="imagem"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              setFormInput({ ...formInput, imagem: file });
+              if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => setImagemPreview(reader.result);
+                reader.readAsDataURL(file);
+              } else {
+                setImagemPreview(null);
+              }
+            }}
+          />
 
-              <p className="error-msg">{formError.volume}</p>
-
-            
-              <input
-                value={formInput.estoque}
-                onChange={({ target }) => 
-                    setFormInput({ ...formInput, [target.name]: target.value })
-                }
-                name="estoque"
-                type="number"
-                placeholder="estoque"
-                className="input-field"
-                required
-              />
-
-              <p className="error-msg">{formError.estoque}</p>
-              </div>
-
-              <input
-                value={formInput.categoria}
-                onChange={({ target }) => 
-                    setFormInput({ ...formInput, [target.name]: target.value })
-                }
-                name="categoria"
-                type="number"
-                placeholder="categoria"
-                className="input-field"
-                required
-              />
-              <p className="error-msg">{formError.categoria}</p>
-
-              <input
-                type="file"
-                accept="image/*"
-                name="imagem"
-                onChange={(e) => setFormInput({ ...formInput, imagem: e.target.files[0] })}
-                className="input-field"
-              />
-              
-              <div className="input-submit">
-                <button className="button-login" type="submit">
-                  Registrar
-                </button>
-              </div>
+          {imagemPreview && (
+            <div className="preview-container">
+              <img src={imagemPreview} alt="Pré-visualização" className="imagem-preview" />
             </div>
-          </form>
-        </div>
+          )}
+
+          <button type="submit" className="add-button">Registrar</button>
+        </form>
       </div>
     </>
   );

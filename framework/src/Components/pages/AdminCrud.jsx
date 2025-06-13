@@ -11,6 +11,7 @@ function AdminCrud() {
           <Link to="/produto-crud"><h2>Adicionar Produto</h2></Link>
           <Link to="/categoria-crud"><h2>Adicionar Categoria</h2></Link>
           <Link to="/usuario"><h2>Adicionar Usuário</h2></Link>
+          <Link to="/produto-crud2"><h2>Adicionar Produto 2</h2></Link>
         </nav>
 
         <Routes>
