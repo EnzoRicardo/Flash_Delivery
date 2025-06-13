@@ -5,15 +5,10 @@ import { useNavigate } from "react-router-dom";
 import blob15 from "../../assets/Figura 15.svg";
 import blob13 from "../../assets/Figura 13.svg";
 import blob16 from "../../assets/Figura 16.svg";
-import fotoLogin from "../../assets/fotoLogin.png"
+import fotoLogin from "../../assets/fotoLogin.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
-
 import * as jwt_decode from "jwt-decode";
-
-
-
 
 const Profile = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +19,11 @@ const Profile = () => {
     e.preventDefault();
 
     if (!email || !senha) {
-      toast.error("Preencha todos os campos!");
+      toast.error("Preencha todos os campos!", {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
       return;
     }
 
@@ -35,23 +34,36 @@ const Profile = () => {
         const { token } = response.data;
         const decoded = jwt_decode.jwtDecode(token);
 
-        //salva os dados do usuario no local storage
         localStorage.setItem("userToken", token);
         localStorage.setItem("userName", decoded.nome);
         localStorage.setItem("userID", decoded.id);
         localStorage.setItem("userEmail", decoded.email);
         localStorage.setItem("isAdmin", decoded.isAdmin);
 
-        toast.success("Login Bem-Sucedido!");
-        
-        navigate("/order");
-        window.location.reload(); // Recarrega a página para refletir o estado atualizado
+        toast.success("Login Bem-Sucedido!", {
+          position: "top-right",
+          autoClose: 2000,
+          theme: "dark",
+        });
+
+        setTimeout(() => {
+          navigate("/order");
+          window.location.reload();
+        }, 2000);
       } else {
-        toast.error(response.data.message || "Email ou senha incorretos");
+        toast.error(response.data.message || "Email ou senha incorretos", {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.error("Erro ao fazer login", error);
-      toast.error("Erro inesperado ao fazer login.");
+      toast.error("Erro inesperado ao fazer login.", {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
     }
   };
 
@@ -61,7 +73,7 @@ const Profile = () => {
       <img src={blob13} className="blob13" alt="Decorativo 13" />
       <img src={blob16} className="blob16" alt="Decorativo 16" />
 
-      <div className="login-content"> 
+      <div className="login-content">
         <div className="login-box">
           <img src={fotoLogin} alt="Foto Login" className="fotoLogin" />
         </div>
@@ -101,6 +113,8 @@ const Profile = () => {
           </form>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

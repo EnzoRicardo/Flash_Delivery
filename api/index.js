@@ -218,3 +218,22 @@ app.post('/api/categorias', upload.single('imagem'), (req,res) => {
       res.status(201).json({ message: 'Categoria inserido com sucesso!' });
     })
 })
+
+app.delete('/api/categorias/:id', (req, res) => {
+    const idCategoria = req.params.id;
+
+    const query = 'DELETE FROM categoria WHERE id_categoria = ?';
+
+    connection.query(query, [idCategoria], (err, results) => {
+        if (err) {
+            console.error('Erro ao deletar categoria:', err);
+            return res.status(500).json({error: 'Erro ao deletar categoria'});
+        }
+
+        if (results.affectedRows === 0) {
+            return res.status(404).json({error: 'Categoria não encontrada'});
+        }
+
+        res.status(200).json({message : 'Categoria deletada com sucesso!'});
+    });
+});
