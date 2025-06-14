@@ -14,12 +14,12 @@ const CrudProd = () => {
     categoria: "",
     imagem: null
   });
-
+  
   const [imagemPreview, setImagemPreview] = useState(null);
   const [categorias, setCategorias] = useState([]);
-
+  
   const [formError, setFormError] = useState({});
-
+  
   const validateFormInput = (e) => {
     e.preventDefault();
     const errors = {};
@@ -34,7 +34,17 @@ const CrudProd = () => {
       .produto(formInput)
       .then(() => {
         toast.success("Produto registrado com sucesso!");
+        setFormInput({
+          nome_produto: "",
+          preco: "",
+          volume: "",
+          estoque: "",
+          categoria: "",
+          imagem: null
+        });
+        setImagemPreview(null);
       })
+
       .catch((err) => {
         toast.error("Erro ao registrar produto.");
         console.error(err);

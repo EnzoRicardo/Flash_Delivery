@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Order.css";
 import video from "../../assets/Banner 2.mp4"
-import cervejaIMG from "../../assets/cards/Cerveja Card.png"
+import cervejaIMG from "../../assets/cards/CervejaCard.png"
 import refriIMG from "../../assets/cards/Refri Card.png"
 import dpIMG from "../../assets/cards/Drinks Pronto.png"
 import destiladoIMG from "../../assets/cards/Destilados.png"
