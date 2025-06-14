@@ -45,6 +45,19 @@ const categoria = async (categoria: any) => {
   });
 };
 
+const usuario = async (usuario: any) => {
+  const formData = new FormData();
+
+  formData.append("nome", usuario.nome);
+
+
+  return await fetch(`http://localhost:8080/api/usuario`, {
+    method: "POST",
+    body: formData,
+    // ❌ Não inclua Content-Type aqui!
+  });
+};
+
 const login = async (email: string, senha: string) => {
   const response = await fetch(`http://localhost:8080/api/login`, {
     method: "POST",
@@ -73,7 +86,8 @@ const usuarioService = {
   salvar,
   login,
   produto,
-  categoria
+  categoria,
+  usuario
 };
 
 export default usuarioService;
