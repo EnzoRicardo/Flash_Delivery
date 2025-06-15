@@ -2,7 +2,6 @@ import "../css/ProdutoCrud2.css";
 import "../css/CategoriaCrud.css";
 import React, { useState, useEffect } from "react";
 import usuarioService from "../../service/usuarioService";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,7 +28,8 @@ const CategoriaCrud = () => {
     usuarioService
       .categoria(formInput)
       .then(() => {
-        toast.success("Categoria registrado com sucesso!");
+        toast.success("Categoria registrada com sucesso!");
+        buscarCategorias(); // atualiza a lista
       })
       .catch((err) => {
         toast.error("Erro ao registrar categoria.");
@@ -42,7 +42,7 @@ const CategoriaCrud = () => {
   }, []);
 
   const buscarCategorias = () => {
-    fetch("http://localhost:8080/api/categoria")
+    fetch("http://localhost:8080/api/categorialist") // <--- corrigido aqui
       .then((res) => res.json())
       .then((data) => setCategorias(data))
       .catch((err) => {
@@ -68,7 +68,6 @@ const CategoriaCrud = () => {
         toast.error("Erro ao excluir categoria");
       });
   };
-
 
   return (
     <>
@@ -106,11 +105,17 @@ const CategoriaCrud = () => {
 
           {imagemPreview && (
             <div className="preview-container">
-              <img src={imagemPreview} alt="Pré-visualização" className="imagem-preview" />
+              <img
+                src={imagemPreview}
+                alt="Pré-visualização"
+                className="imagem-preview"
+              />
             </div>
           )}
 
-          <button type="submit" className="add-button">Registrar</button>
+          <button type="submit" className="add-button">
+            Registrar
+          </button>
         </form>
 
         <div className="categoria-tabela-container">
@@ -143,7 +148,9 @@ const CategoriaCrud = () => {
                   <td>
                     <button
                       className="botao-excluir"
-                      onClick={() => deletarCategoria(categoria.id_categoria)}
+                      onClick={() =>
+                        deletarCategoria(categoria.id_categoria)
+                      }
                     >
                       Excluir
                     </button>
@@ -153,6 +160,7 @@ const CategoriaCrud = () => {
             </tbody>
           </table>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

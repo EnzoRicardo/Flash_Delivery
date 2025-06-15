@@ -141,18 +141,29 @@ app.post('/api/admin-categoria', function (req, res) {
 })
 
 
-app.get('/api/categoria', function (req, res) {
-    const query = 'SELECT * FROM categoria';
+app.get('/api/categoria', (req, res) => {
+  const query = 'SELECT * FROM categoria';
 
-    connection.query(query, (err, results) => {
-        if (err) {
-            console.error('Erro ao buscar categorias:', err);
-            res.status(500).json({ error: 'Erro ao buscar categorias' });
-        } else {
-            res.status(200).json(results);
-        }
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar categorias:', err);
+      return res.status(500).json({ error: 'Erro ao buscar categorias' });
+    }
+
+    const categoriasComImagens = results.map(categoria => {
+      const imagemBase64 = categoria.imagem
+        ? `data:image/jpeg;base64,${categoria.imagem.toString('base64')}`
+        : '';
+      return {
+        ...categoria,
+        imagem: imagemBase64
+      };
     });
+
+    res.json(categoriasComImagens);
+  });
 });
+
 
 
 app.get('/api/refrigerantes', (req, res) => {
