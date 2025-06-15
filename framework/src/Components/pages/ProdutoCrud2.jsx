@@ -12,14 +12,15 @@ const CrudProd = () => {
     volume: "",
     estoque: "",
     categoria: "",
-    imagem: null
+    imagem: null,
   });
-  
+
   const [imagemPreview, setImagemPreview] = useState(null);
   const [categorias, setCategorias] = useState([]);
-  
+  const [produtos, setProdutos] = useState([]);
+
   const [formError, setFormError] = useState({});
-  
+
   const validateFormInput = (e) => {
     e.preventDefault();
     const errors = {};
@@ -40,7 +41,7 @@ const CrudProd = () => {
           volume: "",
           estoque: "",
           categoria: "",
-          imagem: null
+          imagem: null,
         });
         setImagemPreview(null);
       })
@@ -52,19 +53,48 @@ const CrudProd = () => {
   };
 
   useEffect(() => {
-      const fetchCategorias = async () => {
-        try {
-          const res = await fetch("http://localhost:8080/api/categoria");
-          const data = await res.json();
-          setCategorias(data); 
-        } catch (error) {
-          console.error("Erro ao carregar categorias:", error);
-          toast.error("Não foi possível carregar as categorias.");
+    buscarCategorias();
+    buscarProdutos();
+  }, []);
+
+  const buscarCategorias = async () => {
+    try {
+      const res = await fetch("http://localhost:8080/api/categoria");
+      const data = await res.json();
+      setCategorias(data);
+    } catch (error) {
+      console.error("Erro ao carregar categorias:", error);
+      toast.error("Não foi possível carregar as categorias.");
+    }
+  };
+
+  const buscarProdutos = () => {
+    fetch("http://localhost:8080/api/produtoslist")
+      .then((res) => res.json())
+      .then((data) => setProdutos(data))
+      .catch((err) => {
+        console.error("Erro ao buscar produtos:", err);
+        toast.error("Erro ao carregar produtos");
+      });
+  };
+
+  const deletarProduto = (id) => {
+    fetch(`http://localhost:8080/api/produtos/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Usuário excluído com sucesso!");
+          buscarProdutos(); // Atualiza a lista
+        } else {
+          toast.error("Erro ao excluir usuário");
         }
-      };
-  
-      fetchCategorias();
-    }, []);
+      })
+      .catch((err) => {
+        console.error("Erro ao excluir:", err);
+        toast.error("Erro ao excluir usuário");
+      });
+  };
 
   return (
     <>
@@ -162,6 +192,63 @@ const CrudProd = () => {
 
           <button type="submit" className="add-button">Registrar</button>
         </form>
+
+        <div className="usuario-tabela-container">
+          <h3 className="usuario-lista-titulo">Produtos cadastrados</h3>
+          <table className="usuario-tabela">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>VOLUME</th>
+                <th>PREÇO</th>
+                <th>ESTOQUE</th>
+                <th>CATEGORIA</th>
+                <th>IMAGEM</th>
+                <th>AÇÕES</th>
+              </tr>
+            </thead>
+            <tbody>
+              {produtos.map((produto) => {
+                // Busca o nome da categoria pelo id
+                const categoriaObj = categorias.find(
+                  (cat) => cat.id_categoria === produto.fk_id_categoria
+                );
+                return (
+                  <tr key={produto.id_produto}>
+                    <td>{produto.id_produto}</td>
+                    <td>{produto.nome_produto}</td>
+                    <td>{produto.volume}</td>
+                    <td>{produto.preco}</td>
+                    <td>{produto.qtda_estoque}</td>
+                    <td>
+                      {categoriaObj ? categoriaObj.nome_categoria : "Desconhecida"}
+                    </td>
+                    <td>
+                      {produto.imagem ? (
+                        <img
+                          src={produto.imagem}
+                          alt={produto.nome_produto}
+                          className="imagem-miniatura"
+                        />
+                      ) : (
+                        "Sem imagem"
+                      )}
+                    </td>
+                    <td>
+                      <button
+                        className="botao-excluir"
+                        onClick={() => deletarProduto(produto.id_produto)}
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
