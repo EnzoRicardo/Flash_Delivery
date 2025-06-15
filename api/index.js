@@ -48,19 +48,19 @@ app.post('/api/usuario', function (req, res) {
 app.delete('/api/usuario/:id', (req, res) => {
     const idUsuario = req.params.id;
 
-    const query = 'DELETE FROM usuario WHERE id = ?';
+    const query = 'DELETE FROM usuarios WHERE id = ?';
 
-    connection.query(query, [id], (err, results) => {
+    connection.query(query, [idUsuario], (err, results) => {
         if (err) {
             console.error('Erro ao deletar usuario:', err);
             return res.status(500).json({error: 'Erro ao deletar usuario'});
         }
 
         if (results.affectedRows === 0) {
-            return res.status(404).json({error: 'Usuario não encontrada'});
+            return res.status(404).json({error: 'Usuario não encontrado'});
         }
 
-        res.status(200).json({message : 'Usuario deletada com sucesso!'});
+        res.status(200).json({message : 'Usuario deletado com sucesso!'});
     });
 });
 
@@ -191,6 +191,17 @@ app.get('/api/refrigerantes', (req, res) => {
 });
 
 
+app.get('/api/usuariolist', (req, res) => {
+  const query = 'SELECT * FROM usuarios';
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar usuarios:', err);
+      return res.status(500).json({ error: 'Erro ao buscar usuarios' });
+    }
+    res.json(results);
+  });
+});
+
 app.get('/api/categorialist', (req, res) => {
   const query = 'SELECT * FROM categoria';
 
@@ -266,17 +277,4 @@ app.delete('/api/categorias/:id', (req, res) => {
 
         res.status(200).json({message : 'Categoria deletada com sucesso!'});
     });
-});
-
-app.get('/api/usuariolist', (req, res) => {
-  const query = 'SELECT * FROM usuarios';
-
-  connection.query(query, (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar usuarios:', err);
-      return res.status(500).json({ error: 'Erro ao buscar usuarios' });
-    }
-
-    
-  });
 });

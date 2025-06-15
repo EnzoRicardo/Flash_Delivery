@@ -45,7 +45,7 @@ const categoria = async (categoria: any) => {
   });
 };
 
-const usuario = async (usuario: any) => {
+const usuarios = async (usuario: any) => {
   const formData = new FormData();
 
   formData.append("nome", usuario.nome);
@@ -87,7 +87,7 @@ const usuarioService = {
   login,
   produto,
   categoria,
-  usuario
+  usuarios
 };
 
 export default usuarioService;
