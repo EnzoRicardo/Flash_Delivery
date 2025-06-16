@@ -118,9 +118,9 @@ const CategoriaCrud = () => {
           </button>
         </form>
 
-        <div className="categoria-tabela-container">
-          <h3 className="categoria-lista-titulo">Categorias cadastradas</h3>
-          <table className="categoria-tabela">
+        <div className="usuario-tabela-container">
+          <h3 className="usuario-lista-titulo">Categorias cadastradas</h3>
+          <table className="usuario-tabela">
             <thead>
               <tr>
                 <th>ID</th>

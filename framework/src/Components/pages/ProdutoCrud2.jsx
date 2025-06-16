@@ -1,4 +1,3 @@
-import "../css/ProdutoCrud2.css";
 import React, { useState, useEffect } from "react";
 import usuarioService from "../../service/usuarioService";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,6 @@ const CrudProd = () => {
           categoria: "",
           imagem: null,
         });
-        setImagemPreview(null);
       })
 
       .catch((err) => {

@@ -176,7 +176,19 @@ app.get('/api/produtoslist', (req, res) => {
       console.error('Erro ao buscar produtos:', err);
       return res.status(500).json({ error: 'Erro ao buscar produtos' });
     }
-    res.json(results);
+
+    // CONVERSÃO PARA BASE64
+    const produtosComImagens = results.map(produto => {
+      const imagemBase64 = produto.imagem
+        ? `data:image/jpeg;base64,${produto.imagem.toString('base64')}`
+        : '';
+      return {
+        ...produto,
+        imagem: imagemBase64
+      };
+    });
+
+    res.json(produtosComImagens);
   });
 });
 
