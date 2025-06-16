@@ -85,7 +85,7 @@ const CrudProd = () => {
       .then((res) => {
         if (res.ok) {
           toast.success("Produto excluído com sucesso!");
-          buscarProdutos(); // Atualiza a lista
+          buscarProdutos(); 
         } else {
           toast.error("Erro ao excluir usuário");
         }
