@@ -1,0 +1,74 @@
+.pagina-finalizacao {
+  padding: 40px;
+  max-width: 600px;
+  margin: 60px auto;
+  border-radius: 10px;
+  color: white;
+  background-color: #111;
+}
+
+.finalizacao-titulo {
+  text-align: center;
+  color: #D32F2F;
+  margin-bottom: 30px;
+  font-size: 26px;
+  text-transform: uppercase;
+}
+
+.mensagem-vazio {
+  text-align: center;
+  font-size: 18px;
+  color: #ccc;
+}
+
+.lista-itens {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.item-finalizacao {
+  background-color: #222;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.nome-produto {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.quantidade,
+.subtotal {
+  font-size: 15px;
+  color: #ccc;
+}
+
+.total-pedido {
+  text-align: right;
+  font-size: 20px;
+  margin-top: 20px;
+  color: #D32F2F;
+}
+
+.botao-finalizar {
+  margin-top: 30px;
+  width: 100%;
+  background-color: #D32F2F;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.botao-finalizar:hover {
+  background-color: #c20710;
+  transform: scale(1.02);
+}

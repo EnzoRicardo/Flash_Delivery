@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../css/RefriCard.css";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom'; // useParams adicionado
+import { useNavigate, useParams } from 'react-router-dom';
 import CardComponent from './CardComponent';
 import CompraJanela from './CompraJanela';
 import { toast } from "react-toastify";
@@ -12,10 +12,12 @@ const RefriCard = () => {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(false);
   const [mostrarModal, setMostrarModal] = useState(false);
-  const { id } = useParams(); // Pegando o ID da categoria pela URL
-  const [carrinho, setCarrinho] = useState([]);
-  const abrirModal = () => setMostrarModal(true);
-  const fecharModal = () => setMostrarModal(false);
+  const [carrinho, setCarrinho] = useState(() => {
+    const salvo = localStorage.getItem("carrinho");
+    return salvo ? JSON.parse(salvo) : [];
+  });
+
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,8 +27,11 @@ const RefriCard = () => {
       .catch((err) => console.error('Erro ao buscar produtos:', err));
   }, [id]);
 
-  const total = produtos.length;
+  useEffect(() => {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  }, [carrinho]);
 
+  const total = produtos.length;
   const changeImage = (nextIndex) => {
     setFade(true);
     setTimeout(() => {
@@ -34,7 +39,6 @@ const RefriCard = () => {
       setFade(false);
     }, 100);
   };
-
   const next = () => changeImage((index + 1) % total);
   const prev = () => changeImage((index - 1 + total) % total);
 
@@ -45,7 +49,6 @@ const RefriCard = () => {
   const adicionarAoCarrinho = () => {
     setCarrinho((prev) => {
       const itemExistente = prev.find(item => item.id_produto === atual.id_produto);
-
       if (itemExistente) {
         return prev.map(item =>
           item.id_produto === atual.id_produto
@@ -53,22 +56,29 @@ const RefriCard = () => {
             : item
         );
       } else {
-        return [...prev, { ...atual, quantidade: 1 }];
+        // Salva somente os dados essenciais
+        const novoItem = {
+          id_produto: atual.id_produto,
+          nome_produto: atual.nome_produto,
+          preco: atual.preco,
+          quantidade: 1,
+          volume: atual.volume,
+        };
+        return [...prev, novoItem];
       }
     });
 
     toast.success("Produto adicionado à sacola! 🛒", {
       position: "top-right",
       autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
       theme: "dark",
     });
   };
 
- return (
+  const abrirModal = () => setMostrarModal(true);
+  const fecharModal = () => setMostrarModal(false);
+
+  return (
     <div className="refri-page">
       <div className="refri-card-container">
         <div className="carousel">

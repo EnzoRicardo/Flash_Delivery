@@ -1,20 +1,33 @@
 import React from 'react';
 import "../css/CompraJanela.css";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 const CompraJanela = ({ carrinho, onClose, setCarrinho }) => {
+  const navigate = useNavigate();
   const total = (carrinho || []).reduce((sum, item) => sum + item.preco * item.quantidade, 0);
 
   const removerItem = (id) => {
     setCarrinho((prev) => prev.filter(item => item.id_produto !== id));
   };
 
+  const finalizarCompra = () => {
+    toast.success("Redirecionando para o pagamento! 🚀", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "dark",
+    });
+
+    onClose();
+    navigate("/finalizar");
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={e => e.stopPropagation()}>
         <i className="fa-solid fa-xmark fechar-icon" onClick={onClose}></i>
-        <h4 className="title-bag">Sua sacola <i class="fa-solid fa-beer-mug-empty"></i></h4>
+        <h4 className="title-bag">Sua sacola <i className="fa-solid fa-beer-mug-empty"></i></h4>
 
         {carrinho.length === 0 ? (
           <p className="description-bag">Carrinho vazio.</p>
@@ -31,22 +44,7 @@ const CompraJanela = ({ carrinho, onClose, setCarrinho }) => {
 
             <p className="total-bag"><strong>Total:</strong> R$ {Number(total).toFixed(2)}</p>
 
-            <button
-              className="finalizar-btn"
-              onClick={() => {
-                toast.success("Pedido finalizado com sucesso! 🚀", {
-                  position: "top-right",
-                  autoClose: 3000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  theme: "dark",
-                });
-                setCarrinho([]);
-                onClose();
-              }}
-            >
+            <button className="finalizar-btn" onClick={finalizarCompra}>
               Finalizar Pagamento
             </button>
           </>
