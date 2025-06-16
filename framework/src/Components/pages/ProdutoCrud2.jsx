@@ -30,7 +30,7 @@ const CrudProd = () => {
       return;
     }
 
-    // Enviar os dados para o backend
+    
     usuarioService
       .produto(formInput)
       .then(() => {

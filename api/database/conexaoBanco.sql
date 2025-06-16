@@ -40,6 +40,27 @@ CREATE TABLE categoria (
     imagem longblob
 );
 
+
 SELECT id_categoria, nome_categoria FROM categoria;
 SELECT * FROM categoria; 
+
+
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    total DECIMAL(10,2),
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * FROM pedidos;
+
+CREATE TABLE itens_pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT,
+    id_produto INT,
+    nome_produto VARCHAR(255),
+    quantidade INT,
+    preco_unitario DECIMAL(10,2),
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id)
+);
 
