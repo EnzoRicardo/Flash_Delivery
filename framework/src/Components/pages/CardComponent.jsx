@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../css/CardComponent.css";
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const CardComponent = () => {
   const [categorias, setCategorias] = useState([]);
@@ -15,21 +13,16 @@ const CardComponent = () => {
       .catch(err => console.error('Erro ao buscar categorias:', err));
   }, []);
 
+
+
   const checkAuthAndNavigate = (categoriaId) => {
     const isLogged = localStorage.getItem('userToken');
     if (isLogged) {
       navigate(`/refri/${categoriaId}`);
     } else {
-      toast.warn('Você precisa estar logado para acessar esta categoria.', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
+      navigate('/profile', {
+        state: { notLogged: true }
       });
-      navigate('/profile');
     }
   };
 
@@ -47,7 +40,6 @@ const CardComponent = () => {
           </div>
         </div>
       ))}
-      <ToastContainer />
     </div>
   );
 };

@@ -9,14 +9,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [mostrarSenha, setMostrarSenha] = useState(false);
-  const navigate = useNavigate();
 
   const formatCPF = (value) => {
     return value
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      .replace(/\D/g, '') // Remove tudo que não for número
+      .replace(/(\d{3})(\d)/, '$1.$2') 
+      .replace(/(\d{3})(\d)/, '$1.$2') 
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); 
   };
 
   const formatPhone = (value) => {
@@ -34,8 +33,8 @@ const SignUp = () => {
 
   const formatCEP = (value) => {
     return value
-      .replace(/\D/g, '')
-      .slice(0, 8)
+      .replace(/\D/g, '')        
+      .slice(0, 8)              
       .replace(/(\d{5})(\d)/, '$1-$2');
   };
 
@@ -66,17 +65,11 @@ const SignUp = () => {
       return;
     }
 
+    // Enviar os dados para o backend
     usuarioService
       .salvar(formInput)
       .then(() => {
-        toast.success("Usuário registrado com sucesso! Redirecionando...", {
-          autoClose: 2500,
-          theme: "dark",
-        });
-
-        setTimeout(() => {
-          navigate("/profile");
-        }, 2500);
+        toast.success("Usuário registrado com sucesso!");
       })
       .catch((err) => {
         toast.error("Erro ao registrar usuário.");
@@ -101,8 +94,8 @@ const SignUp = () => {
             <div className="modal-content">
               <input
                 value={formInput.nome}
-                onChange={({ target }) =>
-                  setFormInput({ ...formInput, [target.name]: target.value })
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
                 }
                 name="nome"
                 type="text"
@@ -114,8 +107,8 @@ const SignUp = () => {
               <p className="error-msg">{formError.email}</p>
               <input
                 value={formInput.email}
-                onChange={({ target }) =>
-                  setFormInput({ ...formInput, [target.name]: target.value })
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
                 }
                 name="email"
                 type="text"
@@ -123,75 +116,79 @@ const SignUp = () => {
                 className="input-field"
                 required
               />
+
               <p className="error-msg">{formError.email}</p>
 
               <div className="group-content">
-                <input
-                  value={formInput.cpf}
-                  onChange={({ target }) =>
+
+              <input
+                value={formInput.cpf}
+                onChange={({ target }) => 
                     setFormInput({ ...formInput, [target.name]: formatCPF(target.value) })
-                  }
-                  name="cpf"
-                  type="text"
-                  placeholder="CPF"
-                  maxLength={14}
-                  className="input-field"
-                  required
-                />
+                }
+                name="cpf"
+                type="text"
+                placeholder="CPF"
+                maxLength={14}
+                className="input-field"
+                required
+              />
 
-                <p className="error-msg">{formError.cpf}</p>
+              <p className="error-msg">{formError.cpf}</p>
 
-                <input
-                  value={formInput.telefone}
-                  onChange={({ target }) =>
+            
+              <input
+                value={formInput.telefone}
+                onChange={({ target }) => 
                     setFormInput({ ...formInput, [target.name]: formatPhone(target.value) })
-                  }
-                  name="telefone"
-                  type="text"
-                  placeholder="Telefone"
-                  maxLength={15}
-                  className="input-field"
-                  required
-                />
+                }
+                name="telefone"
+                type="text"
+                placeholder="Telefone"
+                maxLength={15}
+                className="input-field"
+                required
+              />
 
-                <p className="error-msg">{formError.telefone}</p>
+              <p className="error-msg">{formError.telefone}</p>
               </div>
 
               <div className="group-content">
                 <input
-                  value={formInput.cep}
-                  onChange={({ target }) =>
+                value={formInput.cep}
+                onChange={({ target }) => 
                     setFormInput({ ...formInput, [target.name]: formatCEP(target.value) })
-                  }
-                  name="cep"
-                  type="text"
-                  placeholder="CEP"
-                  maxLength={9}
-                  className="input-field"
-                  required
-                />
+                }
+                name="cep"
+                type="text"
+                placeholder="CEP"
+                maxLength={9}
+                className="input-field"
+                required
+              />
 
-                <p className="error-msg">{formError.cep}</p>
+              <p className="error-msg">{formError.cep}</p>
 
-                <input
-                  value={formInput.complemento}
-                  onChange={({ target }) =>
+              <input
+                value={formInput.complemento}
+                onChange={({ target }) => 
                     setFormInput({ ...formInput, [target.name]: target.value })
-                  }
-                  name="complemento"
-                  type="text"
-                  placeholder="Complemento"
-                  className="input-field"
-                  required
-                />
+                }
+                name="complemento"
+                type="text"
+                placeholder="Complemento"
+                className="input-field"
+                required
+              />
 
-                <p className="error-msg">{formError.complemento}</p>
+              <p className="error-msg">{formError.complemento}</p>
+              
               </div>
 
               <input
                 value={formInput.endereco}
-                onChange={({ target }) =>
-                  setFormInput({ ...formInput, [target.name]: target.value })
+                onChange={({ target }) => 
+                    setFormInput({ ...formInput, [target.name]: target.value })
                 }
                 name="endereco"
                 type="text"
@@ -202,33 +199,35 @@ const SignUp = () => {
               <p className="error-msg">{formError.endereco}</p>
 
               <div className="senha-input">
-                <input
-                  value={formInput.senha}
-                  onChange={({ target }) =>
-                    setFormInput({ ...formInput, [target.name]: target.value })
-                  }
-                  name="senha"
-                  type={mostrarSenha ? "text" : "password"}
-                  placeholder="Insira sua senha"
-                  className="input-field"
-                  required
-                />
-                <p className="error-msg">{formError.senha}</p>
+                  <input
+                    value={formInput.senha}
+                    onChange={({ target }) => 
+                        setFormInput({ ...formInput, [target.name]: target.value })
+                    }
+                    name="senha"
+                    type={mostrarSenha ? "text" : "password"}
+                    placeholder="Insira sua senha"
+                    className="input-field"
+                    required
+                  />
+                  <p className="error-msg">{formError.senha}</p>
               </div>
+
 
               <div className="senha-input">
                 <input
                   value={formInput.senhaConfirm}
-                  onChange={({ target }) =>
-                    setFormInput({ ...formInput, [target.name]: target.value })
+                  onChange={({ target }) => 
+                      setFormInput({ ...formInput, [target.name]: target.value })
                   }
                   name="senhaConfirm"
                   type={mostrarSenha ? "text" : "password"}
                   placeholder="Insira sua senha novamente"
                   className="input-field"
                   required
-                />
-                <p className="error-msg">{formError.senhaConfirm}</p>
+              />
+              <p className="error-msg">{formError.senhaConfirm}</p>
+
 
                 <button
                   type="button"
@@ -243,6 +242,7 @@ const SignUp = () => {
                 </button>
               </div>
 
+              
               <div className="input-submit">
                 <button className="button-login" type="submit">
                   Registrar
@@ -252,8 +252,6 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-
-      <ToastContainer />
     </>
   );
 };

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Profile.css";
 import usuarioService from "../../service/usuarioService";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import blob15 from "../../assets/Figura 15.svg";
 import blob13 from "../../assets/Figura 13.svg";
 import blob16 from "../../assets/Figura 16.svg";
@@ -14,6 +14,21 @@ const Profile = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.notLogged) {
+      toast.warn('Você precisa estar logado para acessar esta categoria.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    }
+  }, [location.state]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
