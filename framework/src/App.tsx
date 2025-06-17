@@ -15,6 +15,7 @@ import ProdutoCrud from './Components/pages/ProdutoCrud';
 import CategoriaCrud from './Components/pages/CategoriaCrud';
 import CrudProd from './Components/pages/ProdutoCrud2';
 import UserCrud from './Components/pages/UserCrud';
+import PrivateRoute from './Components/pages/PrivateRoute';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <Router>
-      <Navbar /> 
+      <Navbar />
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,15 +36,13 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/refri/:id" element={<RefriCard />} />
         <Route path="/cards" element={<CardComponent />} />
-        <Route path="/admin" element={<AdminCrud />} />
-        <Route path="/produto-crud" element={<ProdutoCrud />} />
-        <Route path="/categoria-crud" element={<CategoriaCrud />} />
-        <Route path="/produto-crud2" element={<CrudProd />} />
-        <Route path="/user-crud" element={<UserCrud />} />
+        <Route path="/admin" element={<PrivateRoute element={<AdminCrud />} />}/>
+        <Route path="/produto-crud" element={<PrivateRoute element={<ProdutoCrud />} />}/>
+        <Route path="/categoria-crud" element={<PrivateRoute element={<CategoriaCrud />} />}/>
+        <Route path="/produto-crud2" element={<PrivateRoute element={<CrudProd />} />}/>
+        <Route path="/user-crud" element={<PrivateRoute element={<UserCrud />} />}/>
       </Routes>
-
     </Router>
-    
   );
 }
 

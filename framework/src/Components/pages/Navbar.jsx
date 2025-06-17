@@ -86,7 +86,7 @@ const Navbar = () => {
       <div className="admin-user-group">
         {isAdmin && (
           <>
-            <a href="/admin" className="admin-button">Gerenciar</a>
+            <Link to="/admin" className="admin-button">Gerenciar</Link>
           </>
         )}
 
