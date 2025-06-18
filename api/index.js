@@ -101,22 +101,18 @@ app.get('/api/usuariolist', (req, res) => {
 });
 
 app.delete('/api/usuario/:id', (req, res) => {
-    const idUsuario = req.params.id;
-
-    const query = 'DELETE FROM usuarios WHERE id = ?';
-
-    connection.query(query, [idUsuario], (err, results) => {
-        if (err) {
-            console.error('Erro ao deletar usuario:', err);
-            return res.status(500).json({error: 'Erro ao deletar usuario'});
-        }
-
-        if (results.affectedRows === 0) {
-            return res.status(404).json({error: 'Usuario não encontrado'});
-        }
-
-        res.status(200).json({message : 'Usuario deletado com sucesso!'});
-    });
+  const idUsuario = req.params.id;
+  const query = 'DELETE FROM usuarios WHERE id_usuario = ?';
+  connection.query(query, [idUsuario], (err, results) => {
+    if (err) {
+      console.error('Erro ao deletar usuario:', err);
+      return res.status(500).json({ error: 'Erro ao deletar usuario' });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    res.status(200).json({ message: 'Usuário deletado com sucesso!' });
+  });
 });
 
 //inserir novo usuario
@@ -148,6 +144,30 @@ app.get('/api/usuario', function (req, res) {
             res.status(200).json(results);
         }
     });
+});
+
+app.put('/api/usuario/:id', (req, res) => {
+  const idUsuario = req.params.id;
+  const { nome, email, cpf, telefone, cep, complemento, endereco, senha } = req.body;
+  const query = `
+    UPDATE usuarios 
+    SET nome = ?, email = ?, cpf = ?, telefone = ?, cep = ?, complemento = ?, endereco = ?, senha = ?
+    WHERE id = ?
+  `;
+  connection.query(
+    query,
+    [nome, email, cpf, telefone, cep, complemento, endereco, senha, idUsuario],
+    (err, results) => {
+      if (err) {
+        console.error('Erro ao atualizar usuario:', err);
+        return res.status(500).json({ error: 'Erro ao atualizar usuario' });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+      }
+      res.status(200).json({ message: 'Usuário atualizado com sucesso!' });
+    }
+  );
 });
   
 

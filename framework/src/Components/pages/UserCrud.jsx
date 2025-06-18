@@ -9,6 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 const UserCrud = () => {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
+  const [formError, setFormError] = useState({});
+  const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
+  const [modalAberto, setModalAberto] = useState(false);
 
   const formatCPF = (value) => {
     return value
@@ -50,7 +53,17 @@ const UserCrud = () => {
     senhaConfirm: "",
   });
 
-  const [formError, setFormError] = useState({});
+  const [formEdicao, setFormEdicao] = useState({
+    nome: "",
+    email: "",
+    cpf: "",
+    telefone: "",
+    cep: "",
+    complemento: "",
+    endereco: "",
+    senha: "",
+    senhaConfirm: "",
+  });
 
   const validateFormInput = (e) => {
     e.preventDefault();
@@ -70,13 +83,14 @@ const UserCrud = () => {
       .salvar(formInput)
       .then(() => {
         toast.success("Usuário registrado com sucesso!");
+        buscarUsuarios(); 
       })
       .catch((err) => {
         toast.error("Erro ao registrar usuário.");
         console.error(err);
       });
 
-      buscarUsuarios(); // Atualiza a lista de usuários
+    buscarUsuarios(); 
   };
 
   useEffect(() => {
@@ -84,7 +98,7 @@ const UserCrud = () => {
   }, []);
 
   const buscarUsuarios = () => {
-    fetch('http://localhost:8080/api/usuariolist')
+    fetch("http://localhost:8080/api/usuariolist")
       .then((res) => res.json())
       .then((data) => setUsuarios(data))
       .catch((err) => {
@@ -94,22 +108,72 @@ const UserCrud = () => {
   };
 
   const deletarUsuario = (id) => {
-      fetch(`http://localhost:8080/api/usuario/${id}`, {
-        method: "DELETE"
+    fetch(`http://localhost:8080/api/usuario/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Usuário excluído com sucesso!");
+          buscarUsuarios(); 
+        } else {
+          toast.error("Erro ao excluir usuário");
+        }
       })
+      .catch((err) => {
+        console.error("Erro ao excluir:", err);
+        toast.error("Erro ao excluir usuário");
+      });
+  };
+
+  const openModal = (usuario) => {
+    setUsuarioSelecionado(usuario);
+    setFormEdicao({
+      nome: usuario.nome,
+      email: usuario.email,
+      cpf: usuario.CPF,
+      telefone: usuario.telefone,
+      cep: usuario.CEP,
+      complemento: usuario.complemento,
+      endereco: usuario.endereco,
+      senha: usuario.senha,
+      senhaConfirm: usuario.senha,
+    });
+    setModalAberto(true);
+  };
+
+  const closeModal = () => {
+    setModalAberto(false);
+    setUsuarioSelecionado(null);
+  };
+
+  const atualizarUsuario = () => {
+      fetch(
+        `http://localhost:8080/api/usuario/${usuarioSelecionado.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formEdicao),
+        }
+      )
         .then((res) => {
           if (res.ok) {
-            toast.success("Usuário excluído com sucesso!");
-            buscarUsuarios(); // Atualiza a lista
+            toast.success("Usuario atualizado com sucesso!");
+            buscarUsuarios();
+            setModalAberto(false);
           } else {
-            toast.error("Erro ao excluir usuário");
+            toast.error("Erro ao atualizar usuario.");
+            console.error("Erro ao atualizar usuario:", res.statusText);
           }
         })
         .catch((err) => {
-          console.error("Erro ao excluir:", err);
-          toast.error("Erro ao excluir usuário");
+          console.error("Erro ao atualizar usuario:", err);
+          toast.error("Erro na requisição.");
         });
     };
+
+
 
   return (
     <>
@@ -277,9 +341,9 @@ const UserCrud = () => {
             </button>
           </div>
 
-            <button className="add-button" type="submit">
-              Registrar
-            </button>
+          <button className="add-button" type="submit">
+            Registrar
+          </button>
         </form>
 
         <div className="usuario-tabela-container">
@@ -305,27 +369,181 @@ const UserCrud = () => {
                   <td>{usuario.id}</td>
                   <td>{usuario.nome}</td>
                   <td>{usuario.email}</td>
-                  <td>{usuario.CPF}</td>
+                  <td>{usuario.CPF || usuario.cpf}</td>
                   <td>{usuario.telefone}</td>
-                  <td>{usuario.CEP}</td>
+                  <td>{usuario.CEP || usuario.cep}</td>
                   <td>{usuario.endereco}</td>
                   <td>{usuario.complemento}</td>
                   <td>{usuario.senha}</td>
                   <td>
-                    <button
-                      className="botao-excluir"
-                      onClick={() =>
-                        deletarUsuario(usuario.id)
-                      }
-                    >
-                      Excluir
-                    </button>
+                    <div className="buttons">
+                      <button
+                        className="botao-editar"
+                        onClick={() => openModal(usuario)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="botao-excluir"
+                        onClick={() => deletarUsuario(usuario.id)}
+                      >
+                        Excluir
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        
+        {modalAberto && (
+          <div className="modal-overlay">
+            <div className="modal-container">
+              <h2 className="form-title">Editar Usuario</h2>
+              <form className="crud-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  atualizarUsuario();
+                }}
+              >
+                <label>Nome do Usuario</label>
+                <input
+                  type="text"
+                  value={formEdicao.nome}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      nome: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+
+                <label>Email</label>
+                <input
+                  type="email"
+                  value={formEdicao.email}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      email: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+                <label>CPF</label>
+                <input
+                  type="text"
+                  value={formEdicao.CPF || formEdicao.cpf}
+                  maxLength={14}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      CPF: formatCPF(e.target.value),
+                      cpf: formatCPF(e.target.value),
+                    })
+                  }
+                  required
+                />
+
+                <label>Telefone</label>
+                <input
+                  type="text"
+                  value={formEdicao.telefone}
+                  maxLength={15}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      telefone: formatPhone(e.target.value),
+                    })
+                  }
+                  required
+                />
+
+                <label>CEP</label>
+                <input
+                  type="text"
+                  value={formEdicao.CEP || formEdicao.cep}
+                  maxLength={9}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      CEP: formatCEP(e.target.value),
+                      cep: formatCEP(e.target.value),
+                    })
+                  }
+                  required
+                />
+
+                <label>Complemento</label>
+                <input
+                  type="text"
+                  value={formEdicao.complemento}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      complemento: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+                <label>Endereço</label>
+                <input
+                  type="text"
+                  value={formEdicao.endereco}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      endereco: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+                <label>Senha</label>
+                <input
+                  type="password"
+                  value={formEdicao.senha}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      senha: e.target.value,
+                    })
+                  }
+                />
+
+                <label>Confirmar Senha</label>
+                <input
+                  type="text"
+                  value={formEdicao.senhaConfirm}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      senhaConfirm: e.target.value,
+                    })
+                  }
+                />            
+
+                <div className="modal-buttons">
+                  <button
+                    type="button"
+                    className="botao-fechar"
+                    onClick={closeModal}
+                  >
+                    Cancelar
+                  </button>
+                  <button type="submit" className="botao-salvar">
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
