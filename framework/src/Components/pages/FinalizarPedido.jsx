@@ -21,7 +21,7 @@ const FinalizarPedido = () => {
 
   const finalizar = () => {
     const pedido = {
-      id_usuario: 1, // Substitua pelo ID real se tiver login implementado
+      id_usuario: userId, 
       total: total,
       itens: carrinho.map(item => ({
         id_produto: item.id_produto,

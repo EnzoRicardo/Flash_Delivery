@@ -13,12 +13,6 @@ const CompraJanela = ({ carrinho, onClose, setCarrinho }) => {
   };
 
   const finalizarCompra = () => {
-    toast.success("Redirecionando para o pagamento! 🚀", {
-      position: "top-right",
-      autoClose: 2000,
-      theme: "dark",
-    });
-
     onClose();
     navigate("/finalizar");
   };
