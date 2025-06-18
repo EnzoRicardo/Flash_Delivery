@@ -6,14 +6,22 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CategoriaCrud = () => {
-  const [formInput, setFormInput] = useState({
-    nome_categoria: "",
-    imagem: null
-  });
-
   const [imagemPreview, setImagemPreview] = useState(null);
   const [categorias, setCategorias] = useState([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+  const [modalAberto, setModalAberto] = useState(false);
+
   const [formError, setFormError] = useState({});
+
+  const [formInput, setFormInput] = useState({
+    nome_categoria: "",
+    imagem: null,
+  });
+
+  const [formEdicao, setFormEdicao] = useState({
+    nome_categoria: "",
+    imagem: null,
+  });
 
   const validateFormInput = (e) => {
     e.preventDefault();
@@ -53,7 +61,7 @@ const CategoriaCrud = () => {
 
   const deletarCategoria = (id) => {
     fetch(`http://localhost:8080/api/categorias/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     })
       .then((res) => {
         if (res.ok) {
@@ -66,6 +74,47 @@ const CategoriaCrud = () => {
       .catch((err) => {
         console.error("Erro ao excluir:", err);
         toast.error("Erro ao excluir categoria");
+      });
+  };
+
+  const openModal = (categoria) => {
+    setCategoriaSelecionada(categoria);
+    setFormEdicao({
+      nome_categoria: categoria.nome_categoria,
+    });
+    setModalAberto(true);
+  };
+
+  const closeModal = () => {
+    setModalAberto(false);
+    setCategoriaSelecionada(null);
+  };
+
+  const atualizarCategoria = () => {
+
+    fetch(
+      `http://localhost:8080/api/categoria/${categoriaSelecionada.id_categoria}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formEdicao),
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Categoria atualizada com sucesso!");
+          buscarCategorias();
+          setModalAberto(false);
+        } else {
+          toast.error("Erro ao atualizar categoria.");
+          console.error("Erro ao atualizar categoria:", res.statusText);
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao atualizar categoria:", err);
+        toast.error("Erro na requisição.");
       });
   };
 
@@ -146,20 +195,68 @@ const CategoriaCrud = () => {
                     )}
                   </td>
                   <td>
-                    <button
-                      className="botao-excluir"
-                      onClick={() =>
-                        deletarCategoria(categoria.id_categoria)
-                      }
-                    >
-                      Excluir
-                    </button>
+                    <div className="buttons">
+                      <button
+                        className="botao-editar"
+                        onClick={() => openModal(categoria)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="botao-excluir"
+                        onClick={() => deletarCategoria(categoria.id_categoria)}
+                      >
+                        Excluir
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+
+        {modalAberto && (
+          <div className="modal-overlay">
+            <div className="modal-container">
+              <h2 className="form-title">Editar Categoria</h2>
+              <form
+                className="crud-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  atualizarCategoria();
+                }}
+              >
+                <label htmlFor="nome_categoria">Nome da Categoria</label>
+                <input
+                  type="text"
+                  value={formEdicao.nome_categoria}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      nome_categoria: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+                <div className="modal-buttons">
+                  <button
+                    type="button"
+                    className="botao-fechar"
+                    onClick={closeModal}
+                  >
+                    Cancelar
+                  </button>
+                  <button type="submit" className="botao-salvar">
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         <ToastContainer />
       </div>
     </>

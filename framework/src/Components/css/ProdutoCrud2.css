@@ -114,7 +114,8 @@
   min-width: 300px;
   width: 40%;
   padding: 2rem;
-  height: 90%;
+  height: fit-content;
+  max-height: 90%;
 
   label {
     font-weight: 600;
