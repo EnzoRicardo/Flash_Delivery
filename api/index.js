@@ -231,32 +231,38 @@ app.delete('/api/produtos/:id', (req, res) => {
     });
 });
 
-app.put('/api/produtos/:id', (req, res) => {
+app.put('/api/produtos/:id', upload.single('imagem'), (req, res) => {
   const idProduto = req.params.id;
   const { nome_produto, preco, volume, qtda_estoque, fk_id_categoria } = req.body;
+  const imagem = req.file ? req.file.buffer : null;
 
-  const query = `
-    UPDATE produtos 
-    SET nome_produto = ?, preco = ?, volume = ?, qtda_estoque = ?, fk_id_categoria = ?
-    WHERE id_produto = ?
-  `;
+  let query, params;
+  if (imagem) {
+    query = `
+      UPDATE produtos 
+      SET nome_produto = ?, preco = ?, volume = ?, qtda_estoque = ?, fk_id_categoria = ?, imagem = ?
+      WHERE id_produto = ?
+    `;
+    params = [nome_produto, preco, volume, qtda_estoque, fk_id_categoria, imagem, idProduto];
+  } else {
+    query = `
+      UPDATE produtos 
+      SET nome_produto = ?, preco = ?, volume = ?, qtda_estoque = ?, fk_id_categoria = ?
+      WHERE id_produto = ?
+    `;
+    params = [nome_produto, preco, volume, qtda_estoque, fk_id_categoria, idProduto];
+  }
 
-  connection.query(
-    query,
-    [nome_produto, preco, volume, qtda_estoque, fk_id_categoria, idProduto],
-    (err, results) => {
-      if (err) {
-        console.error('Erro ao atualizar produto:', err);
-        return res.status(500).json({ error: 'Erro ao atualizar produto' });
-      }
-
-      if (results.affectedRows === 0) {
-        return res.status(404).json({ error: 'Produto não encontrado' });
-      }
-
-      res.status(200).json({ message: 'Produto atualizado com sucesso!' });
+  connection.query(query, params, (err, results) => {
+    if (err) {
+      console.error('Erro ao atualizar produto:', err);
+      return res.status(500).json({ error: 'Erro ao atualizar produto' });
     }
-  );
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Produto não encontrado' });
+    }
+    res.status(200).json({ message: 'Produto atualizado com sucesso!' });
+  });
 });
 
 // REFRI

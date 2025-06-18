@@ -67,31 +67,38 @@ const CrudProd = () => {
       });
   };
 
-  const atualizarProduto = () => {
-    fetch(
-      `http://localhost:8080/api/produtos/${produtoSelecionado.id_produto}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formEdicao),
+const atualizarProduto = () => {
+  const formData = new FormData();
+  formData.append("nome_produto", formEdicao.nome_produto);
+  formData.append("preco", formEdicao.preco);
+  formData.append("volume", formEdicao.volume);
+  formData.append("qtda_estoque", formEdicao.qtda_estoque);
+  formData.append("fk_id_categoria", formEdicao.fk_id_categoria);
+  if (formEdicao.imagem) {
+    formData.append("imagem", formEdicao.imagem);
+  }
+
+  fetch(
+    `http://localhost:8080/api/produtos/${produtoSelecionado.id_produto}`,
+    {
+      method: "PUT",
+      body: formData,
+    }
+  )
+    .then((res) => {
+      if (res.ok) {
+        toast.success("Produto atualizado com sucesso!");
+        buscarProdutos();
+        setModalAberto(false);
+      } else {
+        toast.error("Erro ao atualizar produto.");
       }
-    )
-      .then((res) => {
-        if (res.ok) {
-          toast.success("Produto atualizado com sucesso!");
-          buscarProdutos();
-          setModalAberto(false);
-        } else {
-          toast.error("Erro ao atualizar produto.");
-        }
-      })
-      .catch((err) => {
-        console.error("Erro ao atualizar produto:", err);
-        toast.error("Erro na requisição.");
-      });
-  };
+    })
+    .catch((err) => {
+      console.error("Erro ao atualizar produto:", err);
+      toast.error("Erro na requisição.");
+    });
+};
 
   useEffect(() => {
     buscarCategorias();
@@ -299,18 +306,18 @@ const CrudProd = () => {
                     </td>
                     <td>
                       <div className="buttons">
-                      <button
-                        className="botao-editar"
-                        onClick={() => openModal(produto)}
-                      >
-                        Editar
-                      </button>
                         <button
-                        className="botao-excluir"
-                        onClick={() => deletarProduto(produto.id_produto)}
-                      >
-                        Excluir
-                      </button>
+                          className="botao-editar"
+                          onClick={() => openModal(produto)}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          className="botao-excluir"
+                          onClick={() => deletarProduto(produto.id_produto)}
+                        >
+                          Excluir
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -324,7 +331,8 @@ const CrudProd = () => {
           <div className="modal-overlay">
             <div className="modal-container">
               <h2 className="form-title">Editar Produto</h2>
-              <form className="crud-form"
+              <form
+                className="crud-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   atualizarProduto();
@@ -394,6 +402,16 @@ const CrudProd = () => {
                     </option>
                   ))}
                 </select>
+
+                <label>Imagem</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setFormEdicao({ ...formEdicao, imagem: file });
+                  }}
+                />
 
                 <div className="modal-buttons">
                   <button
