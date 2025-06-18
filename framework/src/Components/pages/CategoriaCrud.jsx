@@ -91,32 +91,34 @@ const CategoriaCrud = () => {
   };
 
   const atualizarCategoria = () => {
+  const formData = new FormData();
+  formData.append("nome_categoria", formEdicao.nome_categoria);
+  if (formEdicao.imagem) {
+    formData.append("imagem", formEdicao.imagem);
+  }
 
-    fetch(
-      `http://localhost:8080/api/categoria/${categoriaSelecionada.id_categoria}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formEdicao),
+  fetch(
+    `http://localhost:8080/api/categoria/${categoriaSelecionada.id_categoria}`,
+    {
+      method: "PUT",
+      body: formData,
+    }
+  )
+    .then((res) => {
+      if (res.ok) {
+        toast.success("Categoria atualizada com sucesso!");
+        buscarCategorias();
+        setModalAberto(false);
+      } else {
+        toast.error("Erro ao atualizar categoria.");
+        console.error("Erro ao atualizar categoria:", res.statusText);
       }
-    )
-      .then((res) => {
-        if (res.ok) {
-          toast.success("Categoria atualizada com sucesso!");
-          buscarCategorias();
-          setModalAberto(false);
-        } else {
-          toast.error("Erro ao atualizar categoria.");
-          console.error("Erro ao atualizar categoria:", res.statusText);
-        }
-      })
-      .catch((err) => {
-        console.error("Erro ao atualizar categoria:", err);
-        toast.error("Erro na requisição.");
-      });
-  };
+    })
+    .catch((err) => {
+      console.error("Erro ao atualizar categoria:", err);
+      toast.error("Erro na requisição.");
+    });
+};
 
   return (
     <>
@@ -238,6 +240,16 @@ const CategoriaCrud = () => {
                     })
                   }
                   required
+                />
+
+                <label htmlFor="imagem">Imagem</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setFormEdicao({ ...formEdicao, imagem: file });
+                  }}
                 />
 
                 <div className="modal-buttons">

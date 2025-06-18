@@ -387,28 +387,38 @@ app.delete('/api/categorias/:id', (req, res) => {
 });
 
 
-app.put('/api/categoria/:id', (req, res) => {
+app.put('/api/categoria/:id', upload.single('imagem'), (req, res) => {
   const idCategoria = req.params.id;
   const { nome_categoria } = req.body;
-  const query = `
-    UPDATE categoria 
-    SET nome_categoria = ?
-    WHERE id_categoria = ?
-  `;
-  connection.query(
-    query,
-    [nome_categoria, idCategoria],
-    (err, results) => {
-      if (err) {
-        console.error('Erro ao atualizar categoria:', err);
-        return res.status(500).json({ error: 'Erro ao atualizar categoria' });
-      }
-      if (results.affectedRows === 0) {
-        return res.status(404).json({ error: 'Categoria não encontrada' });
-      }
-      res.status(200).json({ message: 'Categoria atualizada com sucesso!' });
+  const imagem = req.file ? req.file.buffer : null;
+
+  let query, params;
+  if (imagem) {
+    query = `
+      UPDATE categoria 
+      SET nome_categoria = ?, imagem = ?
+      WHERE id_categoria = ?
+    `;
+    params = [nome_categoria, imagem, idCategoria];
+  } else {
+    query = `
+      UPDATE categoria 
+      SET nome_categoria = ?
+      WHERE id_categoria = ?
+    `;
+    params = [nome_categoria, idCategoria];
+  }
+
+  connection.query(query, params, (err, results) => {
+    if (err) {
+      console.error('Erro ao atualizar categoria:', err);
+      return res.status(500).json({ error: 'Erro ao atualizar categoria' });
     }
-  );
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Categoria não encontrada' });
+    }
+    res.status(200).json({ message: 'Categoria atualizada com sucesso!' });
+  });
 });
 
 
