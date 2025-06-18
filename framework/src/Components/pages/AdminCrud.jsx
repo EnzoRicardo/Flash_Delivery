@@ -11,6 +11,7 @@ function AdminCrud() {
           <Link to="/categoria-crud"><h2>Gerenciar Categorias</h2></Link>
           <Link to="/produto-crud2"><h2>Gerenciar Produtos</h2></Link>
           <Link to="/user-crud"><h2>Gerenciar Usuários</h2></Link>
+          <Link to="/historico-crud"><h2>Histórico</h2></Link>
         </nav>
 
         <Routes>

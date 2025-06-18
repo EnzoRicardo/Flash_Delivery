@@ -386,6 +386,7 @@ app.delete('/api/categorias/:id', (req, res) => {
     });
 });
 
+//salva os pedidos no MYSQL
 app.post('/api/pedido', (req, res) => {
   const { id_usuario, total, itens } = req.body;
 
@@ -419,4 +420,47 @@ app.post('/api/pedido', (req, res) => {
   });
 });
 
+//pega os dados salvos no MYSQL para retornar no crud
+app.get('/api/pedidos', (req, res) => {
+  const sqlPedidos = `
+    SELECT p.id, p.total, p.data_pedido, u.nome AS nome_usuario
+    FROM pedidos p
+    JOIN usuarios u ON p.id_usuario = u.id
+    ORDER BY p.data_pedido DESC
+  `;
 
+  connection.query(sqlPedidos, (err, pedidos) => {
+    if (err) {
+      console.error('Erro ao buscar pedidos:', err);
+      return res.status(500).json({ error: 'Erro ao buscar pedidos' });
+    }
+
+    const pedidoIds = pedidos.map(p => p.id);
+    if (pedidoIds.length === 0) {
+      return res.json([]);  
+    }
+
+    const sqlItens = `
+      SELECT i.*, p.id AS pedido_id
+      FROM itens_pedido i
+      JOIN pedidos p ON i.id_pedido = p.id
+      WHERE p.id IN (?)
+    `;
+
+    connection.query(sqlItens, [pedidoIds], (err, itens) => {
+      if (err) {
+        console.error('Erro ao buscar itens dos pedidos:', err);
+        return res.status(500).json({ error: 'Erro ao buscar itens' });
+      }
+
+      const pedidosComItens = pedidos.map(pedido => {
+        return {
+          ...pedido,
+          itens: itens.filter(item => item.pedido_id === pedido.id)
+        };
+      });
+
+      res.json(pedidosComItens);
+    });
+  });
+});

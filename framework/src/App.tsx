@@ -15,6 +15,7 @@ import ProdutoCrud from './Components/pages/ProdutoCrud';
 import CategoriaCrud from './Components/pages/CategoriaCrud';
 import CrudProd from './Components/pages/ProdutoCrud2';
 import UserCrud from './Components/pages/UserCrud';
+import HistoricoCrud from './Components/pages/HistoricoCrud';
 import PrivateRoute from './Components/pages/PrivateRoute';
 import FinalizarPedido from './Components/pages/FinalizarPedido';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -43,6 +44,7 @@ function App() {
         <Route path="/categoria-crud" element={<PrivateRoute element={<CategoriaCrud />} />}/>
         <Route path="/produto-crud2" element={<PrivateRoute element={<CrudProd />} />}/>
         <Route path="/user-crud" element={<PrivateRoute element={<UserCrud />} />}/>
+        <Route path="/historico-crud" element={<PrivateRoute element={<HistoricoCrud />} />}/>
       </Routes>
     </Router>
   );

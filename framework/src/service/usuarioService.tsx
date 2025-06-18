@@ -91,6 +91,12 @@ const pedido = async (pedidoData: any) => {
   });
 };
 
+const listarHistorico = async () => {
+  const response = await fetch(`http://localhost:8080/api/pedidos`);
+  if (!response.ok) throw new Error('Erro ao buscar o histórico de pedidos');
+  return await response.json();
+};
+
 
 
 const usuarioService = {
@@ -99,7 +105,8 @@ const usuarioService = {
   produto,
   categoria,
   usuarios,
-  pedido
+  pedido,
+  listarHistorico,
 };
 
 export default usuarioService;

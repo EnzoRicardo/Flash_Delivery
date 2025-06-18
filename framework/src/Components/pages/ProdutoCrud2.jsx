@@ -47,7 +47,7 @@ const CrudProd = () => {
     formData.append("imagem", formInput.imagem);
 
     usuarioService
-      .produto(formData)
+      .produto(formInput)
       .then(() => {
         toast.success("Produto registrado com sucesso!");
         setFormInput({
