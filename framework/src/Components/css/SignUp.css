@@ -6,11 +6,11 @@
   box-sizing: border-box;
 }
 
-.login-box {
+.login-box-signup {
   max-width: 550px;
   width: 100%;
-  margin: 4rem auto;
-  padding: 2.5rem;
+  margin: auto;
+
   border-radius: 16px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   position: relative;

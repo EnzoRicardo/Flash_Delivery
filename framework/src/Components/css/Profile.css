@@ -11,10 +11,11 @@ body {
   color: #fff;
 }
 
+
+
 /* container geral com centralização */
 .login-container {
-  width: 100%;
-  min-height: 100vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,8 +38,14 @@ body {
 
 /* imagem */
 .login-box {
-  max-width: 500px;
-  transform: translateX(-20px);
+  padding: 4rem;
+  max-width: 550px;
+  width: 100%;
+  margin: auto;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .login-text {

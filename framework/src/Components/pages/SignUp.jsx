@@ -92,7 +92,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="login-box">
+      <div className="login-box-signup">
         <img src={blob17} className="blob17" alt="Decorativo 17" />
         <img src={blob18} className="blob18" alt="Decorativo 18" />
 
@@ -132,7 +132,6 @@ const SignUp = () => {
 
               <p className="error-msg">{formError.email}</p>
 
-              <div className="group-content">
                 <input
                   value={formInput.cpf}
                   onChange={({ target }) =>
@@ -168,9 +167,7 @@ const SignUp = () => {
                 />
 
                 <p className="error-msg">{formError.telefone}</p>
-              </div>
 
-              <div className="group-content">
                 <input
                   value={formInput.cep}
                   onChange={({ target }) =>
@@ -202,7 +199,6 @@ const SignUp = () => {
                 />
 
                 <p className="error-msg">{formError.complemento}</p>
-              </div>
 
               <input
                 value={formInput.endereco}
