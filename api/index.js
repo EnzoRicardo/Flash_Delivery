@@ -31,7 +31,7 @@ app.post('/api/login', function (req, res) {
             
             const token = jwt.sign(
                 {
-                id: usuario.id_usuario,
+                id: usuario.id,
                 nome: usuario.nome,
                 email: usuario.email,
                 isAdmin: isAdmin
@@ -386,5 +386,37 @@ app.delete('/api/categorias/:id', (req, res) => {
     });
 });
 
+app.post('/api/pedido', (req, res) => {
+  const { id_usuario, total, itens } = req.body;
+
+  const pedidoQuery = 'INSERT INTO pedidos (id_usuario, total) VALUES (?, ?)';
+  connection.query(pedidoQuery, [id_usuario, total], (err, result) => {
+    if (err) {
+      console.error('Erro ao criar pedido:', err);
+      return res.status(500).json({ error: 'Erro ao criar pedido' });
+    }
+
+    const id_pedido = result.insertId;
+
+    const itensValues = itens.map(item => [
+      id_pedido,
+      item.id_produto,
+      item.nome_produto,
+      item.quantidade,
+      item.preco_unitario
+    ]);
+
+    const itensQuery = 'INSERT INTO itens_pedido (id_pedido, id_produto, nome_produto, quantidade, preco_unitario) VALUES ?';
+
+    connection.query(itensQuery, [itensValues], (err, result) => {
+      if (err) {
+        console.error('Erro ao inserir itens do pedido:', err);
+        return res.status(500).json({ error: 'Erro ao inserir itens do pedido' });
+      }
+
+      res.status(201).json({ message: 'Pedido finalizado com sucesso!' });
+    });
+  });
+});
 
 

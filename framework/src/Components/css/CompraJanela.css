@@ -26,6 +26,7 @@
   overflow-y: auto;
   color: white;
   display: flex;
+  right: -600px;
   flex-direction: column;
   gap: 20px;
 }
@@ -88,7 +89,9 @@
   background-color: #D32F2F;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-weight: 600;
   padding: 6px 12px;
   font-size: 13px;
   cursor: pointer;
@@ -121,7 +124,7 @@
   font-size: 16px;
   font-weight: bold;
   background-color: #FFC107;
-  color: #000;
+  color: #ffffff;
   border: none;
   border-radius: 50px;
   cursor: pointer;

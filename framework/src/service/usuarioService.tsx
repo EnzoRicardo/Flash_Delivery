@@ -81,12 +81,25 @@ const login = async (email: string, senha: string) => {
   }
 };
 
+const pedido = async (pedidoData: any) => {
+  return await fetch(`http://localhost:8080/api/pedido`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(pedidoData),
+  });
+};
+
+
+
 const usuarioService = {
   salvar,
   login,
   produto,
   categoria,
-  usuarios
+  usuarios,
+  pedido
 };
 
 export default usuarioService;

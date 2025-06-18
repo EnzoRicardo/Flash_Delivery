@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 const FinalizarPedido = () => {
   const [carrinho, setCarrinho] = useState([]);
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userID");
 
   useEffect(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
