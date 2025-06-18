@@ -387,3 +387,4 @@ app.delete('/api/categorias/:id', (req, res) => {
 });
 
 
+

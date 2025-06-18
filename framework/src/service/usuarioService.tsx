@@ -18,13 +18,12 @@ const produto = async (produto: any) => {
   formData.append("categoria", produto.categoria);
 
   if (produto.imagem) {
-    formData.append("imagem", produto.imagem); // Aqui vai o blob (arquivo)
+    formData.append("imagem", produto.imagem); 
   }
 
   return await fetch(`http://localhost:8080/api/produtos`, {
     method: "POST",
     body: formData,
-    // ❌ Não inclua Content-Type aqui!
   });
 };
 
