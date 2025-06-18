@@ -5,6 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CrudProd = () => {
+  const [imagemPreview, setImagemPreview] = useState(null);
+  const [categorias, setCategorias] = useState([]);
+  const [produtos, setProdutos] = useState([]);
+  const [modalAberto, setModalAberto] = useState(false);
+  const [produtoSelecionado, setProdutoSelecionado] = useState(null);
+  const [formError, setFormError] = useState({});
+
   const [formInput, setFormInput] = useState({
     nome_produto: "",
     preco: "",
@@ -14,11 +21,13 @@ const CrudProd = () => {
     imagem: null,
   });
 
-  const [imagemPreview, setImagemPreview] = useState(null);
-  const [categorias, setCategorias] = useState([]);
-  const [produtos, setProdutos] = useState([]);
-
-  const [formError, setFormError] = useState({});
+  const [formEdicao, setFormEdicao] = useState({
+    nome_produto: "",
+    preco: "",
+    volume: "",
+    qtda_estoque: "",
+    fk_id_categoria: "",
+  });
 
   const validateFormInput = (e) => {
     e.preventDefault();
@@ -29,9 +38,16 @@ const CrudProd = () => {
       return;
     }
 
-    
+    const formData = new FormData();
+    formData.append("nome_produto", formInput.nome_produto);
+    formData.append("preco", formInput.preco);
+    formData.append("volume", formInput.volume);
+    formData.append("qtda_estoque", formInput.estoque);
+    formData.append("fk_id_categoria", formInput.categoria);
+    formData.append("imagem", formInput.imagem);
+
     usuarioService
-      .produto(formInput)
+      .produto(formData)
       .then(() => {
         toast.success("Produto registrado com sucesso!");
         setFormInput({
@@ -42,11 +58,38 @@ const CrudProd = () => {
           categoria: "",
           imagem: null,
         });
+        setImagemPreview(null);
+        buscarProdutos();
       })
-
       .catch((err) => {
         toast.error("Erro ao registrar produto.");
         console.error(err);
+      });
+  };
+
+  const atualizarProduto = () => {
+    fetch(
+      `http://localhost:8080/api/produtos/${produtoSelecionado.id_produto}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formEdicao),
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Produto atualizado com sucesso!");
+          buscarProdutos();
+          setModalAberto(false);
+        } else {
+          toast.error("Erro ao atualizar produto.");
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao atualizar produto:", err);
+        toast.error("Erro na requisição.");
       });
   };
 
@@ -83,7 +126,7 @@ const CrudProd = () => {
       .then((res) => {
         if (res.ok) {
           toast.success("Produto excluído com sucesso!");
-          buscarProdutos(); 
+          buscarProdutos();
         } else {
           toast.error("Erro ao excluir usuário");
         }
@@ -94,8 +137,26 @@ const CrudProd = () => {
       });
   };
 
+  const openModal = (produto) => {
+    setProdutoSelecionado(produto);
+    setFormEdicao({
+      nome_produto: produto.nome_produto,
+      preco: produto.preco,
+      volume: produto.volume,
+      qtda_estoque: produto.qtda_estoque,
+      fk_id_categoria: produto.fk_id_categoria,
+    });
+    setModalAberto(true);
+  };
+
+  const closeModal = () => {
+    setModalAberto(false);
+    setProdutoSelecionado(null);
+  };
+
   return (
     <>
+      <ToastContainer />
       <div className="form-container">
         <h2 className="form-title">Adicionar Produto</h2>
         <form className="crud-form" onSubmit={validateFormInput}>
@@ -120,7 +181,6 @@ const CrudProd = () => {
             }
             required
           />
-          <p className="error-msg">{formError.preco}</p>
 
           <label htmlFor="volume">Volume</label>
           <input
@@ -132,7 +192,6 @@ const CrudProd = () => {
             }
             required
           />
-          <p className="error-msg">{formError.volume}</p>
 
           <label htmlFor="estoque">Estoque</label>
           <input
@@ -144,9 +203,8 @@ const CrudProd = () => {
             }
             required
           />
-          <p className="error-msg">{formError.estoque}</p>
 
-          <label htmlFor="fk_id_categoria">Categoria:</label>
+          <label htmlFor="categoria">Categoria:</label>
           <select
             name="categoria"
             value={formInput.categoria}
@@ -162,7 +220,6 @@ const CrudProd = () => {
               </option>
             ))}
           </select>
-          <p className="error-msg">{formError.categoria}</p>
 
           <label htmlFor="imagem">Imagem</label>
           <input
@@ -184,11 +241,17 @@ const CrudProd = () => {
 
           {imagemPreview && (
             <div className="preview-container">
-              <img src={imagemPreview} alt="Pré-visualização" className="imagem-preview" />
+              <img
+                src={imagemPreview}
+                alt="Pré-visualização"
+                className="imagem-preview"
+              />
             </div>
           )}
 
-          <button type="submit" className="add-button">Registrar</button>
+          <button type="submit" className="add-button">
+            Registrar
+          </button>
         </form>
 
         <div className="usuario-tabela-container">
@@ -208,7 +271,6 @@ const CrudProd = () => {
             </thead>
             <tbody>
               {produtos.map((produto) => {
-                // Busca o nome da categoria pelo id
                 const categoriaObj = categorias.find(
                   (cat) => cat.id_categoria === produto.fk_id_categoria
                 );
@@ -220,7 +282,9 @@ const CrudProd = () => {
                     <td>{produto.preco}</td>
                     <td>{produto.qtda_estoque}</td>
                     <td>
-                      {categoriaObj ? categoriaObj.nome_categoria : "Desconhecida"}
+                      {categoriaObj
+                        ? categoriaObj.nome_categoria
+                        : "Desconhecida"}
                     </td>
                     <td>
                       {produto.imagem ? (
@@ -234,12 +298,20 @@ const CrudProd = () => {
                       )}
                     </td>
                     <td>
+                      <div className="buttons">
                       <button
+                        className="botao-editar"
+                        onClick={() => openModal(produto)}
+                      >
+                        Editar
+                      </button>
+                        <button
                         className="botao-excluir"
                         onClick={() => deletarProduto(produto.id_produto)}
                       >
                         Excluir
                       </button>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -247,6 +319,98 @@ const CrudProd = () => {
             </tbody>
           </table>
         </div>
+
+        {modalAberto && (
+          <div className="modal-overlay">
+            <div className="modal-container">
+              <h2 className="form-title">Editar Produto</h2>
+              <form className="crud-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  atualizarProduto();
+                }}
+              >
+                <label>Nome do Produto</label>
+                <input
+                  type="text"
+                  value={formEdicao.nome_produto}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      nome_produto: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+                <label>Preço</label>
+                <input
+                  type="number"
+                  value={formEdicao.preco}
+                  onChange={(e) =>
+                    setFormEdicao({ ...formEdicao, preco: e.target.value })
+                  }
+                  required
+                />
+
+                <label>Volume</label>
+                <input
+                  type="text"
+                  value={formEdicao.volume}
+                  onChange={(e) =>
+                    setFormEdicao({ ...formEdicao, volume: e.target.value })
+                  }
+                  required
+                />
+
+                <label>Estoque</label>
+                <input
+                  type="number"
+                  value={formEdicao.qtda_estoque}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      qtda_estoque: e.target.value,
+                    })
+                  }
+                  required
+                />
+
+                <label>Categoria</label>
+                <select
+                  value={formEdicao.fk_id_categoria}
+                  onChange={(e) =>
+                    setFormEdicao({
+                      ...formEdicao,
+                      fk_id_categoria: e.target.value,
+                    })
+                  }
+                  required
+                >
+                  <option value="">Selecione uma categoria</option>
+                  {categorias.map((cat) => (
+                    <option key={cat.id_categoria} value={cat.id_categoria}>
+                      {cat.nome_categoria}
+                    </option>
+                  ))}
+                </select>
+
+                <div className="modal-buttons">
+                  <button
+                    type="button"
+                    className="botao-fechar"
+                    onClick={closeModal}
+                  >
+                    Cancelar
+                  </button>
+                  <button type="submit" className="botao-salvar">
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
