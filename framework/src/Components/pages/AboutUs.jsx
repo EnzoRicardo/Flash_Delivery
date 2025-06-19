@@ -10,8 +10,6 @@ const AboutUs = () => {
   return (
     <div className="text">
 
-        <img src={blob9} className="blob9" />
-        <img src={blob10} className="blob10" />
         <img src={blob11} className="blob11" />
         <img src={blob12} className="blob12" />
 

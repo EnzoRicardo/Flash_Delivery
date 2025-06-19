@@ -89,15 +89,17 @@ app.post('/api/admin-categoria', function (req, res) {
 })
 
 // USUARIO CRUD
-app.get('/api/usuariolist', (req, res) => {
-  const query = 'SELECT * FROM usuarios';
-  connection.query(query, (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar usuarios:', err);
-      return res.status(500).json({ error: 'Erro ao buscar usuarios' });
-    }
-    res.json(results);
-  });
+app.get('/api/usuario', function (req, res) {
+    const query = 'SELECT * FROM usuarios';
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar usuários:', err);
+            res.status(500).json({ error: 'Erro interno ao buscar usuários' });
+        } else {
+            console.log('Usuários encontrados:', results);
+            res.status(200).json(results);
+        }
+    });
 });
 
 app.delete('/api/usuario/:id', (req, res) => {
@@ -131,21 +133,6 @@ app.post('/api/usuario', function (req, res) {
     });
 });
 
-
-app.get('/api/usuario', function (req, res) {
-    const query = 'SELECT * FROM usuarios';
-
-    connection.query(query, (err, results) => {
-        if (err) {
-            console.error('Erro ao buscar usuários:', err);
-            res.status(500).json({ error: 'Erro interno ao buscar usuários' });
-        } else {
-            console.log('Usuários encontrados:', results);
-            res.status(200).json(results);
-        }
-    });
-});
-
 app.put('/api/usuario/:id', (req, res) => {
   const idUsuario = req.params.id;
   const { nome, email, cpf, telefone, cep, complemento, endereco, senha } = req.body;
@@ -172,7 +159,6 @@ app.put('/api/usuario/:id', (req, res) => {
   
 
 // PRODUTO CRUD
-
 app.post('/api/produtos', upload.single('imagem'), (req,res) => {
     const { nome_produto, preco, volume, estoque, categoria } = req.body;
     const imagem = req.file ? req.file.buffer : null;
@@ -266,7 +252,7 @@ app.put('/api/produtos/:id', upload.single('imagem'), (req, res) => {
 });
 
 // REFRI
-app.get('/api/refrigerantes', (req, res) => {
+app.get('/api/produtosCards', (req, res) => {
   const categoriaId = req.query.categoria;
   const query = 'SELECT * FROM produtos WHERE fk_id_categoria = ?';
 

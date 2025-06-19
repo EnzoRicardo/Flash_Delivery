@@ -98,7 +98,7 @@ const UserCrud = () => {
   }, []);
 
   const buscarUsuarios = () => {
-    fetch("http://localhost:8080/api/usuariolist")
+    fetch("http://localhost:8080/api/usuario")
       .then((res) => res.json())
       .then((data) => setUsuarios(data))
       .catch((err) => {

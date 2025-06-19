@@ -43,6 +43,7 @@ body {
     width: 380px;
     right: 1320px;
     top: 550px;
+    opacity: 0.4;
 }
 
 
@@ -52,6 +53,8 @@ body {
     width: 380px;
     left: 1320px;
     top: 120px;
+    opacity: 0.4;
+
 }
 
 .blob6 {
@@ -60,33 +63,9 @@ body {
     width: 480px;
     left: 1400px;
     top: 1200px;
+    opacity: 0.4;
+
 }
-
-.blob7 {
-    position: absolute;
-    z-index: -1;
-    width: 100px;
-    left: 120px;
-    top: 240px;
-    transform: rotate(-15deg);
-}
-
-.blob8 {
-    position: absolute;
-    z-index: -1;
-    width: 140px;
-    left: 1240px;
-    top: 690px;
-}
-
-.imgblob {
-    position: absolute;
-    z-index: -1;
-    width: 260px;
-    top: 1200px;
-}
-
-
 
 .contato-icones {
     display: flex;

@@ -16,9 +16,6 @@ const Service = () => {
       <img src={blob4} className="blob4" />
       <img src={blob5} className="blob5" />
       <img src={blob6} className="blob6" />
-      <img src={blob7} className="blob7" />
-      <img src={blob8} className="blob8" />
-      <img src={imgblob} className="imgblob" />
 
       <div className="contato">
         <h2>Está com alguma <span className="red-service">dúvida?</span></h2> 

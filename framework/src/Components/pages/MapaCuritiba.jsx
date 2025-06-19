@@ -8,7 +8,7 @@ const MapaCuritiba = () => {
   const position = [-25.4284, -49.2733]; // Coordenadas de Curitiba
 
   const pinIcon = new L.DivIcon({
-    className: 'leaflet-div-icon', // Classe padrão do Leaflet
+    className: 'pin', // Classe padrão do Leaflet
     html: '<i class="fas fa-map-marker-alt" style="font-size: 32px; color: red;"></i>', // Ícone FontAwesome
     iconSize: [32, 32], // Tamanho do ícone
     iconAnchor: [16, 32], // Posição do ícone (onde o marcador deve se ancorar)

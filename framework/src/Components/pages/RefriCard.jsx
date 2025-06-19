@@ -21,7 +21,7 @@ const RefriCard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/refrigerantes?categoria=${id}`)
+    fetch(`http://localhost:8080/api/produtosCards?categoria=${id}`)
       .then((res) => res.json())
       .then((data) => setProdutos(data))
       .catch((err) => console.error('Erro ao buscar produtos:', err));

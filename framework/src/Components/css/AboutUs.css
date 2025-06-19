@@ -21,10 +21,11 @@ body {
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
+    margin-bottom: 5px;
 }
 
 .text p {
-    font-size: 20px;
+    font-size: 18px;
     max-width: 1200px;
     margin: 0 auto;
     text-transform: uppercase;
@@ -85,30 +86,13 @@ body {
     color: #FFC107;
 }
 
-.blob9 {
-    position: absolute;
-    z-index: -1;
-    width: 210px;
-    right: 1250px;
-    transform: rotate(-12deg);
-    top: 550px;
-}
-
-.blob10 {
-    position: absolute;
-    z-index: -1;
-    width: 210px;
-    right: 120px;
-    top: 1000px;
-    transform: rotate(12deg);
-}
-
 .blob11 {
     position: absolute;
     z-index: -1;
     width: 410px;
     right: 1320px;
     top: 1000px;
+    opacity: 0.4;
 }
 
 .blob12 {
@@ -117,4 +101,5 @@ body {
     width: 410px;
     right: -250px;
     top: 200px;
+    opacity: 0.4;
 }
